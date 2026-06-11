@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CEAL Green — Logo &amp; Wordmark Evaluation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Tokens ────────────────────────────────────────────── */
+    :root {
+      --oatmeal:     #F7F4EE;
+      --near-black:  #1A1F1E;
+      --mangrove:    #1E4D3A;
+      --mid-canopy:  #8DCFAA;
+      --aged-teak:   #B87A4E;
+      --white:       #FFFFFF;
+
+      --font: 'Space Grotesk', system-ui, sans-serif;
+
+      --space-xs:  8px;
+      --space-sm:  16px;
+      --space-md:  32px;
+      --space-lg:  56px;
+      --space-xl:  80px;
+    }
+
+    /* ── Reset ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: var(--font);
+      background: var(--oatmeal);
+      color: var(--near-black);
+      line-height: 1.6;
+    }
+
+    /* ── Page layout ───────────────────────────────────────── */
+    .page-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+
+    /* ── Header ────────────────────────────────────────────── */
+    .site-header {
+      background: var(--mangrove);
+      padding: var(--space-xl) var(--space-md);
+    }
+
+    .site-header .page-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .header-wordmark {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0;
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .header-wordmark .ceal {
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--oatmeal);
+      text-transform: uppercase;
+    }
+
+    .header-wordmark .interpunct {
+      font-weight: 400;
+      color: var(--aged-teak);
+      margin: 0 0.22em;
+    }
+
+    .header-wordmark .green {
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--mid-canopy);
+    }
+
+    .header-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid-canopy);
+      opacity: 0.75;
+    }
+
+    .header-title {
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--oatmeal);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    .header-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-xs);
+    }
+
+    .header-meta span {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--mid-canopy);
+      opacity: 0.8;
+    }
+
+    .header-meta span + span::before {
+      content: "·";
+      margin-right: var(--space-sm);
+      opacity: 0.5;
+    }
+
+    /* ── Strategic frame banner ────────────────────────────── */
+    .strategic-banner {
+      background: var(--near-black);
+      padding: var(--space-lg) var(--space-md);
+    }
+
+    .strategic-banner .page-wrap {
+      display: grid;
+      grid-template-columns: 4px 1fr;
+      gap: 0 var(--space-md);
+    }
+
+    .strategic-banner .accent-bar {
+      background: var(--aged-teak);
+      border-radius: 2px;
+    }
+
+    .strategic-banner-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .strategic-banner .eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--aged-teak);
+    }
+
+    .strategic-banner h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--oatmeal);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    .strategic-banner p {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--oatmeal);
+      opacity: 0.85;
+      line-height: 1.7;
+      max-width: 680px;
+    }
+
+    .strategic-banner p strong {
+      color: var(--mid-canopy);
+      font-weight: 600;
+    }
+
+    /* ── Section structure ─────────────────────────────────── */
+    .section {
+      padding: var(--space-xl) var(--space-md);
+    }
+
+    .section--alt {
+      background: var(--white);
+    }
+
+    .section--dark {
+      background: var(--mangrove);
+    }
+
+    .section-header {
+      margin-bottom: var(--space-lg);
+    }
+
+    .section-number {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--aged-teak);
+      margin-bottom: var(--space-xs);
+    }
+
+    .section--dark .section-number {
+      color: var(--mid-canopy);
+      opacity: 0.7;
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--near-black);
+      line-height: 1.2;
+    }
+
+    .section--dark .section-title {
+      color: var(--oatmeal);
+    }
+
+    .section-intro {
+      margin-top: var(--space-sm);
+      font-size: 15px;
+      color: var(--near-black);
+      opacity: 0.7;
+      line-height: 1.7;
+      max-width: 680px;
+    }
+
+    .section--dark .section-intro {
+      color: var(--oatmeal);
+    }
+
+    /* ── Subsection ────────────────────────────────────────── */
+    .subsection {
+      margin-bottom: var(--space-lg);
+    }
+
+    .subsection:last-child {
+      margin-bottom: 0;
+    }
+
+    .subsection-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--near-black);
+      margin-bottom: var(--space-sm);
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(26,31,30,0.12);
+    }
+
+    .section--dark .subsection-title {
+      color: var(--oatmeal);
+      border-bottom-color: rgba(247,244,238,0.12);
+    }
+
+    .section--alt .subsection-title {
+      color: var(--near-black);
+    }
+
+    p.body-text {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--near-black);
+      opacity: 0.85;
+      margin-bottom: var(--space-sm);
+      max-width: 740px;
+    }
+
+    .section--dark p.body-text {
+      color: var(--oatmeal);
+    }
+
+    p.body-text strong {
+      font-weight: 600;
+      opacity: 1;
+    }
+
+    .evidence-block {
+      margin-top: var(--space-sm);
+      padding: var(--space-sm) var(--space-md);
+      border-left: 3px solid var(--aged-teak);
+      background: rgba(184,122,78,0.06);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .evidence-block p {
+      font-size: 13px;
+      color: var(--near-black);
+      opacity: 0.7;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* ── Visual demo cards ─────────────────────────────────── */
+    .demo-card {
+      background: var(--oatmeal);
+      border-radius: 12px;
+      border: 1px solid rgba(26,31,30,0.1);
+      overflow: hidden;
+      margin: var(--space-md) 0;
+    }
+
+    .section--alt .demo-card {
+      border-color: rgba(26,31,30,0.1);
+    }
+
+    .section--dark .demo-card {
+      background: rgba(247,244,238,0.04);
+      border-color: rgba(247,244,238,0.12);
+    }
+
+    .demo-card-label {
+      padding: var(--space-sm) var(--space-md);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--near-black);
+      opacity: 0.45;
+      border-bottom: 1px solid rgba(26,31,30,0.08);
+    }
+
+    .section--dark .demo-card-label {
+      color: var(--oatmeal);
+      border-bottom-color: rgba(247,244,238,0.08);
+    }
+
+    .demo-card-body {
+      padding: var(--space-lg) var(--space-md);
+    }
+
+    /* ── Brief 1: Scale comparison ─────────────────────────── */
+    .scale-row {
+      display: flex;
+      align-items: flex-end;
+      gap: var(--space-xl);
+      flex-wrap: wrap;
+    }
+
+    .scale-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .scale-item img {
+      display: block;
+      object-fit: contain;
+    }
+
+    .scale-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--near-black);
+      opacity: 0.5;
+      text-align: center;
+    }
+
+    .scale-annotation {
+      margin-top: var(--space-xs);
+      font-size: 12px;
+      color: var(--near-black);
+      opacity: 0.6;
+      line-height: 1.5;
+      text-align: center;
+      max-width: 160px;
+      font-style: italic;
+    }
+
+    .annotation-chip {
+      display: inline-block;
+      padding: 3px 8px;
+      background: rgba(184,122,78,0.12);
+      border: 1px solid rgba(184,122,78,0.3);
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--aged-teak);
+      margin-top: 4px;
+      white-space: nowrap;
+    }
+
+    .annotation-chip--warn {
+      background: rgba(180,40,40,0.07);
+      border-color: rgba(180,40,40,0.25);
+      color: #B42828;
+    }
+
+    /* ── Brief 2 & 3: Combined mark mockups ────────────────── */
+    .lockup-demo {
+      display: flex;
+      align-items: flex-end;
+      gap: 48px;
+    }
+
+    .lockup-emblem {
+      flex-shrink: 0;
+    }
+
+    .lockup-emblem img {
+      display: block;
+      height: 80px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* Flat-colour SVG placeholder for dark background brief */
+    .lockup-emblem-svg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 80px;
+    }
+
+    .lockup-wordmark {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0;
+      line-height: 1;
+    }
+
+    /* cap-height = emblem height (80px). For Space Grotesk, font-size ≈ cap-height / 0.72 */
+    .lockup-wordmark .ceal {
+      font-weight: 700;
+      font-size: 72px;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+
+    .lockup-wordmark .interpunct {
+      font-weight: 400;
+      font-size: 72px;
+      color: var(--aged-teak);
+      margin: 0 0.18em;
+      line-height: 1;
+    }
+
+    .lockup-wordmark .green {
+      font-weight: 500;
+      font-size: 72px;
+      letter-spacing: 0.08em;
+    }
+
+    /* Light background wordmark colours */
+    .lockup-wordmark--light .ceal  { color: var(--near-black); }
+    .lockup-wordmark--light .green { color: var(--mangrove); }
+
+    /* Dark background wordmark colours */
+    .lockup-wordmark--dark .ceal  { color: var(--oatmeal); }
+    .lockup-wordmark--dark .green { color: var(--mid-canopy); }
+
+    /* Annotation callout system */
+    .callout-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm) var(--space-md);
+      margin-top: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(26,31,30,0.1);
+    }
+
+    .section--dark .callout-grid {
+      border-top-color: rgba(247,244,238,0.1);
+    }
+
+    .callout-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .callout-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--aged-teak);
+    }
+
+    .callout-value {
+      font-size: 13px;
+      color: var(--near-black);
+      opacity: 0.75;
+      line-height: 1.45;
+    }
+
+    .section--dark .callout-value {
+      color: var(--oatmeal);
+    }
+
+    .redraw-note {
+      margin-top: var(--space-sm);
+      padding: 10px 14px;
+      background: rgba(184,122,78,0.1);
+      border-left: 2px solid var(--aged-teak);
+      border-radius: 0 6px 6px 0;
+      font-size: 12px;
+      font-style: italic;
+      color: var(--near-black);
+      opacity: 0.7;
+    }
+
+    .section--dark .redraw-note {
+      color: var(--oatmeal);
+      background: rgba(184,122,78,0.08);
+    }
+
+    /* ── Brief 4: Wordmark-only panels ─────────────────────── */
+    .wordmark-panel-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+
+    .wordmark-panel {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .wordmark-panel-inner {
+      padding: var(--space-lg) var(--space-md);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      min-height: 180px;
+      justify-content: center;
+    }
+
+    .wordmark-panel--light .wordmark-panel-inner { background: var(--oatmeal); }
+    .wordmark-panel--dark  .wordmark-panel-inner { background: var(--mangrove); }
+
+    .wordmark-display {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0;
+      font-size: 40px;
+      line-height: 1;
+    }
+
+    .wordmark-display .ceal {
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+
+    .wordmark-display .interpunct {
+      font-weight: 400;
+      color: var(--aged-teak);
+      margin: 0 0.18em;
+    }
+
+    .wordmark-display .green {
+      font-weight: 500;
+      letter-spacing: 0.08em;
+    }
+
+    .wordmark-display--light .ceal  { color: var(--near-black); }
+    .wordmark-display--light .green { color: var(--mangrove); }
+    .wordmark-display--dark  .ceal  { color: var(--oatmeal); }
+    .wordmark-display--dark  .green { color: var(--mid-canopy); }
+
+    .wordmark-panel-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .wordmark-panel--light .wordmark-panel-label { color: var(--near-black); opacity: 0.45; }
+    .wordmark-panel--dark  .wordmark-panel-label { color: var(--oatmeal); opacity: 0.45; }
+
+    .colour-tokens {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .colour-token {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 3px 7px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.25);
+      color: var(--near-black);
+    }
+
+    .wordmark-panel--dark .colour-token {
+      background: rgba(0,0,0,0.2);
+      color: var(--oatmeal);
+    }
+
+    .wordmark-panel-footer {
+      padding: var(--space-sm) var(--space-md);
+      font-size: 12px;
+      font-style: italic;
+      opacity: 0.55;
+    }
+
+    .wordmark-panel--light .wordmark-panel-footer { background: var(--oatmeal); color: var(--near-black); border-top: 1px solid rgba(26,31,30,0.1); }
+    .wordmark-panel--dark  .wordmark-panel-footer { background: var(--mangrove); color: var(--oatmeal); border-top: 1px solid rgba(247,244,238,0.1); }
+
+    .wordmark-adoption-note {
+      margin-top: var(--space-md);
+      padding: var(--space-sm) var(--space-md);
+      background: rgba(184,122,78,0.08);
+      border: 1px solid rgba(184,122,78,0.2);
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--near-black);
+      opacity: 0.8;
+      line-height: 1.6;
+    }
+
+    /* ── Brief 5: Nav bar scale test ───────────────────────── */
+    .scale-test-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+
+    .scale-test-panel {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .scale-test-top {
+      padding: var(--space-md);
+      display: flex;
+      align-items: center;
+      min-height: 80px;
+      background: #E8E4DC;
+    }
+
+    .scale-test-combined {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .scale-test-combined img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
+
+    .scale-test-combined .wordmark-nav {
+      font-size: 25px;  /* roughly 36px cap-height for Space Grotesk */
+      font-weight: 700;
+      color: var(--near-black);
+      letter-spacing: -0.01em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .scale-test-wordmark-only {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0;
+      white-space: nowrap;
+    }
+
+    /* 36px cap-height → font-size ≈ 50px for Space Grotesk */
+    .scale-test-wordmark-only .ceal {
+      font-weight: 700;
+      font-size: 50px;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--near-black);
+      line-height: 1;
+    }
+
+    .scale-test-wordmark-only .interpunct {
+      font-weight: 400;
+      font-size: 50px;
+      color: var(--aged-teak);
+      margin: 0 0.14em;
+      line-height: 1;
+    }
+
+    .scale-test-wordmark-only .green {
+      font-weight: 500;
+      font-size: 50px;
+      letter-spacing: 0.08em;
+      color: var(--mangrove);
+      line-height: 1;
+    }
+
+    .scale-test-footer {
+      padding: var(--space-sm) var(--space-md);
+      border-top: 1px solid rgba(26,31,30,0.1);
+      background: #E8E4DC;
+    }
+
+    .scale-test-footer-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--near-black);
+      opacity: 0.55;
+      margin-bottom: 4px;
+    }
+
+    .outcome-chip {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .outcome-chip--fail {
+      background: rgba(180,40,40,0.1);
+      color: #B42828;
+      border: 1px solid rgba(180,40,40,0.25);
+    }
+
+    .outcome-chip--pass {
+      background: rgba(30,77,58,0.1);
+      color: var(--mangrove);
+      border: 1px solid rgba(30,77,58,0.25);
+    }
+
+    .scale-caption {
+      margin-top: var(--space-md);
+      font-size: 13px;
+      color: var(--near-black);
+      opacity: 0.65;
+      font-style: italic;
+      line-height: 1.6;
+      text-align: center;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── Summary table ─────────────────────────────────────── */
+    .findings-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .findings-table thead tr {
+      background: var(--mangrove);
+    }
+
+    .findings-table thead th {
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--oatmeal);
+      opacity: 0.85;
+    }
+
+    .findings-table tbody tr {
+      border-bottom: 1px solid rgba(26,31,30,0.08);
+    }
+
+    .findings-table tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    .findings-table tbody tr:nth-child(even) {
+      background: rgba(26,31,30,0.025);
+    }
+
+    .findings-table td {
+      padding: 12px 16px;
+      vertical-align: top;
+      color: var(--near-black);
+      line-height: 1.55;
+    }
+
+    .findings-table td:first-child {
+      font-weight: 600;
+      color: var(--near-black);
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .status-badge--issue {
+      background: rgba(180,40,40,0.1);
+      color: #B42828;
+    }
+
+    .status-badge--pending {
+      background: rgba(184,122,78,0.12);
+      color: var(--aged-teak);
+    }
+
+    .status-badge--action {
+      background: rgba(30,77,58,0.1);
+      color: var(--mangrove);
+    }
+
+    /* ── Priority list ─────────────────────────────────────── */
+    .priority-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .priority-item {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: var(--space-sm);
+      align-items: start;
+    }
+
+    .priority-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .priority-badge--1 { background: var(--mangrove); color: var(--oatmeal); }
+    .priority-badge--2 { background: rgba(30,77,58,0.15); color: var(--mangrove); }
+    .priority-badge--3 { background: rgba(30,77,58,0.1); color: var(--mangrove); }
+    .priority-badge--4 { background: rgba(184,122,78,0.15); color: var(--aged-teak); }
+    .priority-badge--5 { background: rgba(26,31,30,0.07); color: var(--near-black); }
+
+    .priority-content h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--near-black);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .priority-content p {
+      font-size: 13px;
+      color: var(--near-black);
+      opacity: 0.7;
+      line-height: 1.6;
+    }
+
+    /* ── Wordmark decision section ─────────────────────────── */
+    .alt-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--space-sm);
+      margin: var(--space-md) 0;
+    }
+
+    .alt-card {
+      padding: var(--space-md);
+      border-radius: 12px;
+      border: 1px solid rgba(26,31,30,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .alt-card--recommended {
+      border-color: var(--mangrove);
+      background: rgba(30,77,58,0.04);
+    }
+
+    .alt-card-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--near-black);
+      opacity: 0.45;
+    }
+
+    .alt-card--recommended .alt-card-label {
+      color: var(--mangrove);
+      opacity: 0.8;
+    }
+
+    .alt-card-display {
+      padding: var(--space-sm) 0;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    /* Alt A */
+    .alt-a-display .ceal  { font-weight: 700; letter-spacing: -0.01em; color: var(--near-black); text-transform: uppercase; }
+    .alt-a-display .dot   { color: var(--aged-teak); margin: 0 0.12em; font-weight: 400; }
+    .alt-a-display .green { font-weight: 500; letter-spacing: 0.08em; color: var(--mangrove); }
+
+    /* Alt B */
+    .alt-b-display .ceal  { font-weight: 700; letter-spacing: -0.04em; color: var(--near-black); text-transform: uppercase; }
+    .alt-b-display .space { width: 0.18em; display: inline-block; }
+    .alt-b-display .green { font-weight: 500; letter-spacing: 0.18em; color: var(--mangrove); }
+
+    /* Alt C */
+    .alt-c-display .ceal  { font-weight: 300; letter-spacing: -0.01em; color: var(--near-black); text-transform: uppercase; }
+    .alt-c-display .space { width: 0.18em; display: inline-block; }
+    .alt-c-display .green { font-weight: 700; letter-spacing: 0.08em; color: var(--mangrove); }
+
+    .alt-card-desc {
+      font-size: 13px;
+      color: var(--near-black);
+      opacity: 0.65;
+      line-height: 1.55;
+    }
+
+    .rec-chip {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--mangrove);
+      color: var(--oatmeal);
+    }
+
+    .pending-chip {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(184,122,78,0.15);
+      color: var(--aged-teak);
+      border: 1px solid rgba(184,122,78,0.3);
+    }
+
+    /* ── Usage rules ───────────────────────────────────────── */
+    .usage-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--space-sm);
+    }
+
+    .usage-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(26,31,30,0.1);
+    }
+
+    .section--dark .usage-card {
+      background: rgba(247,244,238,0.05);
+      border-color: rgba(247,244,238,0.1);
+    }
+
+    .usage-card-header {
+      padding: var(--space-sm) var(--space-md);
+      background: var(--mangrove);
+    }
+
+    .section--dark .usage-card-header {
+      background: rgba(247,244,238,0.08);
+    }
+
+    .usage-card-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--oatmeal);
+      letter-spacing: 0.02em;
+    }
+
+    .usage-card-body {
+      padding: var(--space-sm) var(--space-md);
+    }
+
+    .usage-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .usage-list li {
+      font-size: 13px;
+      color: var(--near-black);
+      opacity: 0.75;
+      line-height: 1.45;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .section--dark .usage-list li {
+      color: var(--oatmeal);
+    }
+
+    .usage-list li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: var(--aged-teak);
+      font-weight: 700;
+    }
+
+    .usage-threshold {
+      margin-top: var(--space-sm);
+      padding-top: var(--space-sm);
+      border-top: 1px solid rgba(26,31,30,0.08);
+      font-size: 11px;
+      color: var(--near-black);
+      opacity: 0.5;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .section--dark .usage-threshold {
+      color: var(--oatmeal);
+      border-top-color: rgba(247,244,238,0.08);
+    }
+
+    /* ── Footer ────────────────────────────────────────────── */
+    .site-footer {
+      background: var(--near-black);
+      padding: var(--space-lg) var(--space-md);
+    }
+
+    .site-footer .page-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .footer-brand {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0;
+      font-size: 18px;
+    }
+
+    .footer-brand .ceal  { font-weight: 700; letter-spacing: -0.01em; color: var(--oatmeal); text-transform: uppercase; }
+    .footer-brand .dot   { font-weight: 400; color: var(--aged-teak); margin: 0 0.2em; }
+    .footer-brand .green { font-weight: 500; letter-spacing: 0.08em; color: var(--mid-canopy); }
+
+    .footer-meta {
+      font-size: 12px;
+      color: var(--oatmeal);
+      opacity: 0.35;
+      text-align: right;
+      line-height: 1.7;
+    }
+
+    /* ── Dark-bg silhouette emblem ─────────────────────────── */
+    .emblem-silhouette {
+      display: inline-block;
+      width: 80px;
+      height: 80px;
+      flex-shrink: 0;
+    }
+
+    /* ── Responsive ────────────────────────────────────────── */
+    @media (max-width: 720px) {
+      .wordmark-panel-row,
+      .scale-test-row,
+      .alt-comparison,
+      .usage-grid { grid-template-columns: 1fr; }
+      .lockup-wordmark .ceal,
+      .lockup-wordmark .interpunct,
+      .lockup-wordmark .green { font-size: 38px; }
+      .lockup-emblem img { height: 54px; }
+      .lockup-demo { gap: var(--space-md); }
+      .scale-row { gap: var(--space-md); }
+      .header-title { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="site-header">
+  <div class="page-wrap">
+    <div class="header-wordmark">
+      <span class="ceal">CEAL</span><span class="interpunct">&middot;</span><span class="green">Green</span>
+    </div>
+    <div>
+      <div class="header-eyebrow">Brand Evaluation &middot; Confidential</div>
+      <h1 class="header-title">Logo &amp; Wordmark<br>Evaluation</h1>
+      <div class="header-meta">
+        <span>Prepared by Cass — Creative Strategist</span>
+        <span>Governing guidelines: Brand Guidelines v0.3</span>
+        <span>11 June 2026</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<!-- ============================================================
+     STRATEGIC FRAME
+     ============================================================ -->
+<div class="strategic-banner">
+  <div class="page-wrap">
+    <div class="accent-bar"></div>
+    <div class="strategic-banner-content">
+      <div class="eyebrow">Strategic position</div>
+      <h2>Primary recommendation: wordmark-only identity</h2>
+      <p>
+        Space Grotesk, the approved two-colour split, and the spacing specifications defined in the brand guidelines are sufficient to produce a polished, professional, and category-distinctive mark for all current use cases — website nav, document headers, email signatures, slide decks, collateral, and social profiles.
+      </p>
+      <p>
+        <strong>The combined mark evaluation below is the contingency path.</strong> If the logo is retained now, this is the standard to which the combination must be executed. It does not change the primary recommendation.
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     SECTION 1 — LOGO MARK EVALUATION
+     ============================================================ -->
+<section class="section">
+  <div class="page-wrap">
+    <div class="section-header">
+      <div class="section-number">Section 1</div>
+      <h2 class="section-title">Evaluation of the Logo Mark</h2>
+      <p class="section-intro">The circular badge as currently presented — assessed against scale, brand register, and illustration standard.</p>
+    </div>
+
+    <!-- Visual Brief 1 — Current logo at three sizes -->
+    <div class="demo-card">
+      <div class="demo-card-label">Current logo state — scale comparison</div>
+      <div class="demo-card-body">
+        <div class="scale-row">
+
+          <!-- Large -->
+          <div class="scale-item">
+            <img src="ryan-logo-current.png" style="height: 300px;" alt="Current logo — large (300px)">
+            <div class="scale-label">300 px height</div>
+            <div class="scale-annotation">Full mark — illustration and arc text visible</div>
+          </div>
+
+          <!-- Medium -->
+          <div class="scale-item">
+            <img src="ryan-logo-current.png" style="height: 48px;" alt="Current logo — medium (48px)">
+            <div class="scale-label">48 px height</div>
+            <div class="scale-annotation">Document / nav scale</div>
+            <span class="annotation-chip annotation-chip--warn">Arc text illegible</span>
+            <span class="annotation-chip annotation-chip--warn">Panel detail lost</span>
+          </div>
+
+          <!-- Small -->
+          <div class="scale-item">
+            <img src="ryan-logo-current.png" style="height: 32px;" alt="Current logo — small (32px)">
+            <div class="scale-label">32 px height</div>
+            <div class="scale-annotation">Favicon / small context</div>
+            <span class="annotation-chip annotation-chip--warn">Illustration collapses to indistinct blob</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Brand register: does it communicate "execution engine"?</h3>
+      <p class="body-text">The mark as presented reads as an eco-certification badge or environmental NGO seal — not as a B2B execution engine. The circular seal format, the organic leaf illustration, and the composite "green energy symbols" composition are visual conventions associated with sustainability advocacy, certification bodies, and community organisations.</p>
+      <p class="body-text">A government procurement officer or international capital provider encountering this mark is likely to read it as belonging to an advocacy organisation rather than a delivery firm.</p>
+      <div class="evidence-block">
+        <p>Evidence: Brand Guidelines §1 Core Proposition — "CEAL Green is a Caribbean execution engine for green solutions." §2 Brand Personality — "Not an advocacy organisation or policy commentator." §2 What We Are Not — "Not idealistic — CEAL Green speaks from the work, not the wish."</p>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Illustration style: professionally built or downloaded?</h3>
+      <p class="body-text">The leaf/solar/sun composition is in the visual language of a free icon library or a Canva logo template. The gradient leaf, the stylised sunrise, and the solar panel grid are each individually recognisable as stock elements — and their combination in a circular badge is a pattern that appears across hundreds of generic green-energy companies globally.</p>
+      <p class="body-text"><strong>The test for a professional services mark: does it look like it was built, or does it look like it was downloaded?</strong> The mark as presented reads as downloaded. This observation is not about the thematic concept — a leaf-and-solar composition is coherent for this brand. It is about execution quality.</p>
+      <div class="evidence-block">
+        <p>Evidence: Brand Guidelines §2 Brand Personality — "Born digital, born green... designed for this era, not retrofitted for it."</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2 — WORDMARK EVALUATION
+     ============================================================ -->
+<section class="section section--alt">
+  <div class="page-wrap">
+    <div class="section-header">
+      <div class="section-number">Section 2</div>
+      <h2 class="section-title">Evaluation of the Wordmark</h2>
+      <p class="section-intro">Typography, colour split, spacing, and sizing — measured against the approved specification.</p>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Typography</h3>
+      <p class="body-text">The wordmark text in the mark as presented does not appear to be Space Grotesk. The letterforms show characteristics inconsistent with the approved specification — particularly the C, E, A, L and the G in Green. The typeface appears to be a rounded geometric sans (possibly Nunito, Poppins, or a similar generic alternative).</p>
+      <p class="body-text">Space Grotesk has a distinctive constructed quality — slightly condensed, with geometric regularity and distinctive letterform details. The current execution reads as softer and more generically rounded. The mismatch is visible at document scale.</p>
+      <div class="evidence-block">
+        <p>Evidence: Brand Guidelines §5 Wordmark — "CEAL — Space Grotesk 700, uppercase" / "Green — Space Grotesk 500, title case."</p>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Weight and colour treatment</h3>
+      <p class="body-text">The two-colour weight split in the current version is directionally correct, but the execution is inconsistent with the approved specification. The wordmark appears in a single dark teal with minimal differentiation. The approved colour split — Near-Black (#1A1F1E) and Mangrove (#1E4D3A) on light backgrounds; Oatmeal (#F7F4EE) and Mid Canopy (#8DCFAA) on dark — is the approved system and what differentiates the wordmark from a plain text label.</p>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">Spacing</h3>
+      <p class="body-text"><strong>Word spacing:</strong> The approved spec defines a 0.18em left margin between CEAL and Green, baseline aligned. The current gap reads closer to a standard word space, disrupting the tight inline-flex pairing that gives the approved wordmark its visual unity.</p>
+      <p class="body-text"><strong>Wordmark-to-mark clearance:</strong> The horizontal gap between the right edge of the circular emblem and the first letter of "CEAL" appears insufficient. Standard clearance for a horizontal lockup is a minimum of the cap-height of the wordmark at that scale.</p>
+      <p class="body-text"><strong>CEAL letter-spacing:</strong> The approved spec sets CEAL at −0.01em (slightly tightened). The current execution appears at default spacing, making CEAL read as less constructed and less unified.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3 — ALIGNMENT AND SIZING CONVENTION
+     ============================================================ -->
+<section class="section">
+  <div class="page-wrap">
+    <div class="section-header">
+      <div class="section-number">Section 3</div>
+      <h2 class="section-title">Sizing Convention and Alignment</h2>
+      <p class="section-intro">Why the sizing relationship between mark and wordmark matters — and how to apply it correctly.</p>
+    </div>
+
+    <p class="body-text">The current mark centres "CEAL Green" text vertically alongside the circular emblem. The recommendation is a different approach, beginning with the sizing relationship.</p>
+
+    <p class="body-text"><strong>The standard convention in professional horizontal lockups: the cap-height of the wordmark should be sized to equal the overall height of the circular emblem.</strong> When this sizing relationship is applied correctly, the wordmark baseline and the bottom of the emblem land on the same horizontal plane. Baseline alignment of the wordmark to the bottom of the emblem is the natural result of applying the sizing convention — not a separate decision layered on top.</p>
+
+    <p class="body-text">The circular emblem in the current mark carries significant visual mass at the top (the leaf protrudes at the 12 o'clock position). Centering the wordmark alongside the full circle optical centre means the text floats relative to the heaviest part of the mark. The sizing convention resolves this: the text and the bottom of the circle share a baseline, anchoring the entire lockup visually.</p>
+
+    <!-- Visual Brief 2 — Corrected combined mark: light background -->
+    <div class="demo-card" style="margin-top: var(--space-lg);">
+      <div class="demo-card-label">Recommended execution — if logo mark is retained (light background)</div>
+      <div class="demo-card-body" style="background: var(--oatmeal);">
+        <div class="lockup-demo">
+          <div class="lockup-emblem">
+            <img src="ryan-logo-current.png" alt="CEAL Green emblem">
+          </div>
+          <div style="display: flex; flex-direction: column; justify-content: flex-end;">
+            <div class="lockup-wordmark lockup-wordmark--light">
+              <span class="ceal">CEAL</span><span class="interpunct">&middot;</span><span class="green">Green</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="redraw-note">Emblem shown as currently presented; illustration redraw required — see Priority 1.</div>
+
+        <div class="callout-grid">
+          <div class="callout-item">
+            <div class="callout-label">Sizing convention</div>
+            <div class="callout-value">Cap-height of wordmark = total height of emblem bounding box</div>
+          </div>
+          <div class="callout-item">
+            <div class="callout-label">Shared baseline</div>
+            <div class="callout-value">Wordmark baseline aligned to bottom of emblem — natural result of sizing convention, not a separate decision</div>
+          </div>
+          <div class="callout-item">
+            <div class="callout-label">Minimum clearance</div>
+            <div class="callout-value">Horizontal gap between emblem right edge and first letter = cap-height of wordmark at that size</div>
+          </div>
+          <div class="callout-item">
+            <div class="callout-label">Colour split</div>
+            <div class="callout-value">
+              CEAL — Near-Black <code>#1A1F1E</code><br>
+              Interpunct — Aged Teak <code>#B87A4E</code><br>
+              Green — Mangrove <code>#1E4D3A</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visual Brief 3 — Corrected combined mark: dark background -->
+    <div class="demo-card" style="margin-top: var(--space-md);">
+      <div class="demo-card-label">Recommended execution — if logo mark is retained (dark background)</div>
+      <div class="demo-card-body" style="background: var(--mangrove);">
+        <div class="lockup-demo">
+          <!-- On dark bg, emblem as a flat-colour SVG placeholder per brief instructions -->
+          <div class="lockup-emblem">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Emblem flat-colour placeholder">
+              <circle cx="40" cy="40" r="38" stroke="#F7F4EE" stroke-width="2.5" fill="none"/>
+              <!-- Leaf silhouette -->
+              <path d="M40 12 C28 18 20 30 26 44 C30 52 40 56 40 56 C40 56 50 52 54 44 C60 30 52 18 40 12Z" fill="#8DCFAA"/>
+              <!-- Sun arc -->
+              <path d="M28 52 Q40 36 52 52" stroke="#B87A4E" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <!-- Sun rays -->
+              <line x1="40" y1="48" x2="40" y2="42" stroke="#B87A4E" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="35" y1="50" x2="33" y2="45" stroke="#B87A4E" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="45" y1="50" x2="47" y2="45" stroke="#B87A4E" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- Grid lines suggesting solar panels -->
+              <line x1="28" y1="56" x2="52" y2="56" stroke="#F7F4EE" stroke-width="1" opacity="0.4"/>
+              <line x1="28" y1="60" x2="52" y2="60" stroke="#F7F4EE" stroke-width="1" opacity="0.4"/>
+              <line x1="34" y1="53" x2="34" y2="63" stroke="#F7F4EE" stroke-width="1" opacity="0.4"/>
+              <line x1="40" y1="53" x2="40" y2="63" stroke="#F7F4EE" stroke-width="1" opacity="0.4"/>
+              <line x1="46" y1="53" x2="46" y2="63" stroke="#F7F4EE" stroke-width="1" opacity="0.4"/>
+            </svg>
+          </div>
+          <div style="display: flex; flex-direction: column; justify-content: flex-end;">
+            <div class="lockup-wordmark lockup-wordmark--dark">
+              <span class="ceal">CEAL</span><span class="interpunct">&middot;</span><span class="green">Green</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="redraw-note" style="border-left-color: var(--aged-teak);">
+          Dark mode execution — wordmark only fully confirmed; emblem shown as flat-colour placeholder pending professional redraw. Illustration redraw required — see Priority 1.
+        </div>
+
+        <div class="callout-grid">
+          <div class="callout-item">
+            <div class="callout-label" style="color: var(--mid-canopy);">Colour split — dark</div>
+            <div class="callout-value" style="color: var(--oatmeal);">
+              CEAL — Oatmeal <code>#F7F4EE</code><br>
+              Interpunct — Aged Teak <code>#B87A4E</code><br>
+              Green — Mid Canopy <code>#8DCFAA</code>
+            </div>
+          </div>
+          <div class="callout-item">
+            <div class="callout-label" style="color: var(--mid-canopy);">Emblem note</div>
+            <div class="callout-value" style="color: var(--oatmeal);">The current gradient illustration has no viable dark-mode render. A professional redraw is required before the combined mark can be applied on dark backgrounds.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 4 — IMPROVEMENT RECOMMENDATIONS
+     ============================================================ -->
+<section class="section section--alt">
+  <div class="page-wrap">
+    <div class="section-header">
+      <div class="section-number">Section 4</div>
+      <h2 class="section-title">Improvement Recommendations</h2>
+      <p class="section-intro">Listed in the order that delivers the most brand value per unit of effort. Every item is actionable without designer interpretation.</p>
+    </div>
+
+    <div class="priority-list">
+      <div class="priority-item">
+        <div class="priority-badge priority-badge--1">P1</div>
+        <div class="priority-content">
+          <h4>Replace the wordmark typeface with the approved specification</h4>
+          <p>Replace the current typeface with Space Grotesk 700 for "CEAL" (uppercase, letter-spacing −0.01em) and Space Grotesk 500 for "Green" (title case, letter-spacing +0.08em). Space Grotesk is available free at Google Fonts. Set the left margin between CEAL and Green at 0.18em, baseline aligned. This single change brings the wordmark into brand compliance immediately.</p>
+        </div>
+      </div>
+
+      <div class="priority-item">
+        <div class="priority-badge priority-badge--2">P2</div>
+        <div class="priority-content">
+          <h4>Apply the correct two-colour split to the wordmark</h4>
+          <p>On the primary light background (Oatmeal #F7F4EE): CEAL in Near-Black (#1A1F1E), Green in Mangrove (#1E4D3A). On dark backgrounds (Mangrove #1E4D3A): CEAL in Oatmeal (#F7F4EE), Green in Mid Canopy (#8DCFAA). The two-colour split is what differentiates the wordmark from a plain text label.</p>
+        </div>
+      </div>
+
+      <div class="priority-item">
+        <div class="priority-badge priority-badge--3">P3</div>
+        <div class="priority-content">
+          <h4>Apply the correct sizing convention and baseline alignment</h4>
+          <p>Size the wordmark so its cap-height equals the total height of the circular emblem. This naturally aligns the wordmark baseline to the base of the emblem. Increase the horizontal clearance between the emblem's right edge and the first letter of "CEAL" to a minimum of the cap-height of the wordmark at target size (at 36px wordmark height, approximately 24–28px clearance).</p>
+        </div>
+      </div>
+
+      <div class="priority-item">
+        <div class="priority-badge priority-badge--4">P4</div>
+        <div class="priority-content">
+          <h4>Commission a professional vector redraw of the circular emblem</h4>
+          <p>Remove all gradients; the mark must work in flat colour. Reduce the illustration to one dominant geometric element or tightly unified composition. All linework must be geometric and constructed — no organic freehand curves. The circle border, if retained, should be a single clean stroke weight (2–3px at standard size). The mark must hold cleanly at 24px square. Brief: flat-colour, geometric, single dominant element, reduction to 24px, no gradients, no arc text.</p>
+        </div>
+      </div>
+
+      <div class="priority-item">
+        <div class="priority-badge priority-badge--5">P5</div>
+        <div class="priority-content">
+          <h4>Formalise a one-colour (monochrome) version of the combined mark</h4>
+          <p>Once Priorities 1–4 are complete, produce a single-colour version in Near-Black (#1A1F1E) and a reverse version in Oatmeal (#F7F4EE). Required for print, document embeds, and any context where the full palette is unavailable. The current gradient illustration is not viable in grayscale.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 5 — WORDMARK DIFFERENTIATION DECISION
+     ============================================================ -->
+<section class="section">
+  <div class="page-wrap">
+    <div class="section-header">
+      <div class="section-number">Section 5</div>
+      <h2 class="section-title">Wordmark Differentiation Decision</h2>
+      <p class="section-intro">Three alternatives evaluated — one recommendation. Decision pending confirmation before the wordmark is finalised.</p>
+    </div>
+
+    <div class="alt-comparison">
+
+      <!-- Alt A -->
+      <div class="alt-card alt-card--recommended">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div class="alt-card-label">Alt A &mdash; Recommended</div>
+          <div><span class="rec-chip">Recommended</span></div>
+        </div>
+        <div class="alt-card-display alt-a-display">
+          <span class="ceal">CEAL</span><span class="dot">&middot;</span><span class="green">Green</span>
+        </div>
+        <p class="alt-card-desc">Interpunct (·) in Aged Teak between CEAL and Green. Introduces the third palette colour in a functional role. Creates a deliberate editorial pause. Genuinely uncommon in the greentech/B2B category. Holds at every scale.</p>
+        <span class="pending-chip">Adoption pending confirmation</span>
+      </div>
+
+      <!-- Alt B -->
+      <div class="alt-card">
+        <div class="alt-card-label">Alt B</div>
+        <div class="alt-card-display alt-b-display">
+          <span class="ceal">CEAL</span><span class="space"></span><span class="green">Green</span>
+        </div>
+        <p class="alt-card-desc">Tracking contrast: CEAL tighter (−0.04em), Green wider (+0.18em). Rewards close attention. At nav scale, the tracking difference collapses into imperceptibility — differentiation only works where the mark has room to breathe.</p>
+      </div>
+
+      <!-- Alt C -->
+      <div class="alt-card">
+        <div class="alt-card-label">Alt C</div>
+        <div class="alt-card-display alt-c-display">
+          <span class="ceal">CEAL</span><span class="space"></span><span class="green">Green</span>
+        </div>
+        <p class="alt-card-desc">Inverted weight: CEAL light (300), Green bold (700). Boldest and most distinctive, but CEAL appearing visually subordinate reads as counterintuitive to new stakeholders. The right move when brand recognition is established enough that the inversion reads as intentional — not yet.</p>
+      </div>
+
+    </div>
+
+    <!-- Visual Brief 4 — Wordmark only: both backgrounds -->
+    <div style="margin-top: var(--space-lg);">
+      <div class="wordmark-panel-row">
+
+        <!-- Light -->
+        <div class="wordmark-panel wordmark-panel--light">
+          <div class="wordmark-panel-inner">
+            <div class="wordmark-panel-label">Primary recommendation — light background</div>
+            <div class="wordmark-display wordmark-display--light">
+              <span class="ceal">CEAL</span><span class="interpunct">&middot;</span><span class="green">Green</span>
+            </div>
+            <div class="colour-tokens">
+              <span class="colour-token">CEAL #1A1F1E</span>
+              <span class="colour-token">· #B87A4E</span>
+              <span class="colour-token">Green #1E4D3A</span>
+            </div>
+          </div>
+          <div class="wordmark-panel-footer">Light execution</div>
+        </div>
+
+        <!-- Dark -->
+        <div class="wordmark-panel wordmark-panel--dark">
+          <div class="wordmark-panel-inner">
+            <div class="wordmark-panel-label">Primary recommendation — dark background</div>
+            <div class="wordmark-display wordmark-display--dark">
+              <span class="ceal">CEAL</span><span class="interpunct">&middot;</span><span class="green">Green</span>
+            </div>
+            <div class="colour-tokens">
+              <span class="colour-token">CEAL #F7F4EE</span>
+              <span class="colour-token">· #B87A4E</span>
+              <span class="colour-token">Green #8DCFAA</span>
+            </div>
+          </div>
+          <div class="wordmark-panel-footer">Dark execution</div>
+        </div>
+
+      </div>
+
+      <div class="wordmark-adoption-note">
+        <strong>Interpunct (·) in Aged Teak — Alt A — is the recommended differentiation option.</strong> Rendered above in both light and dark executions. Adoption pending confirmation — this is the preferred direction from the approved specification options, not a confirmed standard. Confirm before finalising the wordmark.
+      </div>
+      <p style="font-size: 12px; color: var(--near-black); opacity: 0.5; margin-top: 10px; font-style: italic; line-height: 1.5;">Wordmark only — primary recommendation for nav, document headers, email signatures, and constrained digital contexts.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 6 — LOCKUP USAGE RULES
+     ============================================================ -->
+<section class="section section--dark">
+  <div class="page-wrap">
+    <div class="section-header">
+      <div class="section-number">Section 6</div>
+      <h2 class="section-title">Lockup Usage Rules</h2>
+      <p class="section-intro">The combined mark system has three standard configurations. Knowing when to use each prevents the mark from being misapplied across contexts.</p>
+    </div>
+
+    <div class="usage-grid">
+
+      <div class="usage-card">
+        <div class="usage-card-header">
+          <div class="usage-card-title">Mark + Wordmark together</div>
+        </div>
+        <div class="usage-card-body">
+          <ul class="usage-list">
+            <li>Website hero and about sections</li>
+            <li>Proposal and document covers</li>
+            <li>Presentation title slides</li>
+            <li>Printed collateral (banners, signage)</li>
+            <li>Brand partnership contexts</li>
+          </ul>
+          <div class="usage-threshold">Minimum 80px total height. Below this, use wordmark only.</div>
+        </div>
+      </div>
+
+      <div class="usage-card">
+        <div class="usage-card-header">
+          <div class="usage-card-title">Mark only (emblem)</div>
+        </div>
+        <div class="usage-card-body">
+          <ul class="usage-list">
+            <li>Favicon / browser tab</li>
+            <li>Social media avatar / profile image</li>
+            <li>App icon</li>
+            <li>Embossed or debossed applications</li>
+            <li>Watermark applications</li>
+          </ul>
+          <div class="usage-threshold">Minimum 24px square — only viable after professional vector redraw (Priority 4). Mark-only use should be limited to technically required contexts while brand recognition is still being built.</div>
+        </div>
+      </div>
+
+      <div class="usage-card">
+        <div class="usage-card-header" style="background: var(--aged-teak);">
+          <div class="usage-card-title">Wordmark only</div>
+        </div>
+        <div class="usage-card-body">
+          <ul class="usage-list">
+            <li>Website navigation bar</li>
+            <li>Email signatures</li>
+            <li>Document headers and footers</li>
+            <li>Slide deck title and closing slides</li>
+            <li>Collateral with tight horizontal space</li>
+            <li>Digital ads at constrained sizes</li>
+          </ul>
+          <div class="usage-threshold">Minimum 14px cap-height (~20px total). Wordmark-only is not a fallback — for CEAL Green's current stage, it is a confident, professional, and fully complete brand expression.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Visual Brief 5 — Scale test -->
+    <div style="margin-top: var(--space-lg);">
+      <div style="font-size: 13px; font-weight: 600; color: var(--mid-canopy); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: var(--space-sm); opacity: 0.8;">Scale test — nav bar height (36px actual CSS height)</div>
+
+      <div class="scale-test-row">
+
+        <!-- Combined mark at 36px -->
+        <div class="scale-test-panel">
+          <div class="scale-test-top">
+            <div class="scale-test-combined">
+              <img src="ryan-logo-current.png" alt="Current logo at 36px height" style="height: 36px;">
+              <span class="wordmark-nav">CEAL Green</span>
+            </div>
+          </div>
+          <div class="scale-test-footer">
+            <div class="scale-test-footer-label">Combined mark — current</div>
+            <span class="outcome-chip outcome-chip--fail">Emblem illegible at this size</span>
+          </div>
+        </div>
+
+        <!-- Wordmark only at 36px cap-height -->
+        <div class="scale-test-panel">
+          <div class="scale-test-top">
+            <div class="scale-test-wordmark-only">
+              <span class="ceal">CEAL</span><span class="interpunct">&middot;</span><span class="green">Green</span>
+            </div>
+          </div>
+          <div class="scale-test-footer">
+            <div class="scale-test-footer-label">Wordmark only — recommended</div>
+            <span class="outcome-chip outcome-chip--pass">Fully legible at nav size</span>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="scale-caption">At nav bar height (36px), the combined mark loses emblem legibility. The wordmark-only treatment maintains legibility where the combined mark begins to lose definition.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 7 — SUMMARY OF FINDINGS
+     ============================================================ -->
+<section class="section section--alt">
+  <div class="page-wrap">
+    <div class="section-header">
+      <div class="section-number">Section 7</div>
+      <h2 class="section-title">Summary of Findings</h2>
+      <p class="section-intro">All items assessed against the approved brand guidelines. Priority order reflects brand value per unit of effort.</p>
+    </div>
+
+    <table class="findings-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Status</th>
+          <th>Action required</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Illustration style</td>
+          <td><span class="status-badge status-badge--issue">Issue</span></td>
+          <td>Commission professional vector redraw — flat, geometric, single element, 24px-viable, no gradients</td>
+        </tr>
+        <tr>
+          <td>Wordmark typeface</td>
+          <td><span class="status-badge status-badge--issue">Issue</span></td>
+          <td>Replace with Space Grotesk 700 / 500 per approved specification</td>
+        </tr>
+        <tr>
+          <td>Two-colour split</td>
+          <td><span class="status-badge status-badge--issue">Issue</span></td>
+          <td>Apply approved palette split: Near-Black + Mangrove on light; Oatmeal + Mid Canopy on dark</td>
+        </tr>
+        <tr>
+          <td>Sizing convention</td>
+          <td><span class="status-badge status-badge--issue">Issue</span></td>
+          <td>Size wordmark cap-height to equal total emblem height; baseline alignment follows</td>
+        </tr>
+        <tr>
+          <td>Wordmark-to-mark clearance</td>
+          <td><span class="status-badge status-badge--issue">Issue</span></td>
+          <td>Increase to minimum cap-height clearance at target size</td>
+        </tr>
+        <tr>
+          <td>CEAL letter-spacing</td>
+          <td><span class="status-badge status-badge--issue">Issue</span></td>
+          <td>Set to −0.01em per specification</td>
+        </tr>
+        <tr>
+          <td>Wordmark differentiation</td>
+          <td><span class="status-badge status-badge--pending">Pending</span></td>
+          <td>Adopt Alt A (interpunct in Aged Teak) — pending confirmation from client</td>
+        </tr>
+        <tr>
+          <td>Monochrome version</td>
+          <td><span class="status-badge status-badge--issue">Issue</span></td>
+          <td>Required once illustration is redrawn; gradient is not viable in grayscale</td>
+        </tr>
+        <tr>
+          <td>Wordmark only — primary recommendation</td>
+          <td><span class="status-badge status-badge--action">Action</span></td>
+          <td>Adopt wordmark only as primary execution for all digital contexts now; introduce combined mark when professional redraw is complete</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(30,77,58,0.06); border-radius: 12px; border: 1px solid rgba(30,77,58,0.15);">
+      <p style="font-size: 15px; color: var(--near-black); line-height: 1.75;">
+        <strong>The most immediately actionable improvement:</strong> applying the correct typeface, two-colour split, and sizing convention produces a professional and brand-compliant expression that outperforms the current combined mark across all digital working sizes — and can be in place before any illustration work begins. The combined mark becomes viable when the professional vector redraw is complete. Until then, the wordmark carries the brand.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer">
+  <div class="page-wrap">
+    <div class="footer-brand">
+      <span class="ceal">CEAL</span><span class="dot">&middot;</span><span class="green">Green</span>
+    </div>
+    <div class="footer-meta">
+      Logo &amp; Wordmark Evaluation<br>
+      Prepared by Cass — Creative Strategist &middot; 11 June 2026<br>
+      Confidential — for client review
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
