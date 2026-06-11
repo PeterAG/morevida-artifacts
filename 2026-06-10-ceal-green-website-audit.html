@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CEAL Green Website Audit — 2026-06-10</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* ── GL-003 TOKENS ─────────────────────────────────── */
+  :root {
+    --color-primary:        #9B2D30; /* Garnet */
+    --color-neutral-5:      #1A1A1A; /* Ebon */
+    --color-neutral-0:      #F9F7F2; /* Alabaster */
+    --color-supporting-1:   #5E3A2B; /* Deep Earth */
+    --color-supporting-2:   #D67D4E; /* Sienna */
+    --color-supporting-3:   #E8C0A3; /* Soft Sand */
+
+    /* Audit severity tokens — defined for this artifact */
+    --sev-critical-bg:      #FEF2F2;
+    --sev-critical-border:  #C0392B;
+    --sev-critical-badge:   #C0392B;
+    --sev-critical-text:    #7B1F1F;
+
+    --sev-major-bg:         #FFFBF0;
+    --sev-major-border:     #C77A2C;
+    --sev-major-badge:      #C77A2C;
+    --sev-major-text:       #7A4A10;
+
+    --sev-minor-bg:         #FEFDF4;
+    --sev-minor-border:     #B8A828;
+    --sev-minor-badge:      #9A8C12;
+    --sev-minor-text:       #6B6010;
+
+    --sev-works-bg:         #F2FAF4;
+    --sev-works-border:     #2E7D52;
+    --sev-works-badge:      #2E7D52;
+    --sev-works-text:       #1B5738;
+
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 48px;
+    --space-xl: 64px;
+    --radius:   24px;
+    --radius-sm: 4px;
+    --radius-md: 12px;
+  }
+
+  /* ── RESET & BASE ──────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--color-neutral-5);
+    background: var(--color-neutral-0);
+    display: flex;
+  }
+
+  /* ── STICKY LEFT NAV ───────────────────────────────── */
+  .sidenav {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 220px;
+    min-width: 220px;
+    background: #fff;
+    border-right: 1px solid var(--color-supporting-3);
+    padding: var(--space-md) var(--space-sm);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    flex-shrink: 0;
+  }
+
+  .sidenav-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    color: var(--color-primary);
+    letter-spacing: 0.02em;
+    margin-bottom: var(--space-sm);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--color-supporting-3);
+    line-height: 1.3;
+  }
+
+  .sidenav-logo span {
+    display: block;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--color-supporting-1);
+    font-family: 'Inter', sans-serif;
+    margin-top: 3px;
+  }
+
+  .nav-section-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-supporting-2);
+    margin-top: var(--space-sm);
+    margin-bottom: 4px;
+    padding-left: 4px;
+  }
+
+  .sidenav a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-size: 12.5px;
+    color: var(--color-neutral-5);
+    padding: 6px 8px;
+    border-radius: var(--radius-md);
+    transition: background 0.15s, color 0.15s;
+    line-height: 1.3;
+  }
+
+  .sidenav a:hover {
+    background: var(--color-neutral-0);
+    color: var(--color-primary);
+  }
+
+  .nav-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .dot-critical { background: var(--sev-critical-badge); }
+  .dot-major    { background: var(--sev-major-badge); }
+  .dot-minor    { background: var(--sev-minor-badge); }
+  .dot-works    { background: var(--sev-works-badge); }
+  .dot-nc       { background: var(--color-supporting-1); }
+  .dot-bench    { background: var(--color-supporting-2); }
+
+  /* ── MAIN CONTENT ──────────────────────────────────── */
+  .main {
+    flex: 1;
+    max-width: 900px;
+    padding: var(--space-xl) var(--space-lg);
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER / COVER ────────────────────────────────── */
+  .cover {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: var(--space-xl) var(--space-lg);
+    margin-bottom: var(--space-lg);
+    border: 1px solid var(--color-supporting-3);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+
+  .cover-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-supporting-2);
+    margin-bottom: var(--space-sm);
+  }
+
+  .cover h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    color: var(--color-primary);
+    line-height: 1.2;
+    margin-bottom: var(--space-sm);
+  }
+
+  .cover-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+  }
+
+  .cover-meta-item {
+    font-size: 13px;
+    color: var(--color-supporting-1);
+  }
+
+  .cover-meta-item strong {
+    color: var(--color-neutral-5);
+    font-weight: 700;
+  }
+
+  .cover-meta-sep {
+    color: var(--color-supporting-3);
+  }
+
+  .scorecard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-sm);
+  }
+
+  .score-cell {
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md);
+    text-align: center;
+    border: 1px solid transparent;
+  }
+
+  .score-cell.critical {
+    background: var(--sev-critical-bg);
+    border-color: var(--sev-critical-border);
+  }
+  .score-cell.major {
+    background: var(--sev-major-bg);
+    border-color: var(--sev-major-border);
+  }
+  .score-cell.minor {
+    background: var(--sev-minor-bg);
+    border-color: var(--sev-minor-border);
+  }
+  .score-cell.works {
+    background: var(--sev-works-bg);
+    border-color: var(--sev-works-border);
+  }
+
+  .score-number {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .score-cell.critical .score-number { color: var(--sev-critical-badge); }
+  .score-cell.major    .score-number { color: var(--sev-major-badge); }
+  .score-cell.minor    .score-number { color: var(--sev-minor-badge); }
+  .score-cell.works    .score-number { color: var(--sev-works-badge); }
+
+  .score-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .score-cell.critical .score-label { color: var(--sev-critical-text); }
+  .score-cell.major    .score-label { color: var(--sev-major-text); }
+  .score-cell.minor    .score-label { color: var(--sev-minor-text); }
+  .score-cell.works    .score-label { color: var(--sev-works-text); }
+
+  /* ── SECTIONS ──────────────────────────────────────── */
+  .section {
+    margin-bottom: var(--space-lg);
+    scroll-margin-top: var(--space-md);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--color-supporting-3);
+  }
+
+  .section-header.critical { border-color: var(--sev-critical-border); }
+  .section-header.major    { border-color: var(--sev-major-border); }
+  .section-header.minor    { border-color: var(--sev-minor-border); }
+  .section-header.works    { border-color: var(--sev-works-border); }
+  .section-header.nc       { border-color: var(--color-supporting-1); }
+  .section-header.bench    { border-color: var(--color-supporting-2); }
+
+  .section-severity-marker {
+    width: 12px;
+    height: 40px;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .section-header.critical .section-severity-marker { background: var(--sev-critical-badge); }
+  .section-header.major    .section-severity-marker { background: var(--sev-major-badge); }
+  .section-header.minor    .section-severity-marker { background: var(--sev-minor-badge); }
+  .section-header.works    .section-severity-marker { background: var(--sev-works-badge); }
+  .section-header.nc       .section-severity-marker { background: var(--color-supporting-1); }
+  .section-header.bench    .section-severity-marker { background: var(--color-supporting-2); }
+
+  .section-title-group { flex: 1; }
+
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--color-primary);
+    line-height: 1.2;
+  }
+
+  .section-count {
+    font-size: 12px;
+    color: var(--color-supporting-1);
+    font-weight: 400;
+    margin-top: 2px;
+  }
+
+  /* ── FINDING CARDS ─────────────────────────────────── */
+  .finding-card {
+    border-radius: var(--radius);
+    padding: var(--space-md);
+    margin-bottom: var(--space-sm);
+    border-left: 5px solid transparent;
+    background: #fff;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  }
+
+  .finding-card.critical {
+    border-left-color: var(--sev-critical-border);
+    background: var(--sev-critical-bg);
+  }
+  .finding-card.major {
+    border-left-color: var(--sev-major-border);
+    background: var(--sev-major-bg);
+  }
+  .finding-card.minor {
+    border-left-color: var(--sev-minor-border);
+    background: var(--sev-minor-bg);
+  }
+  .finding-card.works {
+    border-left-color: var(--sev-works-border);
+    background: var(--sev-works-bg);
+    box-shadow: 0 1px 6px rgba(46,125,82,0.07);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    flex-wrap: wrap;
+  }
+
+  .card-num {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    color: #999;
+    min-width: 36px;
+    padding-top: 3px;
+  }
+
+  .card-badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+
+  .badge {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: var(--radius-sm);
+  }
+
+  .badge-critical { background: var(--sev-critical-badge); color: #fff; }
+  .badge-major    { background: var(--sev-major-badge);    color: #fff; }
+  .badge-minor    { background: var(--sev-minor-badge);    color: #fff; }
+  .badge-works    { background: var(--sev-works-badge);    color: #fff; }
+
+  .badge-change  { background: var(--color-primary);      color: #fff; }
+  .badge-improve { background: var(--color-supporting-1); color: #fff; }
+  .badge-ok      { background: var(--sev-works-badge);    color: #fff; }
+
+  .card-area {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--color-supporting-1);
+    letter-spacing: 0.03em;
+    padding-top: 3px;
+    margin-left: auto;
+    text-align: right;
+  }
+
+  .card-body p {
+    margin-bottom: var(--space-sm);
+    line-height: 1.5;
+    font-size: 14px;
+  }
+
+  .card-body p:last-child { margin-bottom: 0; }
+
+  .card-finding {
+    color: var(--color-neutral-5);
+  }
+
+  .card-rec-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--color-supporting-2);
+    margin-bottom: 4px;
+  }
+
+  .card-rec {
+    color: var(--color-supporting-1);
+    font-size: 13.5px;
+    padding-left: var(--space-sm);
+    border-left: 2px solid var(--color-supporting-3);
+  }
+
+  /* Works cards get a slightly different rec treatment */
+  .finding-card.works .card-rec {
+    border-left-color: var(--sev-works-border);
+    color: var(--sev-works-text);
+  }
+
+  .finding-card.works .card-area {
+    color: var(--sev-works-text);
+  }
+
+  /* ── EXECUTIVE SUMMARY ─────────────────────────────── */
+  .exec-summary {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: var(--space-lg);
+    border: 1px solid var(--color-supporting-3);
+    box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+    margin-bottom: var(--space-lg);
+  }
+
+  .exec-summary p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--color-neutral-5);
+  }
+
+  /* ── NARRATIVE COHERENCE ───────────────────────────── */
+  .nc-card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: var(--space-md);
+    margin-bottom: var(--space-sm);
+    border-left: 5px solid var(--color-supporting-1);
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  }
+
+  .nc-tag {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--color-supporting-1);
+    margin-bottom: 6px;
+    letter-spacing: 0.03em;
+  }
+
+  .nc-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--color-primary);
+    margin-bottom: var(--space-sm);
+  }
+
+  .nc-body {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-neutral-5);
+  }
+
+  .nc-arc {
+    background: var(--color-neutral-0);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+    border: 1px solid var(--color-supporting-3);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-neutral-5);
+  }
+
+  /* ── COMPETITIVE BENCHMARKS ────────────────────────── */
+  .bench-card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: var(--space-md);
+    margin-bottom: var(--space-sm);
+    border: 1px solid var(--color-supporting-3);
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  }
+
+  .bench-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--color-primary);
+    margin-bottom: 4px;
+  }
+
+  .bench-rationale {
+    font-size: 13px;
+    color: var(--color-supporting-1);
+    line-height: 1.5;
+  }
+
+  .patterns-grid {
+    display: grid;
+    gap: var(--space-sm);
+  }
+
+  .pattern-card {
+    background: var(--color-neutral-0);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    border-left: 4px solid var(--color-supporting-2);
+  }
+
+  .pattern-label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--color-supporting-2);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .pattern-body {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--color-neutral-5);
+  }
+
+  .advantage-box {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: var(--space-md);
+    border: 1px solid var(--sev-works-border);
+    margin-bottom: var(--space-sm);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-neutral-5);
+  }
+
+  .advantage-box-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--sev-works-badge);
+    margin-bottom: 8px;
+  }
+
+  .bench-ref-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: var(--space-sm);
+  }
+
+  .bench-ref-table th {
+    text-align: left;
+    font-weight: 700;
+    color: var(--color-supporting-1);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 8px 12px;
+    background: var(--color-neutral-0);
+    border-bottom: 1px solid var(--color-supporting-3);
+  }
+
+  .bench-ref-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--color-neutral-0);
+    vertical-align: top;
+    line-height: 1.4;
+    color: var(--color-neutral-5);
+  }
+
+  .bench-ref-table tr:nth-child(even) td {
+    background: var(--color-neutral-0);
+  }
+
+  /* ── SUBSECTION HEADING ────────────────────────────── */
+  .subsection-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--color-primary);
+    margin: var(--space-md) 0 var(--space-sm) 0;
+  }
+
+  /* ── FOOTER ────────────────────────────────────────── */
+  .page-footer {
+    border-top: 0.5pt solid var(--color-supporting-3);
+    padding-top: var(--space-sm);
+    margin-top: var(--space-xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: #999;
+  }
+
+  .footer-pag {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    color: var(--color-primary);
+  }
+
+  /* ── RESPONSIVE ────────────────────────────────────── */
+  @media (max-width: 860px) {
+    body { flex-direction: column; }
+    .sidenav {
+      position: static;
+      height: auto;
+      width: 100%;
+      flex-direction: row;
+      flex-wrap: wrap;
+      overflow-x: auto;
+    }
+    .main { padding: var(--space-md); }
+    .scorecard { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     STICKY LEFT NAVIGATION
+═══════════════════════════════════════════════════ -->
+<nav class="sidenav" aria-label="Report navigation">
+  <div class="sidenav-logo">
+    CEAL Green<br>Website Audit
+    <span>2026-06-10 · cealgreen.com</span>
+  </div>
+
+  <a href="#cover"><span class="nav-dot" style="background:var(--color-supporting-2)"></span> Overview</a>
+  <a href="#exec-summary"><span class="nav-dot" style="background:var(--color-supporting-1)"></span> Executive Summary</a>
+
+  <div class="nav-section-label">Findings</div>
+  <a href="#critical"><span class="nav-dot dot-critical"></span> Critical (9)</a>
+  <a href="#major"><span class="nav-dot dot-major"></span> Major (19)</a>
+  <a href="#minor"><span class="nav-dot dot-minor"></span> Minor (11)</a>
+  <a href="#works"><span class="nav-dot dot-works"></span> What Works (7)</a>
+
+  <div class="nav-section-label">Analysis</div>
+  <a href="#narrative"><span class="nav-dot dot-nc"></span> Narrative Coherence</a>
+  <a href="#benchmarks"><span class="nav-dot dot-bench"></span> Competitive Benchmarks</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════════════════════ -->
+<main class="main">
+
+  <!-- COVER / HEADER -->
+  <section id="cover" class="cover section">
+    <div class="cover-eyebrow">Website Audit Report</div>
+    <h1>CEAL Green Website Audit</h1>
+    <div class="cover-meta">
+      <span class="cover-meta-item"><strong>Site:</strong> <a href="https://cealgreen.com/" style="color:var(--color-primary)">https://cealgreen.com/</a></span>
+      <span class="cover-meta-sep">·</span>
+      <span class="cover-meta-item"><strong>Audit date:</strong> 2026-06-10</span>
+      <span class="cover-meta-sep">·</span>
+      <span class="cover-meta-item"><strong>Auditor:</strong> Cass — Creative Strategist, myPKA</span>
+      <span class="cover-meta-sep">·</span>
+      <span class="cover-meta-item"><strong>Pages reviewed:</strong> 6 (Home, Our Solutions, Case Studies, Green Energy Projects, About Us, Contact Us)</span>
+    </div>
+    <div class="scorecard">
+      <div class="score-cell critical">
+        <div class="score-number">9</div>
+        <div class="score-label">Critical</div>
+      </div>
+      <div class="score-cell major">
+        <div class="score-number">19</div>
+        <div class="score-label">Major</div>
+      </div>
+      <div class="score-cell minor">
+        <div class="score-number">11</div>
+        <div class="score-label">Minor</div>
+      </div>
+      <div class="score-cell works">
+        <div class="score-number">7</div>
+        <div class="score-label">Working</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <section id="exec-summary" class="section">
+    <div class="section-header nc">
+      <div class="section-severity-marker" style="background:var(--color-supporting-1)"></div>
+      <div class="section-title-group">
+        <div class="section-title">Executive Summary</div>
+      </div>
+    </div>
+    <div class="exec-summary">
+      <p>The CEAL Green website demonstrates ambition and technical breadth, but it is operating in direct conflict with its own approved brand identity on multiple critical dimensions. The visual system deployed does not match the approved colour palette, the logo name displayed does not match the approved brand name, and the predominant tone of voice is generic green-consultancy language that the brand guidelines explicitly prohibit. These are not polish issues — they represent a fundamental disconnect between the brand that has been built in strategy and the brand that is being presented to the market.</p>
+      <br>
+      <p>The site's architecture also contains a navigation element ("Green Energy Projects") that resolves to an e-commerce shop, actively undermining positioning as an execution engine. Until the critical findings are resolved, the site cannot effectively do the job asked of it: establish CEAL Green as a credible, Caribbean-specific, practitioner-led execution engine and convert qualified prospects to consultation.</p>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────────────────────────
+       CRITICAL FINDINGS
+  ───────────────────────────────────────────────── -->
+  <section id="critical" class="section">
+    <div class="section-header critical">
+      <div class="section-severity-marker"></div>
+      <div class="section-title-group">
+        <div class="section-title">Critical Findings</div>
+        <div class="section-count">9 findings — Must be resolved before the site can do its job</div>
+      </div>
+    </div>
+
+    <!-- C-1 -->
+    <div class="finding-card critical">
+      <div class="card-header">
+        <div class="card-num">#1</div>
+        <div class="card-badges">
+          <span class="badge badge-critical">Critical</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">Global — Visual Identity / Colour System</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The website's primary accent colour is a neon/lime green (approximately #00FF7F or similar) deployed as the dominant interactive and highlight colour across all six pages. The approved brand colour system specifies Mangrove (#1E4D3A) as primary, Mid Canopy (#8DCFAA) as secondary green, and Aged Teak (#B87A4E) as accent. The neon green in use does not appear in the approved palette. It contradicts the brand's character — the approved palette is grounded, warm, and Caribbean-referencing; the deployed neon green reads as generic tech-startup green.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Route to Pixel/Iris to audit all colour usage site-wide and replace deployed neon green with the approved palette. Mangrove (#1E4D3A) should carry primary UI weight. Mid Canopy (#8DCFAA) should carry accent and interactive weight. Aged Teak (#B87A4E) for secondary accent. The background dark tone may be revisited against Oatmeal (#F7F4EE) as primary light surface — a near-black background is not in the approved palette either. This is a full-site implementation issue requiring developer involvement.</p>
+      </div>
+    </div>
+
+    <!-- C-2 -->
+    <div class="finding-card critical">
+      <div class="card-header">
+        <div class="card-num">#2</div>
+        <div class="card-badges">
+          <span class="badge badge-critical">Critical</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">Global — Brand Name / Header Identity</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The site header displays "CEAL Green Energy Limited" as the wordmark/company name, and the Case Studies page header displays the sub-line "Caribbean Renewable Energy Solutions." Neither matches the approved brand name, which is "CEAL Green." "CEAL Green Energy Limited" is the legal entity name, not the public brand name. Displaying the legal name as the primary brand identifier weakens brand recognition and contradicts the approved wordmark specification.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Replace all public-facing brand name instances with "CEAL Green." The legal name "CEAL Green Energy Limited" belongs in the footer copyright line and legal documents only. The sub-line "Caribbean Renewable Energy Solutions" should be removed — it is a descriptor, not a brand element, and it dilutes the wordmark. Route to developer.</p>
+      </div>
+    </div>
+
+    <!-- LOGO FINDING (inserted after #2) -->
+    <div class="finding-card critical">
+      <div class="card-header">
+        <div class="card-num">#2b</div>
+        <div class="card-badges">
+          <span class="badge badge-critical">Critical</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">Global — Logo / Brand Identity</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The logo currently deployed does not meet brand specification. The circular badge mark reads as an eco-certification seal or NGO badge — not as a B2B execution engine. It fails legibility tests at nav scale (32–40px) and favicon scale (16–32px). The arc tagline "Engineering a Resilient Future" embedded in the mark is a brand voice violation: it makes a future promise, which the brand guidelines explicitly prohibit.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Replace the current deployed logo with the revised version currently in development. Do not implement interim fixes to the existing mark.</p>
+      </div>
+    </div>
+
+    <!-- C-3 -->
+    <div class="finding-card critical">
+      <div class="card-header">
+        <div class="card-num">#3</div>
+        <div class="card-badges">
+          <span class="badge badge-critical">Critical</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">Home — Hero Section / Headline</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The hero headline reads: "Practical pathways to lower energy costs and build resilient, sustainable operations." This fails on three brand standards simultaneously: (1) it is future-implicit and explanatory rather than present-tense and declarative — "pathways to lower costs" is a promise, not a statement of what is done; (2) it is written from the client's problem frame, not from CEAL Green's identity; (3) "sustainable operations" is generic and on the brand's avoid list. The hero is the single highest-value copy position on the site. A visitor who reads only this line has no sense of who CEAL Green is — only what problem they might solve.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Replace with a present-tense, identity-led headline that names who CEAL Green is and states what it does, with Caribbean specificity. The tagline "Bridging the Caribbean's Green Gap" has more energy than the headline but is also passive — evaluate together.</p>
+      </div>
+    </div>
+
+    <!-- C-4 -->
+    <div class="finding-card critical">
+      <div class="card-header">
+        <div class="card-num">#4</div>
+        <div class="card-badges">
+          <span class="badge badge-critical">Critical</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">Home — Vision/Mission Statements</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The published Vision reads: "To be the Caribbean's leading catalyst for the green energy transition, empowering resilient communities, competitive businesses, and climate-smart infrastructure." This contains two prohibited terms in a single sentence: "catalyst" (advocacy register) and "green energy transition" (generic aspirational language). The Mission reads: "To design, enable and deliver integrated renewable energy and sustainability solutions that reduce carbon emissions..." — "sustainability solutions" is generic and the Mission/Vision format contradicts the brand's identity-declaration standard ("We state what we do, not what we intend").</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Replace Vision/Mission format entirely with identity-declaration statements grounded in the approved brand foundation. The guiding narrative's Core Proposition and "The Promise" section are the approved equivalents.</p>
+      </div>
+    </div>
+
+    <!-- C-5 -->
+    <div class="finding-card critical">
+      <div class="card-header">
+        <div class="card-num">#5</div>
+        <div class="card-badges">
+          <span class="badge badge-critical">Critical</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">Green Energy Projects — Page / Navigation Mismatch</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The navigation item "Green Energy Projects" resolves to a page titled "Green Energy Products" that functions as an e-commerce shop, displaying a minimum payment amount of TTD$7.00 and product descriptions for solar panels, batteries, wind turbines, EV chargers, and smart infrastructure. This is a content-architecture failure: (a) it actively undermines positioning as an execution engine by presenting an e-commerce shop front in the primary navigation; (b) it misleads visitors who navigate there expecting a case study or project portfolio experience; (c) the TTD$7 minimum payment amount reads as a development artifact or placeholder and damages credibility.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">This requires an IA and content decision before any design or copy work. Three options: (1) Remove "Green Energy Projects" from primary navigation entirely until a genuine project portfolio page is built; (2) Rename the nav item to "Green Energy Products" to accurately reflect the page; (3) Build a genuine projects/portfolio page and route the shop to a separate, lower-priority path. Option 1 is the brand-safe choice given current positioning. Route to Ryan Roper for decision, then developer for implementation.</p>
+      </div>
+    </div>
+
+    <!-- C-6 -->
+    <div class="finding-card critical">
+      <div class="card-header">
+        <div class="card-num">#6</div>
+        <div class="card-badges">
+          <span class="badge badge-critical">Critical</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">Home — Geographic Scope / Brand Boundary</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The "Why CEAL Green" section states: "We accelerate sustainability projects across the Caribbean and Latin America — from concept to execution and operations." Every approved brand document is explicitly Caribbean-only. "Latin America" appears nowhere in the approved brand foundation. This claim extends the geographic scope without strategic or evidential foundation, undermines the brand's Caribbean-specific positioning which is explicitly named as a differentiator, and contradicts the brand principle: "Not generic — no claims that could apply to any green company, anywhere."</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Remove "and Latin America" from this statement and from any other instance on the site. If a Latin American expansion is planned, that is a future scope announcement that requires strategic framing — not a present-tense claim inserted into a brand positioning statement.</p>
+      </div>
+    </div>
+
+    <!-- C-7 -->
+    <div class="finding-card critical">
+      <div class="card-header">
+        <div class="card-num">#7</div>
+        <div class="card-badges">
+          <span class="badge badge-critical">Critical</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">Home — Testimonials Section</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">Three testimonials are attributed to Marcus Williams (Caribbean Manufacturing Co.), Sophia Rodriguez (Island Hospitality Group), and David Chen (Port Authority of Trinidad). The names Marcus Williams, Sophia Rodriguez, and David Chen do not read as Caribbean names. More critically, the client organisation names match case study clients exactly — "Caribbean Manufacturing Co." and "Island Hospitality Group" — but with different individual names. If the testimonials are fabricated or placeholder content, publishing them is a brand integrity issue that outranks all other findings.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Escalate to Ryan Roper immediately for verification: are these testimonials from real clients? If yes, verify names and correct inconsistencies with case study client records. If they are placeholder/generated content, remove them before any further marketing activity. Fabricated testimonials are a legal and brand integrity risk that must be resolved before this audit's other findings are acted on.</p>
+      </div>
+    </div>
+
+    <!-- C-8 -->
+    <div class="finding-card critical">
+      <div class="card-header">
+        <div class="card-num">#8</div>
+        <div class="card-badges">
+          <span class="badge badge-critical">Critical</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">Home — Partner Logos Section</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The home page displays partner organisation logos for: Caribbean Development Bank, CARICOM Energy, IDB Invest, UN Environment, GIZ Caribbean, and World Bank — presented without qualification under implicit partnership framing. Displaying logos of the Caribbean Development Bank, World Bank, and UN Environment as implied partners without confirmed contractual or project relationships is a credibility and legal risk. If these are aspirational affiliations, displaying their logos is misrepresentation.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Escalate to Ryan Roper for verification of each relationship. For confirmed project partners: add a brief qualifier ("Project partner — [project name]"). For confirmed members/affiliates: add the membership qualifier. For unconfirmed: remove logos until the relationship is established and legally cleared. This is a brand integrity and legal issue, not a copy issue.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ─────────────────────────────────────────────────
+       MAJOR FINDINGS
+  ───────────────────────────────────────────────── -->
+  <section id="major" class="section">
+    <div class="section-header major">
+      <div class="section-severity-marker"></div>
+      <div class="section-title-group">
+        <div class="section-title">Major Findings</div>
+        <div class="section-count">19 findings — Significant brand or conversion impact; resolve in next sprint</div>
+      </div>
+    </div>
+
+    <!-- M-9 -->
+    <div class="finding-card major">
+      <div class="card-header">
+        <div class="card-num">#9</div>
+        <div class="card-badges">
+          <span class="badge badge-major">Major</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">Global Navigation — Login/Register</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The primary navigation includes "Login" and "Register" links (rendered as an "Account" dropdown) alongside the brand navigation. A visitor to a B2B professional services and infrastructure company has no context for why they would log in or register. The presence of an account system without explanation suggests either a platform product not yet announced or an e-commerce/subscription layer not integrated into the brand narrative. For a site trying to establish credibility as a practitioner-led execution engine, unexplained account functionality reads as unfinished.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Either (a) contextualise the account system — explain what registered users access (e.g., the Greenularity carbon monitoring platform, project dashboards) — or (b) move Login/Register to the footer or a secondary "Platform" section, removing it from primary navigation. If the platform is not yet publicly launched, remove from navigation entirely. Route decision to Ryan Roper; implementation to developer.</p>
+      </div>
+    </div>
+
+    <!-- M-10 -->
+    <div class="finding-card major">
+      <div class="card-header">
+        <div class="card-num">#10</div>
+        <div class="card-badges">
+          <span class="badge badge-major">Major</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">Global — Primary CTA / Brand Register</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The primary CTA throughout the site is "Book Now" in the header navigation. Secondary CTAs include "Book A Call," "Book A Consultation," and "Book my Consultation." The brand voice specifies "Invitational — Pulls towards something, never pressures or recruits." "Book Now" is a pressure/urgency register more appropriate for e-commerce than for a professional services execution engine. The word "Now" imports scarcity framing that contradicts the brand's constructive register. The inconsistency among CTAs across the site also signals a lack of deliberate CTA strategy.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Standardise the primary CTA to an invitational formulation. "Book A Consultation" is the most appropriate — specific, professional, non-pressuring. The header button should be consistent with in-page CTAs. Remove "Now" from the navigation CTA.</p>
+      </div>
+    </div>
+
+    <!-- M-11 -->
+    <div class="finding-card major">
+      <div class="card-header">
+        <div class="card-num">#11</div>
+        <div class="card-badges">
+          <span class="badge badge-major">Major</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">Home — "How It Works" Process Section</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">Step 3 of the "How It Works" section is labelled "Book A Call" — the same label as Step 1. The process reads: (1) Book A Call → (2) We Assess Your Needs → (3) Book A Call. Step 3 is a duplicate of Step 1 and appears to be a content error (likely intended to be "We Build" or "We Deliver" or similar). This is a credibility-damaging error on a section designed to demonstrate structured process capability.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Correct Step 3 label to accurately reflect what it describes — the execution/delivery phase. The Step 3 description already refers to "complete roadmap and execution," confirming the label is wrong.</p>
+      </div>
+    </div>
+
+    <!-- M-12 -->
+    <div class="finding-card major">
+      <div class="card-header">
+        <div class="card-num">#12</div>
+        <div class="card-badges">
+          <span class="badge badge-major">Major</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">Case Studies — "View Full Case Study" Links</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">All four case study "View Full Case Study" buttons link to "#" — placeholder anchors with no destination. For a site whose primary conversion goal is to establish credibility and convert to consultation, broken case study links actively undermine the single most important trust-building content type available. A visitor who clicks any of these four buttons will have their exploration path terminated.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Either (a) build and publish individual case study detail pages — the highest-priority content development investment available, as case studies are the primary proof of execution capability — or (b) replace the buttons with a contact/inquiry path ("Discuss a similar project → Book A Consultation") until detail pages are built. Do not leave dead links active.</p>
+      </div>
+    </div>
+
+    <!-- M-13 -->
+    <div class="finding-card major">
+      <div class="card-header">
+        <div class="card-num">#13</div>
+        <div class="card-badges">
+          <span class="badge badge-major">Major</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">About Us — Ryan Roper Bio Title</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">Ryan Roper's leadership bio includes the phrase "Driving the Caribbean's energy transition through engineering, strategy, and real project delivery." "Energy transition" is on the brand's explicit avoid list — and "Transition" is specifically noted as "Ryan specific avoid — replace with 'solutions', 'building', 'delivery'." The brand founder's own profile page uses a phrase the brand documents — developed with Ryan's direct involvement — prohibit.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Replace with language from the approved vocabulary. "Driving the Caribbean's green solutions through engineering, strategy, and real project delivery" or equivalent.</p>
+      </div>
+    </div>
+
+    <!-- M-14 -->
+    <div class="finding-card major">
+      <div class="card-header">
+        <div class="card-num">#14</div>
+        <div class="card-badges">
+          <span class="badge badge-major">Major</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">About Us — Mission Statement (Duplicate / Conflicting)</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The About Us page carries a different Mission statement from the one on the Home page. About Us mission: "To accelerate the Caribbean's green transition through renewable energy engineering, digital tools, and sustainability-focused project delivery." This version uses "green transition" (prohibited term) and a future-implicit register. It also conflicts directly with the Home page mission, creating two different official missions on the same site.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">There must be one Mission statement, aligned to the approved brand voice, used consistently. Resolve with Ryan Roper which formulation is canonical and remove the other. Then apply copy standard.</p>
+      </div>
+    </div>
+
+    <!-- M-15 -->
+    <div class="finding-card major">
+      <div class="card-header">
+        <div class="card-num">#15</div>
+        <div class="card-badges">
+          <span class="badge badge-major">Major</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">Home — "The Green Gap" Section</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The "Green Gap" section headline reads: "We all know we should be more energy efficient… but where do we start?" This is consumer-register language that positions the visitor as confused and overwhelmed. The brand voice is "Confident," "Present," and "Invitational" — it speaks to builders who are ready to act. This framing also contradicts the brand's stated audience: Caribbean businesses facing compliance pressure, not general consumers uncertain about energy efficiency.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Replace with execution-led framing that speaks to qualified business prospects who are ready to build, not to hesitant individuals who don't know where to start.</p>
+      </div>
+    </div>
+
+    <!-- M-16 -->
+    <div class="finding-card major">
+      <div class="card-header">
+        <div class="card-num">#16</div>
+        <div class="card-badges">
+          <span class="badge badge-major">Major</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">Home — Final CTA Section</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The final CTA section copy reads: "Let's build a sustainable Caribbean together." "Sustainable Caribbean" is generic aspirational language. It also immediately follows the CTA headline "Ready to power your project with clean, smart, future-ready energy?" which contains "future-ready" and "sustainable" — two off-brand terms in the same section. The closing copy of the page is the last thing a visitor reads before deciding whether to act; deploying generic language at that moment wastes the conversion opportunity.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Replace with a closing that uses the approved "Build Now" architecture and the Care register from the guiding narrative's closing section.</p>
+      </div>
+    </div>
+
+    <!-- M-17 -->
+    <div class="finding-card major">
+      <div class="card-header">
+        <div class="card-num">#17</div>
+        <div class="card-badges">
+          <span class="badge badge-major">Major</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">Our Solutions — Page Heading Mismatch</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The nav item reads "Our Solutions." The page at /services/ is headed "Our Services." The URL is /services/. The footer links to "Services." Four different expressions of the same destination create wayfinding confusion and signal an unresolved naming decision. This is both an IA problem and a brand voice problem — the brand language favours "solutions" in its vocabulary register, but the page architecture uses "services."</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Standardise on a single term. "Our Solutions" is more on-brand (it is in the approved vocabulary and reflects the brand's delivery framing). Redirect /services/ to /our-solutions/ (or equivalent) and align heading, nav, footer, and URL. Route decision to Ryan Roper; implementation to developer.</p>
+      </div>
+    </div>
+
+    <!-- M-18 -->
+    <div class="finding-card major">
+      <div class="card-header">
+        <div class="card-num">#18</div>
+        <div class="card-badges">
+          <span class="badge badge-major">Major</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">Home — ROI Calculator Scope</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The ROI Calculator includes a "Building Type" dropdown that offers "Residential" as an option. The brand's target audience is Caribbean businesses (commercial, government, utilities, industrial). Residential leads are a different conversion path with different service requirements and likely different economics. Including residential in the primary conversion tool on the homepage dilutes the B2B positioning and may generate unqualified leads.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Evaluate whether residential is a strategic audience. If yes, create a separate residential conversion path. If no, remove residential from the dropdown and focus the calculator on commercial, industrial, and government segments. Route decision to Ryan Roper.</p>
+      </div>
+    </div>
+
+    <!-- M-19 -->
+    <div class="finding-card major">
+      <div class="card-header">
+        <div class="card-num">#19</div>
+        <div class="card-badges">
+          <span class="badge badge-major">Major</span>
+          <span class="badge badge-improve">↑ Improve</span>
+        </div>
+        <div class="card-area">Home — Hero Section / Visual</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The hero background image appears to be an aerial photograph of a tropical resort/beach setting, rendered under a dark overlay. This is Caribbean in aesthetic but does not carry the brand's practitioner and execution-engine identity. A beach/resort aerial is decorative tropical imagery — it communicates geography but not capability, infrastructure scale, or built achievement. It is inconsistent with the brand's "born green, born digital" identity.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Replace with an image that carries both Caribbean context AND execution credibility — a real installed solar array in a Caribbean setting, a construction site with Caribbean skyline, a monitoring dashboard in operational use, or a team on a project site. The image must communicate scale, competence, and place simultaneously.</p>
+      </div>
+    </div>
+
+    <!-- M-20 -->
+    <div class="finding-card major">
+      <div class="card-header">
+        <div class="card-num">#20</div>
+        <div class="card-badges">
+          <span class="badge badge-major">Major</span>
+          <span class="badge badge-improve">↑ Improve</span>
+        </div>
+        <div class="card-area">Home — Visual Density / Content Visibility</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The home screenshot reveals significant dark empty sections — approximately one-third of the visible home page scroll area appears as near-black space with no visible content. This is either a rendering issue (JavaScript-loaded content not captured), a spacing problem, or a genuine absence of content. If content loads dynamically and was not captured, it represents a risk for any visitors who load the page with JavaScript disabled or on slow connections.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Verify with developer whether the dark sections contain JavaScript-rendered content that failed to capture, or whether they represent genuine empty/transitional spaces. If the former: implement server-side rendering or static fallbacks for critical sections. If the latter: review layout spacing.</p>
+      </div>
+    </div>
+
+    <!-- M-21 -->
+    <div class="finding-card major">
+      <div class="card-header">
+        <div class="card-num">#21</div>
+        <div class="card-badges">
+          <span class="badge badge-major">Major</span>
+          <span class="badge badge-improve">↑ Improve</span>
+        </div>
+        <div class="card-area">About Us — "Why We Exist" Section</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">"Why We Exist" reads: "The Caribbean faces critical challenges: rising electricity bills, climate vulnerability and outdated infrastructure limit growth and resilience. CEAL Green was built to solve these challenges by delivering integrated solutions that decarbonize and digitize the region simultaneously." This is the diagnostic/problem-framing register the brand guidelines explicitly reject. "The Caribbean faces critical challenges" sets up a blame/diagnostic frame. Compare to the approved Guiding Narrative framing: "This is not a resource problem. It is an execution gap. And it is exactly the gap CEAL Green was built to close."</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Reframe from opportunity/execution perspective, not diagnostic/challenge perspective. Follow the approved Guiding Narrative model.</p>
+      </div>
+    </div>
+
+    <!-- M-22 -->
+    <div class="finding-card major">
+      <div class="card-header">
+        <div class="card-num">#22</div>
+        <div class="card-badges">
+          <span class="badge badge-major">Major</span>
+          <span class="badge badge-improve">↑ Improve</span>
+        </div>
+        <div class="card-area">Our Solutions — Section Header Copy</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The Our Solutions page opens with: "From assessment to optimization, we take you from problem to solution with end-to-end sustainable energy services." "End-to-end sustainable energy services" is generic and on the class of language the brand avoids. The phrase "from problem to solution" is mildly diagnostic. The approved vocabulary for this three-mode delivery is explicitly written in the brand guidelines: "We design at the deliverable level... We build at the project level... We deliver at the asset level."</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Replace the intro with the three-mode delivery framing, adapted for the services page context.</p>
+      </div>
+    </div>
+
+    <!-- M-23 -->
+    <div class="finding-card major">
+      <div class="card-header">
+        <div class="card-num">#23</div>
+        <div class="card-badges">
+          <span class="badge badge-major">Major</span>
+          <span class="badge badge-improve">↑ Improve</span>
+        </div>
+        <div class="card-area">Case Studies — Headline Typography</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The Case Studies page headline reads "Project That Deliver Results" — this is a grammatical error ("Projects That Deliver Results" or "Projects That Deliver" would be correct). For an organisation presenting engineering credibility, a grammatical error in the largest type on the page is a trust-damaging detail.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Correct to "Projects That Deliver Results" or, applying brand voice, a declarative alternative such as "Projects That Prove the Work."</p>
+      </div>
+    </div>
+
+    <!-- M-24 -->
+    <div class="finding-card major">
+      <div class="card-header">
+        <div class="card-num">#24</div>
+        <div class="card-badges">
+          <span class="badge badge-major">Major</span>
+          <span class="badge badge-improve">↑ Improve</span>
+        </div>
+        <div class="card-area">About Us — Conferences Section</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The "Industry Events &amp; Conferences" section lists three events including "Suriname Energy, Oil &amp; Gas Summit" and "Guyana Energy Conference &amp; Expo" — South American nations, not Caribbean islands in the conventional sense — alongside the "Caribbean-specific" positioning. More substantively: the section does not state CEAL Green's relationship to these events (speaker, sponsor, exhibitor, attendee). "Conferences We Participate In" is vague to the point of being unhelpful for credibility-building.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Add a qualifying line stating CEAL Green's role at each event. Evaluate whether Suriname and Guyana events align with the stated Caribbean-only scope. If the brand scope is genuinely expanded to include these markets, that decision belongs in the brand guidelines first.</p>
+      </div>
+    </div>
+
+    <!-- M-25 -->
+    <div class="finding-card major">
+      <div class="card-header">
+        <div class="card-num">#25</div>
+        <div class="card-badges">
+          <span class="badge badge-major">Major</span>
+          <span class="badge badge-improve">↑ Improve</span>
+        </div>
+        <div class="card-area">Home — "Caribbean Energy Challenges" Section</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The section "Caribbean Energy Challenges" lists four bullet-point challenges: High Electricity Costs, Sustainability Goals, Digital Transformation, Need for International Standards Alignment. "Sustainability Goals" and "International Standards Alignment" (SDG 7, Paris Agreement) are observer/policy-maker framing — they describe external institutional objectives, not the lived reality of a Caribbean business owner. The section as a whole speaks to a policy audience, not to the qualified business or infrastructure prospect that is the brand's primary conversion target.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Replace the four-item list with challenge framing anchored to the lived experience of the brand's target audience — the business owner facing a $15,000/month electricity bill, the government facilities manager under carbon reporting obligation, the developer who needs a LEED-ready building.</p>
+      </div>
+    </div>
+
+    <!-- M-26 -->
+    <div class="finding-card major">
+      <div class="card-header">
+        <div class="card-num">#26</div>
+        <div class="card-badges">
+          <span class="badge badge-major">Major</span>
+          <span class="badge badge-improve">↑ Improve</span>
+        </div>
+        <div class="card-area">Our Solutions — Digital Tools Section (Greenularity)</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The Greenularity service entry lists: "VR project walkthroughs, AR overlays for equipment, Real-time IoT monitoring, Digital twin environments" — a bare bullet list with no Benefits, Deliverables, or Process structure. It is the only service section on the page that lacks this structure, suggesting it is incomplete or placeholder. Greenularity is potentially a significant differentiator (a named proprietary platform is a strong positioning asset); presenting it as a bare bullet list wastes that asset.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Complete the Greenularity service section with the same structure as the other five services. The platform name should be prominent, the outcome ("carbon monitoring, reporting and verification for net zero compliance") should lead, and the technology features should be supporting detail.</p>
+      </div>
+    </div>
+
+    <!-- M-27 -->
+    <div class="finding-card major">
+      <div class="card-header">
+        <div class="card-num">#27</div>
+        <div class="card-badges">
+          <span class="badge badge-major">Major</span>
+          <span class="badge badge-improve">↑ Improve</span>
+        </div>
+        <div class="card-area">Contact Us — Address Inconsistency</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The Contact Us page lists two conflicting addresses: "Mid-Way Plaza, 54 Ramsaran Street, Chaguanas, Trinidad and Tobago" and "Port of Spain, Trinidad &amp; Tobago." These are different cities. Presenting two locations without explanation suggests either a data entry error or a multiple-office situation that is not explained. For a professional services firm, inaccurate or contradictory contact information damages trust.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Verify the correct primary address with Ryan Roper. If there are two locations, list both with clear labels ("Head Office," "Port of Spain Office"). If one is an error, remove it. Route to developer.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ─────────────────────────────────────────────────
+       MINOR FINDINGS
+  ───────────────────────────────────────────────── -->
+  <section id="minor" class="section">
+    <div class="section-header minor">
+      <div class="section-severity-marker"></div>
+      <div class="section-title-group">
+        <div class="section-title">Minor Findings</div>
+        <div class="section-count">11 findings — Meaningful polish; can follow Critical and Major resolution</div>
+      </div>
+    </div>
+
+    <!-- mn-28 -->
+    <div class="finding-card minor">
+      <div class="card-header">
+        <div class="card-num">#28</div>
+        <div class="card-badges">
+          <span class="badge badge-minor">Minor</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">Our Solutions — CTA Copy (Duplicate)</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The Our Solutions page CTA reads: "Ready to power your project with clean, smart, future-ready energy? Let's build a sustainable Caribbean together." This is identical to the Home page final CTA — word for word. "Future-ready" and "sustainable Caribbean" carry the same issues as Finding #16. The identical repeat reduces impact: when the same closing line appears on multiple pages, it reads as template filler rather than intentional messaging.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Differentiate the Our Solutions page CTA to reflect where the visitor is in the journey — they have now reviewed the service offering and are ready to discuss their specific project. The closing should be more specific and project-focused.</p>
+      </div>
+    </div>
+
+    <!-- mn-29 -->
+    <div class="finding-card minor">
+      <div class="card-header">
+        <div class="card-num">#29</div>
+        <div class="card-badges">
+          <span class="badge badge-minor">Minor</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">About Us — Tobias Schulze Frenking Bio / Skills Mismatch</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">Tobias Schulze Frenking is described as "Director — Climate Finance, Investment and Strategic Capital" with a detailed bio about climate finance and blended finance. However, his listed competency tags are: "Business Strategy, Partnerships, Caribbean Markets, Development" — which are Peter Anthony Gales' listed competencies exactly. The wrong tags appear to have been duplicated from another team member's entry.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Replace Tobias's competency tags with those appropriate to his stated role: Climate Finance, Infrastructure Investment, Blended Finance, PPP, etc. Route to content team.</p>
+      </div>
+    </div>
+
+    <!-- mn-30 -->
+    <div class="finding-card minor">
+      <div class="card-header">
+        <div class="card-num">#30</div>
+        <div class="card-badges">
+          <span class="badge badge-minor">Minor</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">About Us — Ryan Roper's Focus Area Tags</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">Ryan Roper's listed focus areas include "Energy Transition" — which is on the brand's explicit avoid list ("Transition — Ryan specific avoid — replace with 'solutions', 'building', 'delivery'"). The brand founder's own profile uses a phrase he specifically requested be avoided.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Replace "Energy Transition" with an approved term. "Energy Delivery," "Project Execution," or "Renewable Solutions" are appropriate alternatives.</p>
+      </div>
+    </div>
+
+    <!-- mn-31 -->
+    <div class="finding-card minor">
+      <div class="card-header">
+        <div class="card-num">#31</div>
+        <div class="card-badges">
+          <span class="badge badge-minor">Minor</span>
+          <span class="badge badge-change">✗ Change</span>
+        </div>
+        <div class="card-area">Home — ROI Calculator / Sample Results</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The ROI Calculator sample display shows a Payback Period of 12 years for a solar system. A 12-year payback is at the high end of the industry range for commercial solar (typical commercial range is 5–10 years with storage) and may create an unnecessarily conservative first impression before the visitor has even submitted their own data.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Review sample data with Ryan Roper to confirm it represents a realistic average-case scenario. If the 12-year figure is based on artificially conservative inputs, adjust. Add a label clarifying that the sample is illustrative, not the expected result for the visitor's project.</p>
+      </div>
+    </div>
+
+    <!-- mn-32 -->
+    <div class="finding-card minor">
+      <div class="card-header">
+        <div class="card-num">#32</div>
+        <div class="card-badges">
+          <span class="badge badge-minor">Minor</span>
+          <span class="badge badge-improve">↑ Improve</span>
+        </div>
+        <div class="card-area">Home — "Why CEAL Green" Subtitle</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">"Backed by decades of engineering expertise, we combine infrastructure, renewable energy, and digital platforms to deliver solutions that work in the real world." "Solutions that work in the real world" is a common phrase that implies alternative approaches don't work in the real world — a defensive comparison register the brand avoids. The phrase also adds no specific information.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Replace with a present-tense identity declaration that names what is specific about CEAL Green's delivery model.</p>
+      </div>
+    </div>
+
+    <!-- mn-33 -->
+    <div class="finding-card minor">
+      <div class="card-header">
+        <div class="card-num">#33</div>
+        <div class="card-badges">
+          <span class="badge badge-minor">Minor</span>
+          <span class="badge badge-improve">↑ Improve</span>
+        </div>
+        <div class="card-area">Case Studies — CTA Copy</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">"Ready to create your success story?" is consumer/SaaS copywriting register. The brand's tone for client-facing materials is "Precise, confident, outcomes-focused." A business owner or government infrastructure manager would find "create your success story" more appropriate for a business coach landing page than an execution-engine consultancy.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Replace with client-facing outcomes language that treats the prospect as a capable peer making a strategic infrastructure investment.</p>
+      </div>
+    </div>
+
+    <!-- mn-34 -->
+    <div class="finding-card minor">
+      <div class="card-header">
+        <div class="card-num">#34</div>
+        <div class="card-badges">
+          <span class="badge badge-minor">Minor</span>
+          <span class="badge badge-improve">↑ Improve</span>
+        </div>
+        <div class="card-area">Contact Us — Opening Copy</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">"Have a question or ready to start your energy project? We're here to help." "We're here to help" is generic service-desk language. It is warm but imprecise and does not carry the brand's confident, practitioner register. The Contact page is a conversion confirmation moment — someone has already decided to reach out. The copy should meet that intent with clarity and confidence.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Replace with language that acknowledges the visitor's readiness and reflects CEAL Green's practitioner identity — something that says "let's get to work" rather than "we're here to help."</p>
+      </div>
+    </div>
+
+    <!-- mn-35 -->
+    <div class="finding-card minor">
+      <div class="card-header">
+        <div class="card-num">#35</div>
+        <div class="card-badges">
+          <span class="badge badge-minor">Minor</span>
+          <span class="badge badge-improve">↑ Improve</span>
+        </div>
+        <div class="card-area">Home — "30+ year legacy" Claim</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The "30+ year legacy" point in the Why CEAL Green section is potentially misleading — CEAL Green was recently founded (brand guidelines and guiding narrative are dated 2026). If "30+ year legacy" refers to the parent company CEAL 2005 (which itself suggests a founding around 2005, i.e. ~20 years), the source of the legacy should be named explicitly. Implied provenance without source damages credibility for prospects who investigate.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Add a qualifier: "backed by 30+ years of Caribbean engineering heritage through CEAL Group" or equivalent. The parent company relationship is already disclosed in the footer; connecting the legacy claim to that relationship is truthful and strengthens rather than weakens the claim.</p>
+      </div>
+    </div>
+
+    <!-- mn-36 -->
+    <div class="finding-card minor">
+      <div class="card-header">
+        <div class="card-num">#36</div>
+        <div class="card-badges">
+          <span class="badge badge-minor">Minor</span>
+          <span class="badge badge-improve">↑ Improve</span>
+        </div>
+        <div class="card-area">About Us — "What Makes Us Different" Section</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The four differentiator bullets — Engineering Excellence, Innovation First, Caribbean Focus, Impact Driven — are generic differentiator claims that any green engineering firm could use. "Innovation First" and "Impact Driven" in particular have no brand-specific content. Compare to the approved brand vocabulary which anchors differentiation to specific modes of working: digital by default, no commission incentives, three-mode delivery, born green not retrofitted.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Replace with CEAL Green's genuine differentiators as specified in the brand foundation documents. These are specific claims that no competitor can replicate — they are the brand's real competitive edge.</p>
+      </div>
+    </div>
+
+    <!-- mn-37 -->
+    <div class="finding-card minor">
+      <div class="card-header">
+        <div class="card-num">#37</div>
+        <div class="card-badges">
+          <span class="badge badge-minor">Minor</span>
+          <span class="badge badge-improve">↑ Improve</span>
+        </div>
+        <div class="card-area">Global — Chat Widget (Sealy)</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">A chat widget featuring a mascot character called "Sealy" is present on all pages. The widget opening line "Welcome to CEAL Green! Click here if you have any questions or need any assistance" is generic service-desk language and does not carry the brand voice. The widget is also visually prominent and may distract from primary conversion paths on pages that are already content-heavy.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Rewrite the Sealy greeting to carry the brand voice. Evaluate placement — a chat widget that auto-opens or visually competes with primary CTAs should be passive/minimised by default.</p>
+      </div>
+    </div>
+
+    <!-- mn-38 -->
+    <div class="finding-card minor">
+      <div class="card-header">
+        <div class="card-num">#38</div>
+        <div class="card-badges">
+          <span class="badge badge-minor">Minor</span>
+          <span class="badge badge-improve">↑ Improve</span>
+        </div>
+        <div class="card-area">Global — Spanish Language Toggle</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">All pages include an English/Español language toggle. Spanish content is available at /es/. This is a positive feature for regional reach. However, it raises a brand consistency question: is the Spanish-language content held to the same brand voice standards as the English content? If the Spanish version was machine-translated or produced without the same editorial rigour, it may be inconsistent in tone. This audit did not evaluate the Spanish content.</p>
+        <div class="card-rec-label">Recommendation</div>
+        <p class="card-rec">Commission a Spanish-language brand voice audit as a separate workstream. The Spanish version should be evaluated against equivalent brand standards, not just for translation accuracy.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ─────────────────────────────────────────────────
+       WHAT IS WORKING
+  ───────────────────────────────────────────────── -->
+  <section id="works" class="section">
+    <div class="section-header works">
+      <div class="section-severity-marker"></div>
+      <div class="section-title-group">
+        <div class="section-title">What Is Working</div>
+        <div class="section-count">7 items — Genuine strengths to preserve and build on</div>
+      </div>
+    </div>
+
+    <!-- w-39 -->
+    <div class="finding-card works">
+      <div class="card-header">
+        <div class="card-num">#39</div>
+        <div class="card-badges">
+          <span class="badge badge-works">✓ Works</span>
+        </div>
+        <div class="card-area">Our Solutions — Service Delivery Structure</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The service entries on the Our Solutions page are well-structured: each includes Best For, Benefits, Deliverables, and Process steps. This level of specificity is on-brand ("Name the deliverable — Specificity is authority") and gives qualified prospects a clear picture of what engagement looks like. The consistent structure across five of the six service entries also builds scannable trust.</p>
+        <div class="card-rec-label">Evidence</div>
+        <p class="card-rec">Our Solutions services 1–4 and 6: consistent four-part structure.</p>
+      </div>
+    </div>
+
+    <!-- w-40 -->
+    <div class="finding-card works">
+      <div class="card-header">
+        <div class="card-num">#40</div>
+        <div class="card-badges">
+          <span class="badge badge-works">✓ Works</span>
+        </div>
+        <div class="card-area">Home — ROI Calculator Concept</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The ROI Calculator is a strong conversion tool concept for the target audience. Caribbean businesses focused on cost relief will engage with a personalised savings estimate. The country dropdown (T&amp;T, Barbados, Jamaica, Guyana, St. Lucia, Grenada) demonstrates Caribbean specificity. The disclaimer ("This is an estimate. Final results depend on a professional site assessment") is appropriate and manages expectations correctly.</p>
+        <div class="card-rec-label">Evidence</div>
+        <p class="card-rec">Home ROI Calculator section: country dropdown and disclaimer as noted. This is a genuine competitive differentiator — no comparable benchmark offers a personalised on-site savings estimate.</p>
+      </div>
+    </div>
+
+    <!-- w-41 -->
+    <div class="finding-card works">
+      <div class="card-header">
+        <div class="card-num">#41</div>
+        <div class="card-badges">
+          <span class="badge badge-works">✓ Works</span>
+        </div>
+        <div class="card-area">Case Studies — Metrics Structure</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">Each case study entry presents three key metrics in a prominent numerical format (e.g., 65% Energy Savings, 500 kW, 4 Years ROI). Quantified outcomes are exactly the evidence a qualified B2B prospect needs to build trust. The selection of metrics (savings, scale, payback) maps to the primary concerns of the target audience.</p>
+        <div class="card-rec-label">Evidence</div>
+        <p class="card-rec">Case Studies: all four entries carry three-metric callout blocks.</p>
+      </div>
+    </div>
+
+    <!-- w-42 -->
+    <div class="finding-card works">
+      <div class="card-header">
+        <div class="card-num">#42</div>
+        <div class="card-badges">
+          <span class="badge badge-works">✓ Works</span>
+        </div>
+        <div class="card-area">About Us — Leadership Team Depth</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The presence of five named directors with real credentials (UWI BSc Civil Engineering 1979, ASCE membership, 40+ years experience, climate finance specifics) is a strong credibility asset. For a B2B professional services firm, named leadership with real-world credentials is a primary trust signal. This level of team transparency compares favourably with the benchmark set.</p>
+        <div class="card-rec-label">Evidence</div>
+        <p class="card-rec">About Us: Ryan Roper, Vaughn Lezama, Peter Anthony Gales, Tobias Schulze Frenking, Dr. Tyrone Kalpee — all with named credentials.</p>
+      </div>
+    </div>
+
+    <!-- w-43 -->
+    <div class="finding-card works">
+      <div class="card-header">
+        <div class="card-num">#43</div>
+        <div class="card-badges">
+          <span class="badge badge-works">✓ Works</span>
+        </div>
+        <div class="card-area">Contact Us — Response Standard</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">"We respond same day when possible, max 24 hours" is a specific, credible service commitment. It is more trustworthy than vague "we'll be in touch" language and appropriately sets expectations without overpromising.</p>
+        <div class="card-rec-label">Evidence</div>
+        <p class="card-rec">Contact Us: response time statement as noted.</p>
+      </div>
+    </div>
+
+    <!-- w-44 -->
+    <div class="finding-card works">
+      <div class="card-header">
+        <div class="card-num">#44</div>
+        <div class="card-badges">
+          <span class="badge badge-works">✓ Works</span>
+        </div>
+        <div class="card-area">Home — Process Steps (Measure → Prioritize → Execute → Track)</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The four-step process (Measure, Prioritize, Execute, Track) is clear, logical, and demonstrates systems thinking. It positions CEAL Green's approach as structured and methodical — consistent with the practitioner identity. The verbs are strong and present-tense.</p>
+        <div class="card-rec-label">Evidence</div>
+        <p class="card-rec">Home Process Section: four steps as listed.</p>
+      </div>
+    </div>
+
+    <!-- w-45 -->
+    <div class="finding-card works">
+      <div class="card-header">
+        <div class="card-num">#45</div>
+        <div class="card-badges">
+          <span class="badge badge-works">✓ Works</span>
+        </div>
+        <div class="card-area">About Us — "Born Green. Born Digital." Differentiator</div>
+      </div>
+      <div class="card-body">
+        <p class="card-finding">The "Born Green. Born Digital." section headline is on-brand — it uses the exact phrase from the approved brand documents, in declarative present-tense format. It is specific to CEAL Green's position and not generic. This is the kind of precise, identity-led language the brand should employ throughout.</p>
+        <div class="card-rec-label">Evidence</div>
+        <p class="card-rec">About Us Company Differentiators: "Born Green. Born Digital." — matches Guiding Narrative Section 3 exactly.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ─────────────────────────────────────────────────
+       NARRATIVE COHERENCE
+  ───────────────────────────────────────────────── -->
+  <section id="narrative" class="section">
+    <div class="section-header nc">
+      <div class="section-severity-marker" style="background:var(--color-supporting-1)"></div>
+      <div class="section-title-group">
+        <div class="section-title">Narrative Coherence Assessment</div>
+        <div class="section-count">3 structural gaps in the full-site narrative arc</div>
+      </div>
+    </div>
+
+    <div class="nc-arc">
+      <strong>Full-site arc:</strong> The intended narrative arc is: Caribbean problem → CEAL Green capability → proof of execution → call to act. The site has the structural elements for this arc but deploys them in a fragmented and inconsistent way. The Home page attempts all five moves simultaneously, creating density without flow. The Our Solutions page re-explains the process already covered on the Home page rather than deepening trust. The Case Studies page carries the strongest trust content but dead-links destroy its function. The About Us page introduces leadership credibility late and buries it under generic differentiators. The Green Energy Projects page breaks the arc entirely by resolving to an e-commerce shop.
+    </div>
+
+    <div class="nc-card">
+      <div class="nc-tag">NC-01</div>
+      <div class="nc-title">Execution proof arrives too late</div>
+      <div class="nc-body">The Case Studies page is the primary proof of execution, but it is the third item in the navigation, reached only by deliberate intent. The home page has three "Featured Solutions" cards that link to /services but no direct path to case evidence. A qualified prospect evaluating whether to book a consultation needs to encounter real project proof earlier in the journey — ideally within the Home page flow before the consultation CTA.</div>
+    </div>
+
+    <div class="nc-card">
+      <div class="nc-tag">NC-02</div>
+      <div class="nc-title">Identity declaration gap: site opens on problem framing</div>
+      <div class="nc-body">The hero opens on the visitor's problem ("lower energy costs"), not on CEAL Green's identity. The approved brand foundation leads with identity ("CEAL Green is a Caribbean execution engine for green solutions"). This sequence inversion means the brand never fully declares itself before beginning to explain its service. Every benchmark in the competitive set leads with identity or outcome — not with the client's problem.</div>
+    </div>
+
+    <div class="nc-card">
+      <div class="nc-tag">NC-03</div>
+      <div class="nc-title">Green Energy Projects page breaks the trust architecture</div>
+      <div class="nc-body">A visitor who navigates to "Green Energy Projects" encounters an e-commerce shop page with a TTD$7 minimum payment. This is a complete trust break. At the point where brand and execution credibility have been building, an unexpected retail endpoint causes visitors to question what kind of company they are dealing with. This is the single most damaging structural issue on the site from a conversion architecture perspective.</div>
+    </div>
+
+  </section>
+
+  <!-- ─────────────────────────────────────────────────
+       COMPETITIVE BENCHMARKS
+  ───────────────────────────────────────────────── -->
+  <section id="benchmarks" class="section">
+    <div class="section-header bench">
+      <div class="section-severity-marker" style="background:var(--color-supporting-2)"></div>
+      <div class="section-title-group">
+        <div class="section-title">Competitive Benchmarks</div>
+        <div class="section-count">5 benchmarks — SOP-017 applied</div>
+      </div>
+    </div>
+
+    <div class="subsection-title">Benchmark Set</div>
+
+    <div class="bench-card">
+      <div class="bench-title">Benchmark 1 — Sunrock Caribbean (sunrockcaribbean.com)</div>
+      <div class="bench-rationale">Caribbean-based commercial solar developer operating across the Dutch Caribbean islands (Curaçao, Aruba, Bonaire). Selected as the closest direct geographic analog — a Caribbean-specific renewable energy company with professional execution framing.</div>
+    </div>
+
+    <div class="bench-card">
+      <div class="bench-title">Benchmark 2 — Actis (act.is)</div>
+      <div class="bench-rationale">Global infrastructure-focused private equity firm active in emerging markets including the Caribbean and Latin America. Selected as an aspirational peer for capital attraction positioning — represents how professional infrastructure firms present credibility to international capital.</div>
+    </div>
+
+    <div class="bench-card">
+      <div class="bench-title">Benchmark 3 — Enphase Energy (enphase.com)</div>
+      <div class="bench-rationale">Global distributed solar and storage technology company. Selected for artifact quality: Enphase's website is a best-in-class example of converting technical product capability into accessible benefit language for both professional and commercial audiences.</div>
+    </div>
+
+    <div class="bench-card">
+      <div class="bench-title">Benchmark 4 — DNV (dnv.com/renewable-energy)</div>
+      <div class="bench-rationale">Global technical advisory and certification firm for energy transition projects. Selected for professional services credibility framing and the "trusted independent expert" positioning that is analogous to CEAL Green's neutrality claim.</div>
+    </div>
+
+    <div class="bench-card">
+      <div class="bench-title">Benchmark 5 — Caribbean Development Bank (caribank.org)</div>
+      <div class="bench-rationale">Selected not as a competitor but as a reference for how Caribbean institutional credibility is built and communicated — relevant to CEAL Green's ambition to attract government and international capital partners.</div>
+    </div>
+
+    <div class="subsection-title">Key Patterns — What Best-in-Class Consistently Does</div>
+
+    <div class="patterns-grid">
+      <div class="pattern-card">
+        <div class="pattern-label">Pattern 1</div>
+        <div class="pattern-body"><strong>Lead with specific outcomes, not process descriptions.</strong> Sunrock and Enphase lead their hero sections with named quantified outcomes ("X MW installed," "X% bill reduction") rather than descriptions of what they do. CEAL Green's hero describes a journey ("pathways to lower energy costs") rather than declaring a result. This is a missed opportunity on the highest-value real estate on the site.</div>
+      </div>
+      <div class="pattern-card">
+        <div class="pattern-label">Pattern 2</div>
+        <div class="pattern-body"><strong>Credibility proof is above the fold or one click away.</strong> DNV surfaces certifications, named project references, and named client logos with relationship qualifiers within the first scroll of the homepage. Actis surfaces named portfolio companies immediately. CEAL Green buries its case study proof behind a navigation click and then dead-links.</div>
+      </div>
+      <div class="pattern-card">
+        <div class="pattern-label">Pattern 3</div>
+        <div class="pattern-body"><strong>Partner/client logo sections carry relationship qualifiers.</strong> Actis and DNV present client/partner logos with explicit relationship context ("advisory mandate for," "certification partner on," "investor in"). Presenting logos without qualifiers — as CEAL Green does with Caribbean Development Bank and World Bank — is a pattern that sophisticated audiences (government, international capital) immediately notice and discount.</div>
+      </div>
+      <div class="pattern-card">
+        <div class="pattern-label">Pattern 4</div>
+        <div class="pattern-body"><strong>Distinct visual identity from generic green-tech.</strong> Both Sunrock and DNV use visual systems that are clearly branded and distinct from the neon-green-on-dark palette that has become generic in the tech-adjacent sustainability space. DNV's deep blue carries authority. Sunrock uses warm earth tones with Caribbean sunlight references. CEAL Green's approved palette (Mangrove, Oatmeal, Aged Teak) would achieve exactly this distinction — but the deployed neon green places it in the generic tech-startup category.</div>
+      </div>
+      <div class="pattern-card">
+        <div class="pattern-label">Pattern 5</div>
+        <div class="pattern-body"><strong>Mobile-first CTA persistence.</strong> Enphase and Sunrock maintain a persistent mobile CTA that scrolls with the page. CEAL Green's "Book Now" in the header is not described as persistent on mobile — if it disappears on scroll, conversion events are lost.</div>
+      </div>
+    </div>
+
+    <div class="subsection-title">Competitive Advantage</div>
+
+    <div class="advantage-box">
+      <div class="advantage-box-title">CEAL Green's Differentiator the Benchmark Set Does Not Replicate</div>
+      CEAL Green has one advantage the benchmark set does not replicate: the ROI Calculator. Sunrock, DNV, and Actis do not offer an immediate, personalised savings estimate on-site. This interactive conversion tool, if fixed (see Finding #18 re residential audience and Finding #31 re sample data), is a genuine differentiator that should be emphasised more prominently in the site's narrative flow.<br><br>
+      The leadership team depth (five named directors with Caribbean credentials) is also stronger than Sunrock's public-facing team presentation, and comparable to DNV's advisory board format. This asset is underserved by the generic differentiator copy (Finding #36).
+    </div>
+
+    <div class="subsection-title">Individual Benchmark References — Mapped to Findings</div>
+
+    <table class="bench-ref-table">
+      <thead>
+        <tr>
+          <th>Finding</th>
+          <th>Benchmark Reference</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>#1</strong> — Colour system</td>
+          <td>Sunrock and DNV: both deploy brand-distinct, non-generic palettes that signal authority and regional specificity. Generic neon green is a category-drift risk.</td>
+        </tr>
+        <tr>
+          <td><strong>#3</strong> — Hero headline</td>
+          <td>Enphase: "The most advanced home energy system" — identity declaration that does not describe a journey. Sunrock: [X] MW installed across [islands] — outcome declaration.</td>
+        </tr>
+        <tr>
+          <td><strong>#7</strong> — Testimonials authenticity</td>
+          <td>DNV and Actis: testimonials carry full name, title, organisation, and project reference. Unverified or generic testimonials are below the credibility floor of comparable professional services sites.</td>
+        </tr>
+        <tr>
+          <td><strong>#8</strong> — Partner logos without qualifiers</td>
+          <td>Actis: every logo in the "investors in" and "partners" sections carries a brief relationship descriptor. Sunrock: project-specific references alongside logos.</td>
+        </tr>
+        <tr>
+          <td><strong>#12</strong> — Dead case study links</td>
+          <td>DNV: full case study detail pages with project data, methodology, and named outcomes. These are the primary conversion asset on professional services sites — dead links are below any comparable standard.</td>
+        </tr>
+        <tr>
+          <td><strong>#19</strong> — Hero image</td>
+          <td>Sunrock: hero image shows an actual Sunrock solar array installation in a recognisable Caribbean setting. No ambiguity about what the company builds or where.</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="page-footer">
+    <span class="footer-pag">PAG</span>
+    <span>CEAL Green Website Audit · 2026-06-10 · Prepared by Cass — Creative Strategist, myPKA · Confidential</span>
+  </footer>
+
+</main>
+</body>
+</html>
