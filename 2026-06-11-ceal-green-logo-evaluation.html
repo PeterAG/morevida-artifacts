@@ -399,23 +399,11 @@
 
     .lockup-emblem {
       flex-shrink: 0;
-    }
-
-    .lockup-emblem img {
-      display: block;
-      height: 80px;
-      width: auto;
-      object-fit: contain;
-    }
-
-    /* Flat-colour SVG placeholder for dark background brief */
-    .lockup-emblem-svg {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 80px;
+      align-items: flex-end;
     }
 
+    /* cap-height = emblem height (80px). For Space Grotesk, font-size ≈ cap-height / 0.72 */
     .lockup-wordmark {
       display: inline-flex;
       align-items: baseline;
@@ -423,7 +411,6 @@
       line-height: 1;
     }
 
-    /* cap-height = emblem height (80px). For Space Grotesk, font-size ≈ cap-height / 0.72 */
     .lockup-wordmark .ceal {
       font-weight: 700;
       font-size: 72px;
@@ -463,10 +450,6 @@
       border-top: 1px solid rgba(26,31,30,0.1);
     }
 
-    .section--dark .callout-grid {
-      border-top-color: rgba(247,244,238,0.1);
-    }
-
     .callout-item {
       display: flex;
       flex-direction: column;
@@ -488,10 +471,7 @@
       line-height: 1.45;
     }
 
-    .section--dark .callout-value {
-      color: var(--oatmeal);
-    }
-
+    /* ── Redraw note — base + dark-bg override ─────────────── */
     .redraw-note {
       margin-top: var(--space-sm);
       padding: 10px 14px;
@@ -501,12 +481,13 @@
       font-size: 12px;
       font-style: italic;
       color: var(--near-black);
-      opacity: 0.7;
+      opacity: 0.85;
     }
 
-    .section--dark .redraw-note {
+    /* Explicit dark-bg override for redraw-note inside dark demo-card-body */
+    .demo-card-body--dark .redraw-note {
       color: var(--oatmeal);
-      background: rgba(184,122,78,0.08);
+      background: rgba(184,122,78,0.1);
     }
 
     /* ── Brief 4: Wordmark-only panels ─────────────────────── */
@@ -733,8 +714,8 @@
     .scale-caption {
       margin-top: var(--space-md);
       font-size: 13px;
-      color: var(--near-black);
-      opacity: 0.65;
+      color: var(--oatmeal);
+      opacity: 0.75;
       font-style: italic;
       line-height: 1.6;
       text-align: center;
@@ -1066,14 +1047,6 @@
       line-height: 1.7;
     }
 
-    /* ── Dark-bg silhouette emblem ─────────────────────────── */
-    .emblem-silhouette {
-      display: inline-block;
-      width: 80px;
-      height: 80px;
-      flex-shrink: 0;
-    }
-
     /* ── Responsive ────────────────────────────────────────── */
     @media (max-width: 720px) {
       .wordmark-panel-row,
@@ -1083,7 +1056,6 @@
       .lockup-wordmark .ceal,
       .lockup-wordmark .interpunct,
       .lockup-wordmark .green { font-size: 38px; }
-      .lockup-emblem img { height: 54px; }
       .lockup-demo { gap: var(--space-md); }
       .scale-row { gap: var(--space-md); }
       .header-title { font-size: 28px; }
@@ -1091,6 +1063,15 @@
   </style>
 </head>
 <body>
+
+<!-- ============================================================
+     INLINE SVG EMBLEM DEFINITIONS
+     Light version: Mangrove border, Mid Canopy leaf, Aged Teak sun, Near-Black panels
+     Dark version:  Mid Canopy border, Mid Canopy leaf, Aged Teak sun, Oatmeal panels
+     ============================================================ -->
+
+<!-- Reusable SVG emblem — light execution (80px) -->
+<!-- Used inline via <svg> elements below -->
 
 <!-- ============================================================
      HEADER
@@ -1258,8 +1239,50 @@
       <div class="demo-card-label">Recommended execution — if logo mark is retained (light background)</div>
       <div class="demo-card-body" style="background: var(--oatmeal);">
         <div class="lockup-demo">
+          <!-- Brand-colour SVG emblem — light execution -->
           <div class="lockup-emblem">
-            <img src="ryan-logo-current.png" alt="CEAL Green emblem">
+            <!--
+              CEAL Green brand-colour emblem — light execution
+              viewBox 0 0 120 120 — rendered at 80px height
+              Circle border:    Mangrove #1E4D3A
+              Leaf:             Mid Canopy #8DCFAA with Mangrove vein
+              Sun:              Aged Teak #B87A4E (semicircle + 7 rays)
+              Solar panels:     Near-Black #1A1F1E (4×2 grid of rectangles)
+            -->
+            <svg width="80" height="80" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="CEAL Green emblem — brand colour light execution">
+              <!-- Circle border -->
+              <circle cx="60" cy="60" r="56" stroke="#1E4D3A" stroke-width="3" fill="none"/>
+
+              <!-- Leaf — arcs from lower-left to upper-right, contained within circle -->
+              <!-- Outer leaf shape -->
+              <path d="M38 82 C32 68 34 50 48 38 C56 31 66 28 72 30 C74 42 72 56 62 68 C54 78 44 82 38 82Z" fill="#8DCFAA"/>
+              <!-- Central vein -->
+              <path d="M38 82 C48 66 58 52 72 30" stroke="#1E4D3A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+
+              <!-- Sun — semicircle rising from lower centre, with rays -->
+              <!-- Rays first (behind semicircle) -->
+              <line x1="60" y1="74" x2="60" y2="63" stroke="#B87A4E" stroke-width="2" stroke-linecap="round"/>
+              <line x1="52" y1="76" x2="48" y2="66" stroke="#B87A4E" stroke-width="2" stroke-linecap="round"/>
+              <line x1="68" y1="76" x2="72" y2="66" stroke="#B87A4E" stroke-width="2" stroke-linecap="round"/>
+              <line x1="46" y1="82" x2="40" y2="74" stroke="#B87A4E" stroke-width="2" stroke-linecap="round"/>
+              <line x1="74" y1="82" x2="80" y2="74" stroke="#B87A4E" stroke-width="2" stroke-linecap="round"/>
+              <line x1="43" y1="90" x2="36" y2="85" stroke="#B87A4E" stroke-width="2" stroke-linecap="round"/>
+              <line x1="77" y1="90" x2="84" y2="85" stroke="#B87A4E" stroke-width="2" stroke-linecap="round"/>
+              <!-- Semicircle body -->
+              <path d="M42 90 A18 18 0 0 1 78 90Z" fill="#B87A4E"/>
+
+              <!-- Solar panels — 4×2 grid of rectangles, lower centre -->
+              <!-- Row 1 -->
+              <rect x="36" y="93" width="10" height="7" rx="1" fill="#1A1F1E"/>
+              <rect x="48" y="93" width="10" height="7" rx="1" fill="#1A1F1E"/>
+              <rect x="60" y="93" width="10" height="7" rx="1" fill="#1A1F1E"/>
+              <rect x="72" y="93" width="10" height="7" rx="1" fill="#1A1F1E"/>
+              <!-- Row 2 -->
+              <rect x="36" y="102" width="10" height="7" rx="1" fill="#1A1F1E"/>
+              <rect x="48" y="102" width="10" height="7" rx="1" fill="#1A1F1E"/>
+              <rect x="60" y="102" width="10" height="7" rx="1" fill="#1A1F1E"/>
+              <rect x="72" y="102" width="10" height="7" rx="1" fill="#1A1F1E"/>
+            </svg>
           </div>
           <div style="display: flex; flex-direction: column; justify-content: flex-end;">
             <div class="lockup-wordmark lockup-wordmark--light">
@@ -1268,7 +1291,9 @@
           </div>
         </div>
 
-        <div class="redraw-note">Emblem shown as currently presented; illustration redraw required — see Priority 1.</div>
+        <div class="redraw-note" style="margin-top: var(--space-sm);">
+          Emblem shown in approved brand colours. Current illustration uses gradient fills — flat-colour execution shown here as the brand-aligned direction.
+        </div>
 
         <div class="callout-grid">
           <div class="callout-item">
@@ -1298,26 +1323,49 @@
     <!-- Visual Brief 3 — Corrected combined mark: dark background -->
     <div class="demo-card" style="margin-top: var(--space-md);">
       <div class="demo-card-label">Recommended execution — if logo mark is retained (dark background)</div>
-      <div class="demo-card-body" style="background: var(--mangrove);">
+      <div class="demo-card-body demo-card-body--dark" style="background: var(--mangrove);">
         <div class="lockup-demo">
-          <!-- On dark bg, emblem as a flat-colour SVG placeholder per brief instructions -->
+          <!-- Brand-colour SVG emblem — dark execution (reversed) -->
           <div class="lockup-emblem">
-            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Emblem flat-colour placeholder">
-              <circle cx="40" cy="40" r="38" stroke="#F7F4EE" stroke-width="2.5" fill="none"/>
-              <!-- Leaf silhouette -->
-              <path d="M40 12 C28 18 20 30 26 44 C30 52 40 56 40 56 C40 56 50 52 54 44 C60 30 52 18 40 12Z" fill="#8DCFAA"/>
-              <!-- Sun arc -->
-              <path d="M28 52 Q40 36 52 52" stroke="#B87A4E" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <!--
+              CEAL Green brand-colour emblem — dark execution
+              viewBox 0 0 120 120 — rendered at 80px height
+              Circle border:    Mid Canopy #8DCFAA
+              Leaf:             Mid Canopy #8DCFAA with Oatmeal vein
+              Sun:              Aged Teak #B87A4E (semicircle + 7 rays)
+              Solar panels:     Oatmeal #F7F4EE (4×2 grid of rectangles)
+            -->
+            <svg width="80" height="80" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="CEAL Green emblem — brand colour dark execution">
+              <!-- Circle border -->
+              <circle cx="60" cy="60" r="56" stroke="#8DCFAA" stroke-width="3" fill="none"/>
+
+              <!-- Leaf -->
+              <path d="M38 82 C32 68 34 50 48 38 C56 31 66 28 72 30 C74 42 72 56 62 68 C54 78 44 82 38 82Z" fill="#8DCFAA"/>
+              <!-- Central vein -->
+              <path d="M38 82 C48 66 58 52 72 30" stroke="#F7F4EE" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+
               <!-- Sun rays -->
-              <line x1="40" y1="48" x2="40" y2="42" stroke="#B87A4E" stroke-width="1.5" stroke-linecap="round"/>
-              <line x1="35" y1="50" x2="33" y2="45" stroke="#B87A4E" stroke-width="1.5" stroke-linecap="round"/>
-              <line x1="45" y1="50" x2="47" y2="45" stroke="#B87A4E" stroke-width="1.5" stroke-linecap="round"/>
-              <!-- Grid lines suggesting solar panels -->
-              <line x1="28" y1="56" x2="52" y2="56" stroke="#F7F4EE" stroke-width="1" opacity="0.4"/>
-              <line x1="28" y1="60" x2="52" y2="60" stroke="#F7F4EE" stroke-width="1" opacity="0.4"/>
-              <line x1="34" y1="53" x2="34" y2="63" stroke="#F7F4EE" stroke-width="1" opacity="0.4"/>
-              <line x1="40" y1="53" x2="40" y2="63" stroke="#F7F4EE" stroke-width="1" opacity="0.4"/>
-              <line x1="46" y1="53" x2="46" y2="63" stroke="#F7F4EE" stroke-width="1" opacity="0.4"/>
+              <line x1="60" y1="74" x2="60" y2="63" stroke="#B87A4E" stroke-width="2" stroke-linecap="round"/>
+              <line x1="52" y1="76" x2="48" y2="66" stroke="#B87A4E" stroke-width="2" stroke-linecap="round"/>
+              <line x1="68" y1="76" x2="72" y2="66" stroke="#B87A4E" stroke-width="2" stroke-linecap="round"/>
+              <line x1="46" y1="82" x2="40" y2="74" stroke="#B87A4E" stroke-width="2" stroke-linecap="round"/>
+              <line x1="74" y1="82" x2="80" y2="74" stroke="#B87A4E" stroke-width="2" stroke-linecap="round"/>
+              <line x1="43" y1="90" x2="36" y2="85" stroke="#B87A4E" stroke-width="2" stroke-linecap="round"/>
+              <line x1="77" y1="90" x2="84" y2="85" stroke="#B87A4E" stroke-width="2" stroke-linecap="round"/>
+              <!-- Semicircle body -->
+              <path d="M42 90 A18 18 0 0 1 78 90Z" fill="#B87A4E"/>
+
+              <!-- Solar panels — Oatmeal on dark -->
+              <!-- Row 1 -->
+              <rect x="36" y="93" width="10" height="7" rx="1" fill="#F7F4EE"/>
+              <rect x="48" y="93" width="10" height="7" rx="1" fill="#F7F4EE"/>
+              <rect x="60" y="93" width="10" height="7" rx="1" fill="#F7F4EE"/>
+              <rect x="72" y="93" width="10" height="7" rx="1" fill="#F7F4EE"/>
+              <!-- Row 2 -->
+              <rect x="36" y="102" width="10" height="7" rx="1" fill="#F7F4EE"/>
+              <rect x="48" y="102" width="10" height="7" rx="1" fill="#F7F4EE"/>
+              <rect x="60" y="102" width="10" height="7" rx="1" fill="#F7F4EE"/>
+              <rect x="72" y="102" width="10" height="7" rx="1" fill="#F7F4EE"/>
             </svg>
           </div>
           <div style="display: flex; flex-direction: column; justify-content: flex-end;">
@@ -1328,10 +1376,10 @@
         </div>
 
         <div class="redraw-note" style="border-left-color: var(--aged-teak);">
-          Dark mode execution — wordmark only fully confirmed; emblem shown as flat-colour placeholder pending professional redraw. Illustration redraw required — see Priority 1.
+          Emblem shown in approved brand colours — reversed for dark background. Current gradient illustration has no viable dark-mode render; flat-colour execution shown here as the brand-aligned direction.
         </div>
 
-        <div class="callout-grid">
+        <div class="callout-grid" style="border-top-color: rgba(247,244,238,0.1);">
           <div class="callout-item">
             <div class="callout-label" style="color: var(--mid-canopy);">Colour split — dark</div>
             <div class="callout-value" style="color: var(--oatmeal);">
@@ -1341,8 +1389,8 @@
             </div>
           </div>
           <div class="callout-item">
-            <div class="callout-label" style="color: var(--mid-canopy);">Emblem note</div>
-            <div class="callout-value" style="color: var(--oatmeal);">The current gradient illustration has no viable dark-mode render. A professional redraw is required before the combined mark can be applied on dark backgrounds.</div>
+            <div class="callout-label" style="color: var(--mid-canopy);">Emblem reversal</div>
+            <div class="callout-value" style="color: var(--oatmeal);">Circle border and leaf in Mid Canopy. Sun in Aged Teak (consistent across both executions). Solar panels in Oatmeal. No gradients — flat colour throughout.</div>
           </div>
         </div>
       </div>
