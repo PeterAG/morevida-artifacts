@@ -397,7 +397,7 @@
       gap: 48px;
     }
 
-    /* lockup-wordmark font-size set so cap-height (≈72% of em) equals 80px emblem height.
+    /* lockup-wordmark font-size set so cap-height (≈72% of em) equals 80px logo height.
        80 / 0.72 ≈ 111px. Use 110px. */
     .lockup-wordmark .ceal,
     .lockup-wordmark .interpunct,
@@ -411,7 +411,7 @@
       align-items: flex-end;
     }
 
-    /* cap-height = emblem height (80px). For Space Grotesk, font-size ≈ cap-height / 0.72 */
+    /* cap-height = logo height (80px). For Space Grotesk, font-size ≈ cap-height / 0.72 */
     .lockup-wordmark {
       display: inline-flex;
       align-items: baseline;
@@ -1137,14 +1137,14 @@
 
           <!-- Large -->
           <div class="scale-item">
-            <img src="ryan-logo-emblem-cropped.png" style="height: 200px;" alt="Current emblem — large (200px)">
+            <img src="ryan-logo-emblem-cropped.png" style="height: 200px;" alt="Current logo — large (200px)">
             <div class="scale-label">200 px height</div>
-            <div class="scale-annotation">Full emblem — illustration and solar panel detail visible</div>
+            <div class="scale-annotation">Full logo — illustration and solar panel detail visible</div>
           </div>
 
           <!-- Medium -->
           <div class="scale-item">
-            <img src="ryan-logo-emblem-cropped.png" style="height: 48px;" alt="Current emblem — medium (48px)">
+            <img src="ryan-logo-emblem-cropped.png" style="height: 48px;" alt="Current logo — medium (48px)">
             <div class="scale-label">48 px height</div>
             <div class="scale-annotation">Document / nav scale</div>
             <span class="annotation-chip annotation-chip--warn">Illustration detail lost</span>
@@ -1153,7 +1153,7 @@
 
           <!-- Small -->
           <div class="scale-item">
-            <img src="ryan-logo-emblem-cropped.png" style="height: 32px;" alt="Current emblem — small (32px)">
+            <img src="ryan-logo-emblem-cropped.png" style="height: 32px;" alt="Current logo — small (32px)">
             <div class="scale-label">32 px height</div>
             <div class="scale-annotation">Favicon / small context</div>
             <span class="annotation-chip annotation-chip--warn">Illustration collapses to indistinct blob</span>
@@ -1213,7 +1213,7 @@
     <div class="subsection">
       <h3 class="subsection-title">Spacing</h3>
       <p class="body-text"><strong>Word spacing:</strong> The approved spec defines a 0.18em left margin between CEAL and Green, baseline aligned. The current gap reads closer to a standard word space, disrupting the tight inline-flex pairing that gives the approved wordmark its visual unity.</p>
-      <p class="body-text"><strong>Wordmark-to-mark clearance:</strong> The horizontal gap between the right edge of the circular emblem and the first letter of "CEAL" appears insufficient. Standard clearance for a horizontal lockup is a minimum of the cap-height of the wordmark at that scale.</p>
+      <p class="body-text"><strong>Wordmark-to-mark clearance:</strong> The horizontal gap between the right edge of the circular logo and the first letter of "CEAL" appears insufficient. Standard clearance for a horizontal lockup is a minimum of the cap-height of the wordmark at that scale.</p>
       <p class="body-text"><strong>CEAL letter-spacing:</strong> The approved spec sets CEAL at −0.01em (slightly tightened). The current execution appears at default spacing, making CEAL read as less constructed and less unified.</p>
     </div>
 
@@ -1232,92 +1232,20 @@
       <p class="section-intro">Why the sizing relationship between mark and wordmark matters — and how to apply it correctly.</p>
     </div>
 
-    <p class="body-text">The current mark centres "CEAL Green" text vertically alongside the circular emblem. The recommendation is a different approach, beginning with the sizing relationship.</p>
+    <p class="body-text">The current mark centres "CEAL Green" text vertically alongside the circular logo. The recommendation is a different approach, beginning with the sizing relationship.</p>
 
-    <p class="body-text"><strong>The standard convention in professional horizontal lockups: the cap-height of the wordmark should be sized to equal the overall height of the circular emblem.</strong> When this sizing relationship is applied correctly, the wordmark baseline and the bottom of the emblem land on the same horizontal plane. Baseline alignment of the wordmark to the bottom of the emblem is the natural result of applying the sizing convention — not a separate decision layered on top.</p>
+    <p class="body-text"><strong>The standard convention in professional horizontal lockups: the cap-height of the wordmark should be sized to equal the overall height of the circular logo.</strong> When this sizing relationship is applied correctly, the wordmark baseline and the bottom of the logo land on the same horizontal plane. Baseline alignment of the wordmark to the bottom of the logo is the natural result of applying the sizing convention — not a separate decision layered on top.</p>
 
-    <p class="body-text">The circular emblem in the current mark carries significant visual mass at the top (the leaf protrudes at the 12 o'clock position). Centering the wordmark alongside the full circle optical centre means the text floats relative to the heaviest part of the mark. The sizing convention resolves this: the text and the bottom of the circle share a baseline, anchoring the entire lockup visually.</p>
+    <p class="body-text">The circular logo in the current mark carries significant visual mass at the top (the leaf protrudes at the 12 o'clock position). Centering the wordmark alongside the full circle optical centre means the text floats relative to the heaviest part of the mark. The sizing convention resolves this: the text and the bottom of the circle share a baseline, anchoring the entire lockup visually.</p>
 
     <!-- Visual Brief 2 — Corrected combined mark: light background -->
     <div class="demo-card" style="margin-top: var(--space-lg);">
       <div class="demo-card-label">Recommended execution — if logo mark is retained (light background)</div>
       <div class="demo-card-body" style="background: var(--oatmeal);">
         <div class="lockup-demo">
-          <!-- Brand-colour SVG emblem — light execution — faithful to Ryan's composition -->
+          <!-- Actual CEAL Green logo mark — white background removed -->
           <div class="lockup-emblem">
-            <!--
-              CEAL Green brand-colour emblem — light execution
-              viewBox 0 0 200 200 — rendered at 80px height
-              Faithful to Ryan's composition:
-                Large leaf sweeping from lower-left, arcing over circle top, tip at upper-right
-                Secondary smaller leaf behind/below at lower-left
-                Circle border: Mangrove #1E4D3A
-                Solar panels: perspective trapezoid grid, Near-Black #1A1F1E
-                Sun: Aged Teak #B87A4E semicircle + 8 rays
-            -->
-            <svg width="80" height="80" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="CEAL Green emblem — brand colour light execution">
-              <defs>
-                <clipPath id="circle-clip-light">
-                  <circle cx="100" cy="100" r="95"/>
-                </clipPath>
-              </defs>
-
-              <!-- Secondary leaf — behind main leaf, lower-left -->
-              <path d="M30 155 C18 130 22 100 40 82 C50 72 62 68 70 70 C68 84 60 98 48 112 C40 122 34 140 30 155Z" fill="#8DCFAA" opacity="0.55" clip-path="url(#circle-clip-light)"/>
-              <path d="M30 155 C40 132 52 112 70 70" stroke="#1E4D3A" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.6" clip-path="url(#circle-clip-light)"/>
-
-              <!-- Main large leaf — sweeps from lower-left base, arcs over top, tip at upper-right -->
-              <!-- The leaf is large enough to protrude slightly beyond the circle at the top -->
-              <path d="M22 162
-                C14 140 16 112 28 88
-                C40 64 60 44 84 28
-                C108 14 140 10 162 18
-                C168 32 164 56 148 74
-                C132 92 110 104 90 116
-                C70 128 46 142 22 162Z"
-                fill="#8DCFAA"/>
-              <!-- Central vein of main leaf -->
-              <path d="M22 162 C60 120 100 80 162 18" stroke="#1E4D3A" stroke-width="2" stroke-linecap="round" fill="none"/>
-
-              <!-- All interior elements clipped to circle -->
-              <g clip-path="url(#circle-clip-light)">
-                <!-- Sun rays — drawn before semicircle so semicircle sits on top -->
-                <!-- Ray directions radiating upward from sun centre at (108, 118) -->
-                <line x1="108" y1="118" x2="108" y2="96" stroke="#B87A4E" stroke-width="2.5" stroke-linecap="round"/>
-                <line x1="108" y1="118" x2="124" y2="100" stroke="#B87A4E" stroke-width="2.5" stroke-linecap="round"/>
-                <line x1="108" y1="118" x2="132" y2="110" stroke="#B87A4E" stroke-width="2.5" stroke-linecap="round"/>
-                <line x1="108" y1="118" x2="134" y2="124" stroke="#B87A4E" stroke-width="2.5" stroke-linecap="round"/>
-                <line x1="108" y1="118" x2="92" y2="100" stroke="#B87A4E" stroke-width="2.5" stroke-linecap="round"/>
-                <line x1="108" y1="118" x2="84" y2="110" stroke="#B87A4E" stroke-width="2.5" stroke-linecap="round"/>
-                <line x1="108" y1="118" x2="82" y2="124" stroke="#B87A4E" stroke-width="2.5" stroke-linecap="round"/>
-                <line x1="108" y1="118" x2="108" y2="138" stroke="#B87A4E" stroke-width="2.5" stroke-linecap="round" opacity="0"/>
-
-                <!-- Sun semicircle — flat edge down, rising above panels -->
-                <path d="M86 118 A22 22 0 0 1 130 118Z" fill="#B87A4E"/>
-
-                <!-- Solar panel grid — perspective trapezoid, lower centre -->
-                <!-- Using a clipped trapezoid shape with internal grid lines -->
-                <!-- Panel base: wider at bottom (~x 38-168), narrower at top (~x 56-164), y 128-175 -->
-                <!-- Row 1 (top, narrower) -->
-                <path d="M58 128 L74 128 L72 142 L54 142Z" fill="#1A1F1E"/>
-                <path d="M76 128 L100 128 L99 142 L75 142Z" fill="#1A1F1E"/>
-                <path d="M102 128 L126 128 L128 142 L101 142Z" fill="#1A1F1E"/>
-                <path d="M128 128 L152 128 L156 142 L130 142Z" fill="#1A1F1E"/>
-                <!-- Row 2 (middle) -->
-                <path d="M52 145 L70 145 L68 159 L48 159Z" fill="#1A1F1E"/>
-                <path d="M72 145 L98 145 L97 159 L71 159Z" fill="#1A1F1E"/>
-                <path d="M100 145 L128 145 L130 159 L99 159Z" fill="#1A1F1E"/>
-                <path d="M130 145 L158 145 L163 159 L132 159Z" fill="#1A1F1E"/>
-                <!-- Row 3 (bottom, widest) -->
-                <path d="M46 162 L66 162 L64 176 L42 176Z" fill="#1A1F1E"/>
-                <path d="M68 162 L96 162 L95 176 L67 176Z" fill="#1A1F1E"/>
-                <path d="M98 162 L130 162 L132 176 L97 176Z" fill="#1A1F1E"/>
-                <path d="M132 162 L162 162 L168 176 L134 176Z" fill="#1A1F1E"/>
-              </g>
-
-              <!-- Circle border — drawn on top so it sits cleanly over clipped elements -->
-              <circle cx="100" cy="100" r="95" stroke="#1E4D3A" stroke-width="3" fill="none"/>
-            </svg>
+            <img src="ryan-logo-transparent.png" alt="CEAL Green logo mark" style="height: 80px; width: auto;">
           </div>
           <div style="display: flex; flex-direction: column; justify-content: flex-end;">
             <div class="lockup-wordmark lockup-wordmark--light">
@@ -1327,21 +1255,21 @@
         </div>
 
         <div class="redraw-note" style="margin-top: var(--space-sm);">
-          Emblem shown in approved brand colours. Current illustration uses gradient fills — flat-colour execution shown here as the brand-aligned direction.
+          Logo shown as currently presented. Brand-colour illustration redraw required for full visual identity alignment — see Priority recommendations.
         </div>
 
         <div class="callout-grid">
           <div class="callout-item">
             <div class="callout-label">Sizing convention</div>
-            <div class="callout-value">Cap-height of wordmark = total height of emblem bounding box</div>
+            <div class="callout-value">Cap-height of wordmark = total height of logo bounding box</div>
           </div>
           <div class="callout-item">
             <div class="callout-label">Shared baseline</div>
-            <div class="callout-value">Wordmark baseline aligned to bottom of emblem — natural result of sizing convention, not a separate decision</div>
+            <div class="callout-value">Wordmark baseline aligned to bottom of logo — natural result of sizing convention, not a separate decision</div>
           </div>
           <div class="callout-item">
             <div class="callout-label">Minimum clearance</div>
-            <div class="callout-value">Horizontal gap between emblem right edge and first letter = cap-height of wordmark at that size</div>
+            <div class="callout-value">Horizontal gap between logo right edge and first letter = cap-height of wordmark at that size</div>
           </div>
           <div class="callout-item">
             <div class="callout-label">Colour split</div>
@@ -1360,72 +1288,9 @@
       <div class="demo-card-label">Recommended execution — if logo mark is retained (dark background)</div>
       <div class="demo-card-body demo-card-body--dark" style="background: var(--mangrove);">
         <div class="lockup-demo">
-          <!-- Brand-colour SVG emblem — dark execution (reversed) — faithful to Ryan's composition -->
+          <!-- Actual CEAL Green logo mark — white background removed -->
           <div class="lockup-emblem">
-            <!--
-              CEAL Green brand-colour emblem — dark execution
-              viewBox 0 0 200 200 — rendered at 80px height
-              Circle border:    Mid Canopy #8DCFAA
-              Large leaf:       Mid Canopy #8DCFAA with Oatmeal vein
-              Secondary leaf:   Oatmeal #F7F4EE low opacity
-              Sun + rays:       Aged Teak #B87A4E
-              Solar panels:     Oatmeal #F7F4EE
-            -->
-            <svg width="80" height="80" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="CEAL Green emblem — brand colour dark execution">
-              <defs>
-                <clipPath id="circle-clip-dark">
-                  <circle cx="100" cy="100" r="95"/>
-                </clipPath>
-              </defs>
-
-              <!-- Secondary leaf — behind main leaf, lower-left -->
-              <path d="M30 155 C18 130 22 100 40 82 C50 72 62 68 70 70 C68 84 60 98 48 112 C40 122 34 140 30 155Z" fill="#F7F4EE" opacity="0.25" clip-path="url(#circle-clip-dark)"/>
-              <path d="M30 155 C40 132 52 112 70 70" stroke="#F7F4EE" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.3" clip-path="url(#circle-clip-dark)"/>
-
-              <!-- Main large leaf -->
-              <path d="M22 162
-                C14 140 16 112 28 88
-                C40 64 60 44 84 28
-                C108 14 140 10 162 18
-                C168 32 164 56 148 74
-                C132 92 110 104 90 116
-                C70 128 46 142 22 162Z"
-                fill="#8DCFAA"/>
-              <!-- Central vein -->
-              <path d="M22 162 C60 120 100 80 162 18" stroke="#F7F4EE" stroke-width="2" stroke-linecap="round" fill="none"/>
-
-              <!-- All interior elements clipped to circle -->
-              <g clip-path="url(#circle-clip-dark)">
-                <!-- Sun rays -->
-                <line x1="108" y1="118" x2="108" y2="96" stroke="#B87A4E" stroke-width="2.5" stroke-linecap="round"/>
-                <line x1="108" y1="118" x2="124" y2="100" stroke="#B87A4E" stroke-width="2.5" stroke-linecap="round"/>
-                <line x1="108" y1="118" x2="132" y2="110" stroke="#B87A4E" stroke-width="2.5" stroke-linecap="round"/>
-                <line x1="108" y1="118" x2="134" y2="124" stroke="#B87A4E" stroke-width="2.5" stroke-linecap="round"/>
-                <line x1="108" y1="118" x2="92" y2="100" stroke="#B87A4E" stroke-width="2.5" stroke-linecap="round"/>
-                <line x1="108" y1="118" x2="84" y2="110" stroke="#B87A4E" stroke-width="2.5" stroke-linecap="round"/>
-                <line x1="108" y1="118" x2="82" y2="124" stroke="#B87A4E" stroke-width="2.5" stroke-linecap="round"/>
-
-                <!-- Sun semicircle -->
-                <path d="M86 118 A22 22 0 0 1 130 118Z" fill="#B87A4E"/>
-
-                <!-- Solar panel grid — Oatmeal on dark -->
-                <path d="M58 128 L74 128 L72 142 L54 142Z" fill="#F7F4EE"/>
-                <path d="M76 128 L100 128 L99 142 L75 142Z" fill="#F7F4EE"/>
-                <path d="M102 128 L126 128 L128 142 L101 142Z" fill="#F7F4EE"/>
-                <path d="M128 128 L152 128 L156 142 L130 142Z" fill="#F7F4EE"/>
-                <path d="M52 145 L70 145 L68 159 L48 159Z" fill="#F7F4EE"/>
-                <path d="M72 145 L98 145 L97 159 L71 159Z" fill="#F7F4EE"/>
-                <path d="M100 145 L128 145 L130 159 L99 159Z" fill="#F7F4EE"/>
-                <path d="M130 145 L158 145 L163 159 L132 159Z" fill="#F7F4EE"/>
-                <path d="M46 162 L66 162 L64 176 L42 176Z" fill="#F7F4EE"/>
-                <path d="M68 162 L96 162 L95 176 L67 176Z" fill="#F7F4EE"/>
-                <path d="M98 162 L130 162 L132 176 L97 176Z" fill="#F7F4EE"/>
-                <path d="M132 162 L162 162 L168 176 L134 176Z" fill="#F7F4EE"/>
-              </g>
-
-              <!-- Circle border -->
-              <circle cx="100" cy="100" r="95" stroke="#8DCFAA" stroke-width="3" fill="none"/>
-            </svg>
+            <img src="ryan-logo-transparent.png" alt="CEAL Green logo mark" style="height: 80px; width: auto;">
           </div>
           <div style="display: flex; flex-direction: column; justify-content: flex-end;">
             <div class="lockup-wordmark lockup-wordmark--dark">
@@ -1435,7 +1300,7 @@
         </div>
 
         <div class="redraw-note" style="border-left-color: var(--aged-teak);">
-          Emblem shown in approved brand colours — reversed for dark background. Current gradient illustration has no viable dark-mode render; flat-colour execution shown here as the brand-aligned direction.
+          The current gradient logo is designed for light backgrounds. On dark backgrounds, the logo should be placed on a white safe-zone background, or the wordmark-only treatment is recommended.
         </div>
 
         <div class="callout-grid" style="border-top-color: rgba(247,244,238,0.1);">
@@ -1448,7 +1313,7 @@
             </div>
           </div>
           <div class="callout-item">
-            <div class="callout-label" style="color: var(--mid-canopy);">Emblem reversal</div>
+            <div class="callout-label" style="color: var(--mid-canopy);">Logo reversal</div>
             <div class="callout-value" style="color: var(--oatmeal);">Circle border and leaf in Mid Canopy. Sun in Aged Teak (consistent across both executions). Solar panels in Oatmeal. No gradients — flat colour throughout.</div>
           </div>
         </div>
@@ -1491,14 +1356,14 @@
         <div class="priority-badge priority-badge--3">P3</div>
         <div class="priority-content">
           <h4>Apply the correct sizing convention and baseline alignment</h4>
-          <p>Size the wordmark so its cap-height equals the total height of the circular emblem. This naturally aligns the wordmark baseline to the base of the emblem. Increase the horizontal clearance between the emblem's right edge and the first letter of "CEAL" to a minimum of the cap-height of the wordmark at target size (at 36px wordmark height, approximately 24–28px clearance).</p>
+          <p>Size the wordmark so its cap-height equals the total height of the circular logo. This naturally aligns the wordmark baseline to the base of the logo. Increase the horizontal clearance between the logo's right edge and the first letter of "CEAL" to a minimum of the cap-height of the wordmark at target size (at 36px wordmark height, approximately 24–28px clearance).</p>
         </div>
       </div>
 
       <div class="priority-item">
         <div class="priority-badge priority-badge--4">P4</div>
         <div class="priority-content">
-          <h4>Commission a professional vector redraw of the circular emblem</h4>
+          <h4>Commission a professional vector redraw of the circular logo mark</h4>
           <p>Remove all gradients; the mark must work in flat colour. Reduce the illustration to one dominant geometric element or tightly unified composition. All linework must be geometric and constructed — no organic freehand curves. The circle border, if retained, should be a single clean stroke weight (2–3px at standard size). The mark must hold cleanly at 24px square. Brief: flat-colour, geometric, single dominant element, reduction to 24px, no gradients, no arc text.</p>
         </div>
       </div>
@@ -1640,7 +1505,7 @@
 
       <div class="usage-card">
         <div class="usage-card-header">
-          <div class="usage-card-title">Mark only (emblem)</div>
+          <div class="usage-card-title">Mark only (logo mark)</div>
         </div>
         <div class="usage-card-body">
           <ul class="usage-list">
@@ -1679,17 +1544,17 @@
 
       <div class="scale-test-row">
 
-        <!-- Combined mark at 36px — emblem only + wordmark -->
+        <!-- Combined mark at 36px — logo mark only + wordmark -->
         <div class="scale-test-panel">
           <div class="scale-test-top">
             <div class="scale-test-combined">
-              <img src="ryan-logo-emblem-cropped.png" alt="Current emblem at 36px height" style="height: 36px;">
+              <img src="ryan-logo-transparent.png" alt="Current logo at 36px height" style="height: 36px;">
               <span class="wordmark-nav">CEAL Green</span>
             </div>
           </div>
           <div class="scale-test-footer">
             <div class="scale-test-footer-label">Combined mark — current</div>
-            <span class="outcome-chip outcome-chip--fail">Emblem illegible at this size</span>
+            <span class="outcome-chip outcome-chip--fail">Logo illegible at this size</span>
           </div>
         </div>
 
@@ -1708,7 +1573,7 @@
 
       </div>
 
-      <p class="scale-caption">At nav bar height (36px), the combined mark loses emblem legibility. The wordmark-only treatment maintains legibility where the combined mark begins to lose definition.</p>
+      <p class="scale-caption">At nav bar height (36px), the combined mark loses logo legibility. The wordmark-only treatment maintains legibility where the combined mark begins to lose definition.</p>
     </div>
 
   </div>
@@ -1753,7 +1618,7 @@
         <tr>
           <td>Sizing convention</td>
           <td><span class="status-badge status-badge--issue">Issue</span></td>
-          <td>Size wordmark cap-height to equal total emblem height; baseline alignment follows</td>
+          <td>Size wordmark cap-height to equal total logo height; baseline alignment follows</td>
         </tr>
         <tr>
           <td>Wordmark-to-mark clearance</td>
