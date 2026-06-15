@@ -1176,8 +1176,30 @@ function jumpToFinding() {
   if (!f) { errEl.textContent = 'Finding #' + id + ' not found.'; return; }
 
   showPage(f.page);
-  setTimeout(() => openModal(f), 120);
   input.value = '';
+
+  setTimeout(() => {
+    const wrap = document.getElementById('page-' + f.page);
+    const targetPin = [...wrap.querySelectorAll('.pin')].find(p =>
+      p.querySelector('.pin-circle').textContent == String(id)
+    );
+    if (targetPin) {
+      const viewer = document.querySelector('.viewer');
+      const pinRect = targetPin.getBoundingClientRect();
+      const viewerRect = viewer.getBoundingClientRect();
+      viewer.scrollTop += pinRect.top - viewerRect.top - viewer.clientHeight / 2;
+      // Brief scale-up so the eye lands on it, then open modal
+      targetPin.style.transform = 'translate(-50%, -50%) scale(2)';
+      targetPin.style.zIndex = '50';
+      setTimeout(() => {
+        targetPin.style.transform = '';
+        targetPin.style.zIndex = '';
+        openModal(f);
+      }, 350);
+    } else {
+      openModal(f);
+    }
+  }, 120);
 }
 
 document.getElementById('jump-input').addEventListener('keydown', e => {
