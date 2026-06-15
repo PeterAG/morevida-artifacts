@@ -724,6 +724,64 @@
     margin-top: 6px;
   }
 
+  /* ===== JUMP BOX ===== */
+  .jump-box {
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .jump-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.45);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .jump-row {
+    display: flex;
+    gap: 6px;
+  }
+
+  .jump-input {
+    flex: 1;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    color: white;
+    font-size: 13px;
+    font-family: inherit;
+    padding: 6px 10px;
+    outline: none;
+    min-width: 0;
+  }
+
+  .jump-input::placeholder { color: rgba(255,255,255,0.35); }
+  .jump-input:focus { border-color: var(--canopy); background: rgba(255,255,255,0.14); }
+
+  .jump-btn {
+    background: var(--canopy);
+    color: var(--mangrove);
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-family: inherit;
+    flex-shrink: 0;
+  }
+
+  .jump-btn:hover { background: #a8dfc0; }
+
+  .jump-error {
+    font-size: 11px;
+    color: #f87171;
+    margin-top: 5px;
+    min-height: 14px;
+  }
+
   .viewer-container {
     display: flex;
     justify-content: center;
@@ -775,6 +833,16 @@
           <span class="score-num">9</span>
         </div>
       </div>
+    </div>
+
+    <!-- Jump to finding -->
+    <div class="jump-box">
+      <div class="jump-label">Go to finding</div>
+      <div class="jump-row">
+        <input class="jump-input" id="jump-input" type="number" min="1" max="62" placeholder="# e.g. 11" />
+        <button class="jump-btn" onclick="jumpToFinding()">Go</button>
+      </div>
+      <div class="jump-error" id="jump-error"></div>
     </div>
 
     <!-- Page nav -->
@@ -1096,6 +1164,25 @@ function handleOverlayClick(e) {
 function filterSeverity(sev) {
   setFilter(sev);
 }
+
+function jumpToFinding() {
+  const input = document.getElementById('jump-input');
+  const errEl = document.getElementById('jump-error');
+  const id = parseInt(input.value);
+  errEl.textContent = '';
+
+  if (!id) { errEl.textContent = 'Enter a finding number.'; return; }
+  const f = findings.find(x => x.id === id);
+  if (!f) { errEl.textContent = 'Finding #' + id + ' not found.'; return; }
+
+  showPage(f.page);
+  setTimeout(() => openModal(f), 120);
+  input.value = '';
+}
+
+document.getElementById('jump-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') jumpToFinding();
+});
 
 // Keyboard escape
 document.addEventListener('keydown', e => {
