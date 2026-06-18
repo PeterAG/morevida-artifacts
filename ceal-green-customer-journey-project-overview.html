@@ -1,0 +1,2734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CEAL Green — Customer Journey Project Overview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════════════════
+       CEAL GREEN DESIGN SYSTEM TOKENS
+       Source: ceal-green-brand-guidelines.md — Section 5 Visual Identity
+       (Approved 2026-06-09 by Ryan Roper)
+    ═══════════════════════════════════════════════════════════════════════ */
+    :root {
+      /* ── Core brand palette ─────────────────────────────────── */
+      --cg-mangrove:       #1E4D3A;  /* Primary brand — used for phase headers, key accents */
+      --cg-oatmeal:        #F7F4EE;  /* Primary light surface — page background */
+      --cg-near-black:     #1A1F1E;  /* Body text */
+      --cg-aged-teak:      #B87A4E;  /* Accent — used for highlights, agentic platform */
+      --cg-mid-canopy:     #8DCFAA;  /* Secondary green — phase 2 */
+      --cg-pale-sand:      #E8D8C4;  /* Warm secondary — dividers, phase 3 */
+
+      /* ── Derived surfaces ───────────────────────────────────── */
+      --cg-mangrove-dark:  #163829;  /* Deeper tone for section headers */
+      --cg-mangrove-light: #2A5E47;  /* Lighter mangrove for hover states */
+      --cg-surface:        #FFFFFF;  /* Card surfaces */
+      --cg-surface-warm:   #FBF9F5;  /* Warm card variant */
+
+      /* ── Status color variables (as defined in the brief) ──── */
+      --status-approved:   #2D7A4F;  /* Approved / Complete — green */
+      --status-progress:   #C47D2A;  /* In Progress / Awaiting — amber */
+      --status-blocked:    #9B2D30;  /* Blocked — garnet/red */
+      --status-not-started:#8A8A8A;  /* Not Started — grey */
+      --status-gap:        #5E3A2B;  /* Open Gap / Needs Hiring — deep earth warm */
+
+      /* Lighter tints of status colors for backgrounds */
+      --status-approved-bg:   #EBF5EF;
+      --status-progress-bg:   #FEF5E7;
+      --status-blocked-bg:    #FBEAEA;
+      --status-not-started-bg:#F2F2F2;
+      --status-gap-bg:        #F3ECEA;
+
+      /* ── CEAL Green spacing scale ───────────────────────────── */
+      --sp-1:  8px;
+      --sp-2:  16px;
+      --sp-3:  24px;
+      --sp-4:  32px;
+      --sp-5:  48px;
+      --sp-6:  64px;
+      --sp-7:  96px;
+
+      /* ── Border radius scale ────────────────────────────────── */
+      --radius-sm:  4px;
+      --radius-md:  8px;   /* Default per CEAL Green brand */
+      --radius-lg:  12px;
+      --radius-xl:  16px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       RESET & BASE
+    ═══════════════════════════════════════════════════════════════════════ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--cg-oatmeal);
+      color: var(--cg-near-black);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       TYPOGRAPHY HELPERS
+       Source: ceal-green-brand-guidelines.md §5 — Approved type scale
+    ═══════════════════════════════════════════════════════════════════════ */
+    .sg-h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--cg-mangrove);
+    }
+    .sg-h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+    .sg-h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+    .sg-h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .inter-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       PAGE SHELL
+    ═══════════════════════════════════════════════════════════════════════ */
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: var(--sp-5) var(--sp-4);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       TOP NAV BAR
+    ═══════════════════════════════════════════════════════════════════════ */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--cg-mangrove);
+      border-bottom: 2px solid var(--cg-mangrove-dark);
+    }
+
+    .top-nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 var(--sp-4);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+      height: 52px;
+    }
+
+    .nav-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--cg-mid-canopy);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-right: var(--sp-2);
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--sp-1);
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      padding: 5px 12px;
+      border-radius: var(--radius-md);
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+    .nav-link:hover {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       HEADER
+    ═══════════════════════════════════════════════════════════════════════ */
+    .header {
+      margin-bottom: var(--sp-4);
+      padding-top: var(--sp-4);
+    }
+
+    .version-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--cg-mangrove);
+      color: var(--cg-mid-canopy);
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: var(--radius-md);
+      margin-bottom: var(--sp-2);
+    }
+
+    .header-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 44px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--cg-mangrove);
+      margin-bottom: var(--sp-1);
+    }
+
+    .header-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-2);
+      margin-top: var(--sp-2);
+      margin-bottom: var(--sp-3);
+      align-items: flex-start;
+    }
+
+    .meta-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--cg-surface);
+      border: 1px solid var(--cg-pale-sand);
+      border-radius: var(--radius-md);
+      padding: 6px 12px;
+    }
+
+    .meta-chip-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cg-aged-teak);
+    }
+
+    .meta-chip-value {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--cg-near-black);
+    }
+
+    .goal-statement {
+      background: var(--cg-mangrove);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-3) var(--sp-4);
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.5;
+      max-width: 860px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       STATUS BANNER
+    ═══════════════════════════════════════════════════════════════════════ */
+    .status-banner {
+      background: #FEF3E2;
+      border: 2px solid var(--status-progress);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-3) var(--sp-4);
+      margin-bottom: var(--sp-4);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--sp-2) var(--sp-4);
+      align-items: start;
+    }
+
+    .banner-left {}
+
+    .banner-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--status-progress);
+      margin-bottom: 4px;
+    }
+
+    .banner-current {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--cg-near-black);
+      margin-bottom: var(--sp-1);
+    }
+
+    .banner-blocker {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      background: var(--status-blocked-bg);
+      border-left: 3px solid var(--status-blocked);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: var(--sp-1) var(--sp-2);
+      margin-top: var(--sp-1);
+      margin-bottom: var(--sp-1);
+    }
+
+    .banner-blocker-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--status-blocked);
+      white-space: nowrap;
+      padding-top: 1px;
+    }
+
+    .banner-blocker-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--cg-near-black);
+      line-height: 1.5;
+    }
+
+    .banner-next-action {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--cg-near-black);
+      line-height: 1.5;
+    }
+
+    .banner-next-action strong {
+      color: var(--status-progress);
+    }
+
+    .banner-right {
+      text-align: right;
+    }
+
+    .banner-updated {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: rgba(0,0,0,0.45);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       STATUS LEGEND
+    ═══════════════════════════════════════════════════════════════════════ */
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-1);
+      margin-bottom: var(--sp-4);
+      align-items: center;
+    }
+
+    .legend-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--cg-near-black);
+      opacity: 0.5;
+      margin-right: 4px;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--cg-near-black);
+      background: var(--cg-surface);
+      border: 1px solid var(--cg-pale-sand);
+      border-radius: var(--radius-md);
+      padding: 3px 9px;
+    }
+
+    .legend-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       STATUS BADGE COMPONENT
+    ═══════════════════════════════════════════════════════════════════════ */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+    }
+
+    .badge--approved   { background: var(--status-approved-bg);    color: var(--status-approved);   }
+    .badge--progress   { background: var(--status-progress-bg);    color: var(--status-progress);   }
+    .badge--blocked    { background: var(--status-blocked-bg);     color: var(--status-blocked);    }
+    .badge--not-started{ background: var(--status-not-started-bg); color: var(--status-not-started);}
+    .badge--gap        { background: var(--status-gap-bg);         color: var(--status-gap);        }
+    .badge--needs-config{ background: #EEF2FA;                     color: #2E4A8A;                  }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       SECTION HEADERS (shared across phases)
+    ═══════════════════════════════════════════════════════════════════════ */
+    .section-header {
+      margin-bottom: var(--sp-5);
+    }
+
+    .section-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cg-aged-teak);
+      margin-bottom: 4px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       PREREQUISITE TRACK
+    ═══════════════════════════════════════════════════════════════════════ */
+    .prereq-section {
+      margin-bottom: var(--sp-5);
+    }
+
+    .prereq-section-header {
+      display: flex;
+      align-items: baseline;
+      gap: var(--sp-2);
+      margin-bottom: var(--sp-3);
+    }
+
+    .prereq-section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--cg-near-black);
+    }
+
+    .prereq-section-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(0,0,0,0.5);
+    }
+
+    .prereq-track {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    /* Connector line between prereq steps */
+    .prereq-track::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 12.5%;
+      right: 12.5%;
+      height: 2px;
+      background: var(--cg-pale-sand);
+      z-index: 0;
+    }
+
+    .prereq-step {
+      position: relative;
+      padding: 0 var(--sp-1);
+      cursor: pointer;
+    }
+
+    .prereq-step-inner {
+      background: var(--cg-surface);
+      border: 1.5px solid var(--cg-pale-sand);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-3);
+      height: 100%;
+      transition: box-shadow 0.15s, border-color 0.15s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .prereq-step-inner:hover {
+      box-shadow: 0 4px 20px rgba(30,77,58,0.12);
+      border-color: var(--cg-mangrove);
+    }
+
+    .prereq-step-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.35);
+      margin-bottom: 4px;
+    }
+
+    .prereq-step-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--cg-near-black);
+      margin-bottom: var(--sp-1);
+      line-height: 1.3;
+    }
+
+    .prereq-step-version {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: rgba(0,0,0,0.45);
+      margin-top: 4px;
+    }
+
+    .prereq-step--gated .prereq-step-inner {
+      border-color: var(--status-not-started);
+      background: var(--status-not-started-bg);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       PHASE BAND
+    ═══════════════════════════════════════════════════════════════════════ */
+    .phase-band {
+      margin-bottom: var(--sp-5);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1.5px solid var(--cg-pale-sand);
+    }
+
+    .phase-header {
+      padding: var(--sp-3) var(--sp-4);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      justify-content: space-between;
+    }
+
+    .phase-header--1 { background: var(--cg-mangrove); }
+    .phase-header--2 { background: #1A3D4F; }  /* Deep teal — Phase 2 Direct Engagement */
+    .phase-header--3 { background: #3D3020; }  /* Deep warm brown — Phase 3 Loyalty */
+
+    .phase-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 2px;
+    }
+
+    .phase-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    .phase-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      margin-top: 2px;
+    }
+
+    .phase-count-pill {
+      background: rgba(255,255,255,0.15);
+      border-radius: var(--radius-md);
+      padding: 4px 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.75);
+      white-space: nowrap;
+    }
+
+    .phase-body {
+      background: var(--cg-surface-warm);
+      padding: var(--sp-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-4);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       PHASE SUB-SECTIONS (Customer Experience, Internal Systems)
+    ═══════════════════════════════════════════════════════════════════════ */
+    .phase-subsections {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-3);
+    }
+
+    .phase-subsection {
+      background: var(--cg-surface);
+      border: 1px solid var(--cg-pale-sand);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-3);
+    }
+
+    .subsection-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--cg-mangrove);
+      letter-spacing: 0.02em;
+      margin-bottom: var(--sp-1);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .subsection-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      background: var(--cg-mangrove);
+      color: #fff;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .subsection-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--cg-near-black);
+      opacity: 0.8;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       MILESTONE GRID
+    ═══════════════════════════════════════════════════════════════════════ */
+    .milestones-section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--cg-near-black);
+      margin-bottom: var(--sp-2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .milestone-group-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.4);
+      margin-bottom: var(--sp-1);
+      margin-top: var(--sp-2);
+    }
+
+    .milestone-group-label:first-child {
+      margin-top: 0;
+    }
+
+    .milestones-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-2);
+    }
+
+    .milestone-card {
+      background: var(--cg-surface);
+      border: 1.5px solid var(--cg-pale-sand);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-2) var(--sp-3);
+      cursor: pointer;
+      transition: box-shadow 0.15s, border-color 0.15s, transform 0.1s;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+    }
+
+    .milestone-card:hover {
+      box-shadow: 0 4px 18px rgba(30,77,58,0.14);
+      border-color: var(--cg-mangrove);
+      transform: translateY(-1px);
+    }
+
+    /* Left accent bar — color-coded by status */
+    .milestone-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 3px;
+      border-radius: 2px;
+    }
+
+    .milestone-card[data-status="approved"]::before     { background: var(--status-approved); }
+    .milestone-card[data-status="in-progress"]::before  { background: var(--status-progress); }
+    .milestone-card[data-status="blocked"]::before      { background: var(--status-blocked);  }
+    .milestone-card[data-status="not-started"]::before  { background: var(--status-not-started); }
+    .milestone-card[data-status="needs-hiring"]::before { background: var(--status-gap); }
+    .milestone-card[data-status="needs-configuration"]::before { background: #2E4A8A; }
+
+    .milestone-card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--cg-near-black);
+      line-height: 1.3;
+      padding-left: 8px; /* clear the accent bar */
+    }
+
+    .milestone-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      padding-left: 8px;
+    }
+
+    .milestone-card-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: rgba(0,0,0,0.4);
+    }
+
+    .milestone-card-owner {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: rgba(0,0,0,0.4);
+    }
+
+    .milestone-card-hint {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1.5px solid var(--cg-aged-teak);
+      color: var(--cg-aged-teak);
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      font-style: normal;
+      margin-top: auto;
+      align-self: flex-end;
+      flex-shrink: 0;
+    }
+
+    /* NOT FINAL warning for in-progress cards that are not yet approved */
+    .not-final-warning {
+      background: var(--status-blocked-bg);
+      border: 1px solid var(--status-blocked);
+      border-radius: var(--radius-sm);
+      padding: 3px 7px;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--status-blocked);
+      text-transform: uppercase;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       ROLES TABLE
+    ═══════════════════════════════════════════════════════════════════════ */
+    .roles-section {
+      background: var(--cg-surface);
+      border: 1px solid var(--cg-pale-sand);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .roles-table-header {
+      padding: var(--sp-2) var(--sp-3);
+      border-bottom: 1px solid var(--cg-pale-sand);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .roles-table-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--cg-near-black);
+    }
+
+    .roles-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .roles-table thead th {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.4);
+      padding: var(--sp-1) var(--sp-3);
+      text-align: left;
+      background: var(--cg-oatmeal);
+      border-bottom: 1px solid var(--cg-pale-sand);
+    }
+
+    .roles-table tbody tr {
+      border-bottom: 1px solid var(--cg-pale-sand);
+    }
+
+    .roles-table tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    .roles-table tbody td {
+      padding: var(--sp-1) var(--sp-3);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--cg-near-black);
+      vertical-align: middle;
+    }
+
+    .role-name {
+      font-weight: 600;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       AGENTIC PLATFORM SECTION
+    ═══════════════════════════════════════════════════════════════════════ */
+    .agentic-section {
+      background: #1A2830;  /* Dark — visually distinct from phase bands */
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      margin-bottom: var(--sp-5);
+      border: 2px solid #2C3E46;
+    }
+
+    .agentic-header {
+      padding: var(--sp-3) var(--sp-4);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .agentic-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cg-aged-teak);
+      margin-bottom: 3px;
+    }
+
+    .agentic-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .agentic-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 2px;
+    }
+
+    .agentic-body {
+      padding: var(--sp-4);
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: var(--sp-4);
+    }
+
+    .agentic-meta {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-2);
+    }
+
+    .agentic-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .agentic-meta-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .agentic-meta-value {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.5;
+    }
+
+    .agentic-milestones {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-1);
+    }
+
+    .agentic-milestone {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-md);
+      padding: var(--sp-1) var(--sp-2);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+      transition: background 0.15s;
+    }
+
+    .agentic-milestone:hover {
+      background: rgba(255,255,255,0.09);
+    }
+
+    .agentic-milestone-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      flex: 1;
+    }
+
+    .agentic-milestone-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       BUSINESS MODEL DIFFERENCES PANEL
+    ═══════════════════════════════════════════════════════════════════════ */
+    .bm-section {
+      margin-bottom: var(--sp-5);
+    }
+
+    .bm-section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: var(--sp-3);
+    }
+
+    .bm-toggle-hint {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(0,0,0,0.4);
+      font-style: italic;
+    }
+
+    .bm-tabs {
+      display: flex;
+      gap: var(--sp-1);
+      margin-bottom: var(--sp-3);
+      flex-wrap: wrap;
+    }
+
+    .bm-tab {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--cg-pale-sand);
+      background: var(--cg-surface);
+      color: rgba(0,0,0,0.5);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .bm-tab:hover {
+      border-color: var(--cg-mangrove);
+      color: var(--cg-mangrove);
+    }
+
+    .bm-tab.active {
+      background: var(--cg-mangrove);
+      border-color: var(--cg-mangrove);
+      color: #fff;
+    }
+
+    .bm-panels {
+      position: relative;
+    }
+
+    .bm-panel {
+      display: none;
+      background: var(--cg-surface);
+      border: 1.5px solid var(--cg-pale-sand);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+
+    .bm-panel.active {
+      display: block;
+    }
+
+    .bm-panel-header {
+      background: var(--cg-mangrove);
+      padding: var(--sp-3) var(--sp-4);
+    }
+
+    .bm-panel-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .bm-panel-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      margin-top: 3px;
+    }
+
+    .bm-panel-body {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .bm-phase-col {
+      padding: var(--sp-3);
+      border-right: 1px solid var(--cg-pale-sand);
+    }
+
+    .bm-phase-col:last-child {
+      border-right: none;
+    }
+
+    .bm-phase-col-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--cg-aged-teak);
+      margin-bottom: var(--sp-1);
+    }
+
+    .bm-phase-col-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--cg-near-black);
+    }
+
+    .bm-tiers {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: var(--sp-1);
+    }
+
+    .bm-tier-chip {
+      background: var(--cg-oatmeal);
+      border: 1px solid var(--cg-pale-sand);
+      border-radius: 4px;
+      padding: 2px 7px;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--cg-mangrove);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       MODAL OVERLAY
+    ═══════════════════════════════════════════════════════════════════════ */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: var(--sp-3);
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--cg-surface);
+      border-radius: var(--radius-xl);
+      width: 100%;
+      max-width: 640px;
+      max-height: 88vh;
+      overflow-y: auto;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+      position: relative;
+    }
+
+    .modal-header {
+      padding: var(--sp-3) var(--sp-4);
+      border-bottom: 1px solid var(--cg-pale-sand);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--sp-2);
+      position: sticky;
+      top: 0;
+      background: var(--cg-surface);
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+      z-index: 2;
+    }
+
+    .modal-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--cg-near-black);
+      line-height: 1.2;
+    }
+
+    .modal-close {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--cg-pale-sand);
+      background: transparent;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(0,0,0,0.5);
+      transition: background 0.12s, color 0.12s;
+    }
+
+    .modal-close:hover {
+      background: var(--cg-oatmeal);
+      color: var(--cg-near-black);
+    }
+
+    .modal-body {
+      padding: var(--sp-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+    }
+
+    .modal-section {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .modal-section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.38);
+    }
+
+    .modal-section-value {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--cg-near-black);
+    }
+
+    .modal-detail-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--cg-near-black);
+      opacity: 0.85;
+    }
+
+    .modal-divider {
+      height: 1px;
+      background: var(--cg-pale-sand);
+      border: none;
+    }
+
+    .modal-gated-box {
+      background: var(--status-not-started-bg);
+      border: 1px solid var(--status-not-started);
+      border-radius: var(--radius-md);
+      padding: var(--sp-2) var(--sp-3);
+    }
+
+    .modal-unlocks-box {
+      background: var(--status-approved-bg);
+      border: 1px solid var(--status-approved);
+      border-radius: var(--radius-md);
+      padding: var(--sp-2) var(--sp-3);
+    }
+
+    .modal-blocked-box {
+      background: var(--status-blocked-bg);
+      border: 1px solid var(--status-blocked);
+      border-radius: var(--radius-md);
+      padding: var(--sp-2) var(--sp-3);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════════════════════════════ */
+    .page-footer {
+      margin-top: var(--sp-6);
+      padding-top: var(--sp-3);
+      border-top: 0.5px solid var(--cg-pale-sand);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--sp-2);
+    }
+
+    .footer-left {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(0,0,0,0.4);
+    }
+
+    .footer-right {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(0,0,0,0.4);
+      text-align: right;
+    }
+
+    .footer-update-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: rgba(0,0,0,0.3);
+      font-style: italic;
+      margin-top: 2px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       UTILITY
+    ═══════════════════════════════════════════════════════════════════════ */
+    .divider {
+      height: 1px;
+      background: var(--cg-pale-sand);
+      border: none;
+      margin: var(--sp-3) 0;
+    }
+
+    .gap-2  { gap: var(--sp-2); }
+    .flex   { display: flex; }
+    .flex-wrap { flex-wrap: wrap; }
+    .align-center { align-items: center; }
+
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     DATA LAYER
+     ─────────────────────────────────────────────────────────────────────
+     ALL content lives in projectData below. The rendering code that follows
+     reads from this object exclusively. To update the artifact:
+       1. Locate the relevant key in projectData
+       2. Edit only that key's value
+       3. Save — the page re-renders on reload
+     Never touch the rendering code unless fixing a layout bug.
+══════════════════════════════════════════════════════════════════════════ -->
+<script>
+const projectData = {
+
+  /* ─────────────────────────────────────────────────────────────────────
+     META
+     Project identity, role, contacts, and goal statement.
+  ──────────────────────────────────────────────────────────────────────── */
+  meta: {
+    name:           "CEAL Green — Customer Journey Project",
+    versionTag:     "Project Overview — v1 — 2026-06-18",
+    director:       "Peter Gales",
+    role:           "Customer Journey Manager / Director",
+    primaryContact: "Ryan Roper (CEO)",
+    goal:           "A complete, approved customer journey for CEAL Green — from awareness through loyalty — documented, designed, and actionable across all four business models.",
+    lastUpdated:    "2026-06-18"
+  },
+
+  /* ─────────────────────────────────────────────────────────────────────
+     STATUS BANNER
+     Prominent project-level status block near top of page.
+     Update current, blocker, and nextAction as the project moves.
+  ──────────────────────────────────────────────────────────────────────── */
+  statusBanner: {
+    current:    "Phase 1 – Broadcast Engagement: content strategy in development",
+    blocker:    "Leadership presence decision (Path A/B/C) unresolved — Ryan Roper. Blocks all customer journey mapping.",
+    nextAction: "Ryan Roper to provide feedback on Content Strategy v0.5 and make leadership presence decision.",
+    updated:    "2026-06-18"
+  },
+
+  /* ─────────────────────────────────────────────────────────────────────
+     PREREQUISITES
+     Four mandatory steps that must complete (in order) before the
+     customer journey can be mapped. Defined by Content Strategist (Seth).
+     status options: "approved" | "in-progress" | "not-started" | "blocked"
+  ──────────────────────────────────────────────────────────────────────── */
+  prerequisites: [
+    {
+      id:      "prereq-1",
+      step:    "Step 1",
+      title:   "Guiding Narrative",
+      version: "v0.6",
+      date:    "2026-05-01",
+      status:  "approved",
+      detail:  "Final approved by Ryan Roper. Core proposition, 6 narrative sections, DRIVEN values, Build Now close. The authoritative brand foundation document — everything downstream derives from this.",
+      relatedItems: []
+    },
+    {
+      id:      "prereq-2",
+      step:    "Step 2",
+      title:   "Brand & Content Guidelines",
+      version: "v0.2",
+      date:    "2026-05-07",
+      status:  "approved",
+      detail:  "Approved by Ryan Roper. Voice characteristics, tone modulation, approved language register, absolute editorial constraints. Governs all content production.",
+      relatedItems: []
+    },
+    {
+      id:      "prereq-3",
+      step:    "Step 3",
+      title:   "Content Strategy",
+      version: "v0.5",
+      date:    "Sent 2026-05-28",
+      status:  "in-progress",
+      notFinal: true,   /* triggers the NOT FINAL warning — flag as false once approved */
+      detail:  "Sent to Ryan Roper for feedback. Covers Phase 1 (Broadcast Engagement) only. Includes: audience architecture (5 tiers, Tier 1 = Decision Makers primary), platform strategy (LinkedIn primary), content pillars (Build Smart / Build Strong / Build Caribbean / Build Solutions / Build Together / Build Now), format mix and cadence, publication ecosystem. BLOCKED on leadership presence decision (Section 13: Path A / Path B / Path C).",
+      gatedOn: "Must be approved before customer journey mapping can proceed. Leadership presence decision is a hard blocker.",
+      relatedItems: [
+        { id: "m1-9",  label: "Leadership Presence Decision" },
+        { id: "prereq-4", label: "Customer Journey Mapping" }
+      ]
+    },
+    {
+      id:      "prereq-4",
+      step:    "Step 4",
+      title:   "Customer Journey Mapping",
+      version: null,
+      date:    null,
+      status:  "not-started",
+      gated:   true,   /* visually flags this step as gated */
+      detail:  "Gated on Content Strategy approval and leadership presence decision. Will cover all four business models: Consulting, EPC (Engineering, Procurement, Construction), FBO (Finance, Build, Own), and Product Solutions. The journey is one — the four models create variations within the same arc.",
+      relatedItems: [
+        { id: "m1-9",  label: "Leadership Presence Decision" },
+        { id: "prereq-3", label: "Content Strategy v0.5" }
+      ]
+    }
+  ],
+
+  /* ─────────────────────────────────────────────────────────────────────
+     PHASES
+     The three main customer journey phases. Each contains:
+       customerExperience — what the prospect encounters
+       internalSystems    — what must be built and running
+       milestones         — clickable cards with full detail
+       roles              — who fills each function
+  ──────────────────────────────────────────────────────────────────────── */
+  phases: [
+    {
+      /* ── PHASE 1 ─────────────────────────────────────────────── */
+      id:       "phase-1",
+      number:   1,
+      name:     "Broadcast Engagement",
+      subtitle: "Awareness & Consideration | One-to-many, content-driven, scalable",
+      headerClass: "phase-header--1",
+
+      customerExperience: "Content reaches audiences across LinkedIn, Facebook, Instagram, TikTok, WhatsApp, the CG Website, Caribbean newspapers, and industry publications. Audiences learn, form judgments, and move from unawareness to credibility-convinced. Phase 1 operates at scale — many prospects simultaneously, without individual interaction.",
+
+      internalSystems: "Content strategy + content production workflow (two workflows: Foundational Content for long-form originals; Derivative Content for social adaptations). Monthly performance reviews. Content calendar. Brand review system. Publication relationship-building with Caribbean press.",
+
+      milestones: [
+        /* ── COMPLETED ──────────────────────────────────────── */
+        {
+          id:      "m1-1",
+          group:   "Completed",
+          title:   "Guiding Narrative v0.6",
+          status:  "approved",
+          date:    "Approved 2026-05-01",
+          owner:   "Peter Gales / Ryan Roper",
+          gatedOn: null,
+          unlocks: "All content production. Brand & Content Guidelines build directly on this.",
+          detail:  "6-section narrative spine, 'Build Now' core, DRIVEN values (Discipline · Respect · Integrity · Value · Excellence · Neutrality). This is the authoritative brand foundation — every downstream document derives from it.",
+          relatedItems: []
+        },
+        {
+          id:      "m1-2",
+          group:   "Completed",
+          title:   "Brand Guidelines v0.2",
+          status:  "approved",
+          date:    "Approved 2026-05-07",
+          owner:   "Peter Gales / Ryan Roper",
+          gatedOn: "Guiding Narrative approval",
+          unlocks: "Content production, visual identity work, writing guidelines",
+          detail:  "Voice characteristics, tone modulation by context (thought leadership, announcements, community, client-facing), approved language register, and absolute editorial constraints. These constraints are non-negotiable in all content.",
+          relatedItems: []
+        },
+        {
+          id:      "m1-3",
+          group:   "Completed",
+          title:   "Visual Identity Spec v1.0",
+          status:  "approved",
+          date:    "Complete 2026-06-09",
+          owner:   "Peter Gales",
+          gatedOn: null,
+          unlocks: "All visual production — social graphics, website, collateral",
+          detail:  "Full visual identity specification including colour palette (Mangrove, Oatmeal, Near Black, Aged Teak, Mid Canopy, Pale Sand), Space Grotesk + Inter typography system, wordmark (base structure approved; wordmark differentiation pending), shape and spacing scale. Status: Approved except wordmark differentiation (pending).",
+          relatedItems: []
+        },
+        {
+          id:      "m1-4",
+          group:   "Completed",
+          title:   "Website Audit",
+          status:  "approved",
+          date:    "2026-06-10 to 2026-06-15",
+          owner:   "Cass (Creative Strategist)",
+          gatedOn: null,
+          unlocks: "Website copy revisions, developer action sheet execution",
+          detail:  "Cass completed a full audit of cealgreen.com. Outputs: detailed findings report, copy recommendations, developer action sheet, and logo evaluation. This audit forms the basis for the website refresh needed before Phase 1 content launch.",
+          relatedItems: []
+        },
+        /* ── IN PROGRESS ─────────────────────────────────────── */
+        {
+          id:       "m1-5",
+          group:    "In Progress",
+          title:    "Content Strategy v0.5",
+          status:   "in-progress",
+          notFinal: true,   /* NOT FINAL — awaiting approval */
+          date:     "Sent 2026-05-28",
+          owner:    "Peter Gales (author) / Ryan Roper (approver)",
+          gatedOn:  "Leadership presence decision (Path A/B/C — Section 13) is a hard blocker. Decision sits with Ryan Roper.",
+          unlocks:  "Customer journey mapping, Content Manager hire, AI agent configuration",
+          detail:   "Sent to Ryan Roper for feedback. Awaiting response. NOT FINAL — cannot be treated as approved or used as basis for production decisions.\n\nCovers: audience architecture (5 tiers — Tier 1: Decision Makers is primary), platform architecture (LinkedIn primary), 6 content goals (Authority, Credibility, Trustworthiness, Awareness, Pipeline, Community), content pillars (Build Smart / Build Strong / Build Caribbean / Build Solutions / Build Together / Build Now), format mix and cadence, publication ecosystem.\n\nKey blocker — Section 13 (Leadership Presence): Path A = company brand only; Path B = founder-led (CEO is primary brand face); Path C = hybrid (company brand with CEO amplification). This decision materially affects reach, earned media velocity, and trust-building with senior audiences.",
+          relatedItems: [
+            { id: "m1-9",    label: "Leadership Presence Decision" },
+            { id: "m1-10",   label: "Content Strategy Approval" },
+            { id: "prereq-4", label: "Customer Journey Mapping" }
+          ]
+        },
+        {
+          id:       "m1-6",
+          group:    "In Progress",
+          title:    "Content Production Workflow v0.5",
+          status:   "in-progress",
+          notFinal: true,   /* NOT FINAL — awaiting approval */
+          date:     "Sent 2026-05-28",
+          owner:    "Peter Gales (author) / Ryan Roper (approver)",
+          gatedOn:  "Ryan Roper feedback and approval",
+          unlocks:  "Content Manager onboarding, AI agent configuration, production launch",
+          detail:   "Sent to Ryan Roper for feedback. NOT FINAL.\n\nDefines two production workflows: (1) Foundational Content — long-form originals (articles, op-eds, thought leadership); (2) Derivative Content — social adaptations of foundational pieces. Defines all roles in the content operation and specifies AI agent configurations. The Content Manager is the primary operational role — this cannot be a fractional position.",
+          relatedItems: [
+            { id: "m1-11",   label: "Content Workflow Approval" },
+            { id: "m1-12",   label: "Hire Content Manager" }
+          ]
+        },
+        {
+          id:      "m1-7",
+          group:   "In Progress",
+          title:   "Publication & Event Candidates v1.8",
+          status:  "in-progress",
+          date:    "Sent 2026-06-13",
+          owner:   "Peter Gales (author) / Ryan Roper (reviewer)",
+          gatedOn: "Ryan Roper review",
+          unlocks: "Publication relationship-building, event participation decisions",
+          detail:  "Restructured events map, sponsorship framework, and Key Institutional Relationship Targets section added in v1.8 following Ryan's feedback on 2026-06-12. Sent to Ryan; awaiting his review.",
+          relatedItems: []
+        },
+        {
+          id:      "m1-8",
+          group:   "In Progress",
+          title:   "Sponsorship Evaluation Framework v1.4",
+          status:  "in-progress",
+          date:    "Drafted 2026-06-13",
+          owner:   "Peter Gales (author) / Ryan Roper (approver)",
+          gatedOn: "Ryan Roper approval",
+          unlocks: "SOP build, HTML evaluation form build",
+          detail:  "Standalone document. v1.4 is a draft — awaiting Ryan Roper's approval. After approval: SOP for sponsorship evaluation and an HTML intake form will be built.",
+          relatedItems: []
+        },
+        /* ── BLOCKED / NEXT STEPS ────────────────────────────── */
+        {
+          id:      "m1-9",
+          group:   "Blocked / Next Steps",
+          title:   "Leadership Presence Decision",
+          status:  "blocked",
+          date:    null,
+          owner:   "Ryan Roper (decision-maker)",
+          gatedOn: null,
+          unlocks: "Content Strategy finalization, customer journey mapping, Writing Agent CEO-voice configuration, Phase 1 launch",
+          detail:  "Three paths under consideration:\n\nPath A — Company brand only: existing CEO social presence stays as-is; CEAL Green brand carries independently.\n\nPath B — Founder-led: CEO is the primary brand face; personal authority amplifies company reach significantly. Requires CEO time and willingness to be visible.\n\nPath C — Hybrid (most likely): company brand primary, CEO amplifies key content. Balances reach with CEO time investment.\n\nThis decision materially affects: earned media potential, trust-building speed with senior institutional audiences, Writing Agent configuration (CEO voice calibration required for Path B/C), and content volume capacity.",
+          relatedItems: [
+            { id: "prereq-4", label: "Customer Journey Mapping" },
+            { id: "m1-5",    label: "Content Strategy v0.5" },
+            { id: "m1-14",   label: "Configure Writing Agent" }
+          ]
+        },
+        {
+          id:      "m1-10",
+          group:   "Blocked / Next Steps",
+          title:   "Content Strategy Approval",
+          status:  "blocked",
+          date:    null,
+          owner:   "Ryan Roper",
+          gatedOn: "Leadership presence decision (Path A/B/C) must be resolved first",
+          unlocks: "Customer journey mapping (full unblock), Content Manager hire, all AI agent configuration",
+          detail:  "Content Strategy v0.5 is with Ryan Roper. Cannot be finalized and approved until the leadership presence decision is made — Section 13 is incomplete without it. Once approved, the critical path opens: hire Content Manager, configure AI agents, begin customer journey mapping.",
+          relatedItems: [
+            { id: "m1-9",    label: "Leadership Presence Decision" },
+            { id: "m1-5",    label: "Content Strategy v0.5" },
+            { id: "m1-12",   label: "Hire Content Manager" },
+            { id: "prereq-4", label: "Customer Journey Mapping" }
+          ]
+        },
+        {
+          id:      "m1-11",
+          group:   "Blocked / Next Steps",
+          title:   "Content Workflow Approval",
+          status:  "blocked",
+          date:    null,
+          owner:   "Ryan Roper",
+          gatedOn: "Ryan Roper review and approval",
+          unlocks: "Content Manager onboarding, AI agent configuration, production launch",
+          detail:  "Content Production Workflow v0.5 is with Ryan Roper alongside the Content Strategy. Both must be approved before the operational infrastructure can be built.",
+          relatedItems: [
+            { id: "m1-12",   label: "Hire Content Manager" },
+            { id: "m1-13",   label: "Configure Research & Ideation Agent" },
+            { id: "m1-14",   label: "Configure Writing Agent" },
+            { id: "m1-15",   label: "Configure Brand & Quality Reviewer" },
+            { id: "m1-16",   label: "Configure Critique Agent" }
+          ]
+        },
+        {
+          id:      "m1-12",
+          group:   "Blocked / Next Steps",
+          title:   "Hire Content Manager",
+          status:  "needs-hiring",
+          date:    null,
+          owner:   "Peter Gales (to initiate hiring process)",
+          gatedOn: "Content Strategy approval + Content Workflow approval",
+          unlocks: "Content operation launch, all platform management, performance tracking",
+          detail:  "This is the most critical human hire in Phase 1. The Content Manager is dedicated and non-fractional — this cannot be shared with other responsibilities.\n\nResponsibilities: manages all platforms (LinkedIn, Facebook, Instagram, TikTok, WhatsApp), guides and oversees the Writing Agent, conducts editorial quality checks against Brand Guidelines, tracks performance metrics, and feeds audience intelligence back to the Content Strategist.\n\nThis is a demanding full-time position requiring both editorial judgment and operational discipline. The production workflow cannot function without this role filled.",
+          relatedItems: [
+            { id: "m1-10",   label: "Content Strategy Approval" },
+            { id: "m1-11",   label: "Content Workflow Approval" },
+            { id: "m1-17",   label: "Launch Content Operation" }
+          ]
+        },
+        {
+          id:      "m1-13",
+          group:   "Blocked / Next Steps",
+          title:   "Configure Research & Ideation Agent",
+          status:  "needs-configuration",
+          date:    null,
+          owner:   "Peter Gales / Content Manager",
+          gatedOn: "Content Workflow approval",
+          unlocks: "Weekly content brief generation, quarterly horizon sweeps",
+          detail:  "AI agent. Once configured: produces weekly content brief (10–15 ideas mapped to content pillars), conducts quarterly horizon sweeps (events, regulatory milestones, industry developments), and monitors competitor content. Inputs feed the Content Manager's editorial calendar.",
+          relatedItems: [
+            { id: "m1-11",   label: "Content Workflow Approval" },
+            { id: "m1-17",   label: "Launch Content Operation" }
+          ]
+        },
+        {
+          id:      "m1-14",
+          group:   "Blocked / Next Steps",
+          title:   "Configure Writing Agent",
+          status:  "needs-configuration",
+          date:    null,
+          owner:   "Peter Gales / Content Manager",
+          gatedOn: "Content Workflow approval + leadership presence decision (CEO voice calibration required for Path B/C)",
+          unlocks: "Content drafting capability",
+          detail:  "AI agent. Produces first drafts of Foundational Content and Derivative Content following the approved workflow. If Path B or Path C is chosen for leadership presence, this agent must be calibrated on CEO voice — requires source material and calibration session.",
+          relatedItems: [
+            { id: "m1-11",   label: "Content Workflow Approval" },
+            { id: "m1-9",    label: "Leadership Presence Decision" },
+            { id: "m1-17",   label: "Launch Content Operation" }
+          ]
+        },
+        {
+          id:      "m1-15",
+          group:   "Blocked / Next Steps",
+          title:   "Configure Brand & Quality Reviewer",
+          status:  "needs-configuration",
+          date:    null,
+          owner:   "Peter Gales / Content Manager",
+          gatedOn: "Content Workflow approval",
+          unlocks: "Quality gate in the production workflow",
+          detail:  "AI agent. Acts as an automated quality gate — checks all content against Brand Guidelines v0.2 before human review. Flags voice violations, off-brand language, and structural issues.",
+          relatedItems: [
+            { id: "m1-11",   label: "Content Workflow Approval" },
+            { id: "m1-17",   label: "Launch Content Operation" }
+          ]
+        },
+        {
+          id:      "m1-16",
+          group:   "Blocked / Next Steps",
+          title:   "Configure Critique Agent",
+          status:  "needs-configuration",
+          date:    null,
+          owner:   "Peter Gales / Content Manager",
+          gatedOn: "Content Workflow approval",
+          unlocks: "Second-pass quality gate in the production workflow",
+          detail:  "AI agent. Provides a structured critique of drafts that have passed the Brand & Quality Reviewer — evaluates strategic alignment, audience fit, pillar coherence, and impact potential.",
+          relatedItems: [
+            { id: "m1-11",   label: "Content Workflow Approval" },
+            { id: "m1-17",   label: "Launch Content Operation" }
+          ]
+        },
+        {
+          id:      "m1-17",
+          group:   "Blocked / Next Steps",
+          title:   "Launch Content Operation",
+          status:  "not-started",
+          date:    null,
+          owner:   "Content Manager (operational lead)",
+          gatedOn: "Content Manager hired + all AI agents configured + Content Strategy approved",
+          unlocks: "Phase 1 goes live — audience building begins",
+          detail:  "The go-live moment for Phase 1. All prerequisites must be in place: strategy approved, workflow approved, Content Manager onboarded and trained, all four AI agents configured and tested. First content publication marks Phase 1 active.",
+          relatedItems: [
+            { id: "m1-12",   label: "Hire Content Manager" },
+            { id: "m1-13",   label: "Configure Research & Ideation Agent" },
+            { id: "m1-14",   label: "Configure Writing Agent" },
+            { id: "m1-15",   label: "Configure Brand & Quality Reviewer" },
+            { id: "m1-16",   label: "Configure Critique Agent" },
+            { id: "m2-2",    label: "Build Phase 1→2 Handoff Protocol" }
+          ]
+        },
+        {
+          id:      "m1-18",
+          group:   "Blocked / Next Steps",
+          title:   "First Caribbean Newspaper Op-Ed Published",
+          status:  "not-started",
+          date:    null,
+          owner:   "Content Manager + Peter Gales",
+          gatedOn: "Content operation launched, publication relationships established",
+          unlocks: "Caribbean earned media presence; regional credibility beyond digital channels",
+          detail:  "Target: quarterly minimum per publication. Op-eds establish CEAL Green's practitioner voice in traditional Caribbean media — reaching decision-makers who consume print and legacy digital news. Relationships with editors must be built proactively — not reactive pitching.",
+          relatedItems: [
+            { id: "m1-17",   label: "Launch Content Operation" }
+          ]
+        },
+        {
+          id:      "m1-19",
+          group:   "Blocked / Next Steps",
+          title:   "First Industry Publication Submission",
+          status:  "not-started",
+          date:    null,
+          owner:   "Content Manager + Peter Gales",
+          gatedOn: "Content operation launched, industry publication targets confirmed",
+          unlocks: "International credibility signals; pipeline intelligence from industry editors",
+          detail:  "Target: quarterly pitch cadence beginning Phase 2+. Industry publications (renewable energy, infrastructure, Caribbean business) position CEAL Green in expert communities — primary audience Tier 1 and Tier 2.",
+          relatedItems: [
+            { id: "m1-17",   label: "Launch Content Operation" }
+          ]
+        }
+      ],
+
+      roles: [
+        { role: "Customer Journey Manager",        who: "Peter Gales",                                                   status: "approved"          },
+        { role: "Content Strategist",              who: "Peter Gales (active in setup; moves to quarterly advisory once workflow is self-sustaining)", status: "approved" },
+        { role: "Publishing Approver",             who: "Ryan Roper / Chairman",                                         status: "approved"          },
+        { role: "Content Manager",                 who: "Open",                                                          status: "needs-hiring"      },
+        { role: "Research & Ideation Agent",       who: "AI",                                                            status: "needs-configuration"},
+        { role: "Writing Agent",                   who: "AI",                                                            status: "needs-configuration"},
+        { role: "Brand & Quality Reviewer",        who: "AI",                                                            status: "needs-configuration"},
+        { role: "Critique Agent",                  who: "AI",                                                            status: "needs-configuration"},
+        { role: "Research & Verification Agent",   who: "AI + human sweep",                                              status: "needs-configuration"}
+      ]
+    },
+
+    {
+      /* ── PHASE 2 ─────────────────────────────────────────────── */
+      id:       "phase-2",
+      number:   2,
+      name:     "Direct Engagement",
+      subtitle: "Decision | Personalized, two-way, AI-assisted + human",
+      headerClass: "phase-header--2",
+
+      customerExperience: "Triggered by a first active step — inquiry, referral, cold call, or meeting request — from either the prospect or CEAL Green. The prospect arrives already educated and credibility-convinced from Phase 1. Business conversations happen here. Proposals are made. Decisions are reached. Mix of AI-assisted touchpoints and direct human interaction.",
+
+      internalSystems: "CRM system, AI-assisted engagement tools, proposal system, handoff protocols from Phase 1 to Phase 2, discovery and scoping process, proposal templates per business model (Consulting, EPC, FBO, Product Solutions).",
+
+      milestones: [
+        {
+          id:      "m2-1",
+          group:   "Not Yet Started",
+          title:   "Design Phase 2 Experience",
+          status:  "not-started",
+          date:    null,
+          owner:   "Peter Gales",
+          gatedOn: "Phase 1 content strategy approved — Phase 2 must be informed by what Phase 1 delivers",
+          unlocks: "All Phase 2 build work",
+          detail:  "Define every touchpoint from first contact to commitment decision. Map the full experience for each trigger type (inbound inquiry, referral, cold outreach, meeting request). Specify the AI-assisted and human interaction mix. This is the Phase 2 equivalent of the Content Strategy — the blueprint before any tools are built.",
+          relatedItems: [
+            { id: "m1-17",   label: "Launch Content Operation" },
+            { id: "m2-2",    label: "Build Phase 1→2 Handoff Protocol" },
+            { id: "ag-2",    label: "Scope agentic layer for customer journey" }
+          ]
+        },
+        {
+          id:      "m2-2",
+          group:   "Not Yet Started",
+          title:   "Build Handoff Protocol (Phase 1 → Phase 2)",
+          status:  "not-started",
+          date:    null,
+          owner:   "Peter Gales + Business Development",
+          gatedOn: "Phase 2 experience designed",
+          unlocks: "Seamless prospect transition; no lead leakage between phases",
+          detail:  "Defines: what triggers Phase 2 activation (behavioural signals, direct inquiries), what information transfers from Phase 1 context, who picks up the prospect, and what the prospect experiences in the handoff moment. Poor handoffs lose prospects who were ready to engage.",
+          relatedItems: [
+            { id: "m2-1",    label: "Design Phase 2 Experience" },
+            { id: "m1-17",   label: "Launch Content Operation" }
+          ]
+        },
+        {
+          id:      "m2-3",
+          group:   "Not Yet Started",
+          title:   "Select and Configure CRM System",
+          status:  "not-started",
+          date:    null,
+          owner:   "Peter Gales + Cecil (CEAL Green organizational lead)",
+          gatedOn: "Phase 2 experience designed — CRM must fit the experience, not dictate it",
+          unlocks: "Prospect pipeline tracking, engagement history, handoff visibility",
+          detail:  "Required for tracking prospects through the Phase 2 pipeline. CRM selection must follow experience design — the tool serves the journey, not the other way around. Integration with Phase 1 tracking (who engaged with what content, for how long) is a key capability requirement.",
+          relatedItems: [
+            { id: "m2-1",    label: "Design Phase 2 Experience" }
+          ]
+        },
+        {
+          id:      "m2-4",
+          group:   "Not Yet Started",
+          title:   "Design AI-Assisted Engagement Layer",
+          status:  "not-started",
+          date:    null,
+          owner:   "Agentic Platform working group (Peter + Mark + Cecil)",
+          gatedOn: "Phase 2 experience designed; Agentic Platform scope confirmed",
+          unlocks: "AI-assisted prospect engagement at Phase 2 scale",
+          detail:  "Specifies which Phase 2 touchpoints are AI-assisted vs. human-led. Likely includes: initial inquiry response, qualification, meeting preparation, and follow-up cadencing. Design work sits with the Agentic Platform working group.",
+          relatedItems: [
+            { id: "m2-1",    label: "Design Phase 2 Experience" },
+            { id: "ag-2",    label: "Scope agentic layer for customer journey" }
+          ]
+        },
+        {
+          id:      "m2-5",
+          group:   "Not Yet Started",
+          title:   "Build Proposal System",
+          status:  "not-started",
+          date:    null,
+          owner:   "Peter Gales",
+          gatedOn: "Phase 2 experience designed; business model variations mapped",
+          unlocks: "Consistent, high-quality proposals across all four business models",
+          detail:  "Proposal templates for each of the four business models: Consulting (expertise demonstration + engagement letter), EPC (technical scoping + project proposal), FBO (financial structuring + partnership design), Product Solutions (faster specification-to-decision cycle). Proposals are the primary conversion mechanism in Phase 2.",
+          relatedItems: [
+            { id: "m2-1",    label: "Design Phase 2 Experience" },
+            { id: "m2-9",    label: "Build Phase 2 Business Model Variations" }
+          ]
+        },
+        {
+          id:      "m2-6",
+          group:   "Not Yet Started",
+          title:   "Define Business Development Role",
+          status:  "not-started",
+          date:    null,
+          owner:   "Peter Gales",
+          gatedOn: "Phase 2 experience designed",
+          unlocks: "BD hire; Phase 2 operational activation",
+          detail:  "Co-designs the Phase 2 engagement experience with the Customer Journey Manager. Defines what Phase 1 must deliver for Phase 2 to begin effectively. This role scoping exercise determines the BD function — responsibilities, relationship to Sales, and the exact handoff point.",
+          relatedItems: [
+            { id: "m2-1",    label: "Design Phase 2 Experience" },
+            { id: "m2-7",    label: "Hire / Assign Business Development" }
+          ]
+        },
+        {
+          id:      "m2-7",
+          group:   "Not Yet Started",
+          title:   "Hire / Assign Business Development",
+          status:  "not-started",
+          date:    null,
+          owner:   "Peter Gales + Ryan Roper",
+          gatedOn: "Business Development role defined",
+          unlocks: "Phase 2 becomes operational",
+          detail:  "The Business Development function manages Phase 2 prospect relationships — from first contact through proposal. May be an existing team member stepping into a defined role, or a new hire depending on capacity and capability mapping.",
+          relatedItems: [
+            { id: "m2-6",    label: "Define Business Development Role" }
+          ]
+        },
+        {
+          id:      "m2-8",
+          group:   "Not Yet Started",
+          title:   "Define Sales Role",
+          status:  "not-started",
+          date:    null,
+          owner:   "Peter Gales",
+          gatedOn: "Phase 2 experience designed; BD role defined",
+          unlocks: "Sales function operational",
+          detail:  "Sales sits downstream of Business Development in Phase 2 — responsible for proposal negotiation and close. May overlap with BD in smaller engagements or split cleanly in larger EPC and FBO deals.",
+          relatedItems: [
+            { id: "m2-1",    label: "Design Phase 2 Experience" },
+            { id: "m2-6",    label: "Define Business Development Role" }
+          ]
+        },
+        {
+          id:      "m2-9",
+          group:   "Not Yet Started",
+          title:   "Build Phase 2 Business Model Variations",
+          status:  "not-started",
+          date:    null,
+          owner:   "Peter Gales + Business Development",
+          gatedOn: "Phase 2 experience designed; all four business models confirmed",
+          unlocks: "Model-specific engagement playbooks",
+          detail:  "Maps how Phase 2 differs by business model:\n\nConsulting — expertise demonstration conversation → scoping → proposal → engagement letter\nEPC — technical scoping session → project proposal → contract → mobilization\nFBO — financial structuring presentation + partnership design → agreement → development phase\nProduct Solutions — product specification conversation → purchase decision (faster cycle)\n\nEach variation requires tailored touchpoints, discovery questions, and proposal format.",
+          relatedItems: [
+            { id: "m2-1",    label: "Design Phase 2 Experience" },
+            { id: "m2-5",    label: "Build Proposal System" }
+          ]
+        }
+      ],
+
+      roles: [
+        { role: "Customer Journey Manager", who: "Peter Gales",  status: "approved"   },
+        { role: "Business Development",     who: "TBD",          status: "not-started"},
+        { role: "Sales",                    who: "TBD",          status: "not-started"},
+        { role: "AI Engagement Layer",      who: "AI",           status: "not-started"}
+      ]
+    },
+
+    {
+      /* ── PHASE 3 ─────────────────────────────────────────────── */
+      id:       "phase-3",
+      number:   3,
+      name:     "Relationship & Loyalty",
+      subtitle: "Post-Commitment | Ongoing engagement, automated nurture, advocacy",
+      headerClass: "phase-header--3",
+
+      customerExperience: "Ongoing engagement designed to deliver consistent value, deepen the relationship, and build advocacy. Mix of automated nurture and direct engagement. Delivery quality is the primary mechanism — content plays a supporting role. Satisfied clients become advocates who amplify Phase 1 reach.",
+
+      internalSystems: "Client success system, delivery quality assurance process, feedback loop (Phase 3 intelligence feeds back into Phase 1 content), advocacy programs, retention reporting.",
+
+      milestones: [
+        {
+          id:      "m3-1",
+          group:   "Not Yet Started",
+          title:   "Design Phase 3 Experience",
+          status:  "not-started",
+          date:    null,
+          owner:   "Peter Gales",
+          gatedOn: "Phase 2 design complete",
+          unlocks: "All Phase 3 build work",
+          detail:  "Design the post-commitment client experience from first delivery moment through to advocacy activation. Must account for the different delivery rhythms of Consulting, EPC, FBO, and Product Solutions — Phase 3 looks very different for a long EPC project vs. a product purchase.",
+          relatedItems: [
+            { id: "m2-1",    label: "Design Phase 2 Experience" },
+            { id: "m3-2",    label: "Build Phase 2→3 Handoff Protocol" }
+          ]
+        },
+        {
+          id:      "m3-2",
+          group:   "Not Yet Started",
+          title:   "Build Handoff Protocol (Phase 2 → Phase 3)",
+          status:  "not-started",
+          date:    null,
+          owner:   "Peter Gales + Operations & Project Delivery",
+          gatedOn: "Phase 3 experience designed",
+          unlocks: "Clean transition from BD/Sales to delivery; no trust gap at commitment point",
+          detail:  "Defines what triggers Phase 3 (commitment decision reached, contract signed), what context transfers to the delivery team, and what the client experiences in the transition. The handoff moment is a trust-critical point — a clumsy handoff erodes the credibility Phase 2 built.",
+          relatedItems: [
+            { id: "m3-1",    label: "Design Phase 3 Experience" }
+          ]
+        },
+        {
+          id:      "m3-3",
+          group:   "Not Yet Started",
+          title:   "Build Client Success / Relationship Management System",
+          status:  "not-started",
+          date:    null,
+          owner:   "Peter Gales + Operations & Project Delivery",
+          gatedOn: "Phase 3 experience designed",
+          unlocks: "Structured client relationship management post-commitment",
+          detail:  "The operational infrastructure for ongoing client relationships: check-in cadences, delivery milestone communications, value delivery tracking, and relationship health monitoring. Must integrate with the CRM selected in Phase 2.",
+          relatedItems: [
+            { id: "m3-1",    label: "Design Phase 3 Experience" },
+            { id: "m2-3",    label: "Select and Configure CRM System" }
+          ]
+        },
+        {
+          id:      "m3-4",
+          group:   "Not Yet Started",
+          title:   "Define Operations & Project Delivery Interface",
+          status:  "not-started",
+          date:    null,
+          owner:   "Peter Gales + Ryan Roper",
+          gatedOn: "Phase 3 experience designed",
+          unlocks: "Phase 3 delivery quality alignment",
+          detail:  "The Operations & Project Delivery function co-designs the Phase 3 client experience with the Customer Journey Manager. Ensures delivery quality reinforces the trust built in Phase 2 — the single biggest lever for advocacy is consistent, high-standard execution.",
+          relatedItems: [
+            { id: "m3-1",    label: "Design Phase 3 Experience" }
+          ]
+        },
+        {
+          id:      "m3-5",
+          group:   "Not Yet Started",
+          title:   "Define Account Management Role",
+          status:  "not-started",
+          date:    null,
+          owner:   "Peter Gales",
+          gatedOn: "Phase 3 experience designed; client base established",
+          unlocks: "Systematic relationship management at scale",
+          detail:  "Account Management owns the ongoing client relationship after delivery. Responsibilities: relationship health monitoring, upsell pathway identification, advocacy program participation, and intelligence feeding back to the Content Strategist on what clients find valuable.",
+          relatedItems: [
+            { id: "m3-1",    label: "Design Phase 3 Experience" },
+            { id: "m3-6",    label: "Build Advocacy Program" }
+          ]
+        },
+        {
+          id:      "m3-6",
+          group:   "Not Yet Started",
+          title:   "Build Advocacy Program",
+          status:  "not-started",
+          date:    null,
+          owner:   "Peter Gales + Account Management",
+          gatedOn: "Client success system in place; first satisfied clients in Phase 3",
+          unlocks: "Phase 1 reach amplification; earned referrals",
+          detail:  "Converts satisfied clients into amplifiers for Phase 1 reach — the most credible form of CEAL Green endorsement is a client who builds on record. Program design: structured referral mechanism, case study creation (with client approval), co-publication opportunities, event speaking invitations.",
+          relatedItems: [
+            { id: "m3-3",    label: "Build Client Success System" },
+            { id: "m3-5",    label: "Define Account Management Role" },
+            { id: "m1-17",   label: "Launch Content Operation" }
+          ]
+        },
+        {
+          id:      "m3-7",
+          group:   "Not Yet Started",
+          title:   "Build Phase 3 Reporting",
+          status:  "not-started",
+          date:    null,
+          owner:   "Peter Gales + Operations",
+          gatedOn: "Phase 3 operational",
+          unlocks: "Retention value visibility; advocacy ROI measurement",
+          detail:  "Retention value tracking (lifetime value by business model, repeat engagement rate), advocacy measurement (referrals generated, advocacy amplification of Phase 1 content), and delivery quality scoring.",
+          relatedItems: [
+            { id: "m3-1",    label: "Design Phase 3 Experience" }
+          ]
+        }
+      ],
+
+      roles: [
+        { role: "Customer Journey Manager",           who: "Peter Gales",  status: "approved"   },
+        { role: "Operations & Project Delivery Interface", who: "TBD",     status: "not-started"},
+        { role: "Account Management",                 who: "TBD",          status: "not-started"}
+      ]
+    }
+  ],
+
+  /* ─────────────────────────────────────────────────────────────────────
+     BUSINESS MODELS
+     The customer journey is one — these panels show where it differs
+     by business model. Accessed via the tab bar in the Business Model
+     Differences section.
+  ──────────────────────────────────────────────────────────────────────── */
+  businessModels: {
+    consulting: {
+      label: "Consulting",
+      phase1: "Build Smart pillar — intellectual authority, practitioner proof, problem awareness, and 'CEAL Green has the expertise.' Long-form articles and thought leadership pieces. Tier 1 decision-makers are the primary target.",
+      phase2: "Expertise demonstration conversation → scoping session → proposal → engagement letter. The longest phase of intellectual trust-building before a decision.",
+      phase3: "Ongoing advisory relationship, project evolution, thought partnership. High advocacy potential — satisfied Consulting clients become vocal references.",
+      primaryTiers: ["Tier 1", "Tier 2"],
+      note: null
+    },
+    epc: {
+      label: "EPC",
+      phase1: "Build Strong + Build Solutions — execution credibility, Caribbean delivery evidence, project case studies. Audiences need to believe CEAL Green can deliver at scale and in Caribbean conditions.",
+      phase2: "Technical scoping session → project proposal → contract → mobilization. Decision cycle is longer; technical credibility is the primary purchase driver.",
+      phase3: "Active project delivery → commissioning → handover → post-delivery relationship. Delivery quality is the entire Phase 3 experience — what happens on-site IS the brand.",
+      primaryTiers: ["Tier 1", "Tier 2"],
+      note: null
+    },
+    fbo: {
+      label: "FBO",
+      phase1: "Build Together is primary — demonstrated trustworthiness through the longest trust-build arc. CEAL Green owns the asset long-term; the client must believe CG is neutral, independent, and aligned with their interests. Not vendor-led. No commission incentives.",
+      phase2: "Financial structuring presentation + partnership design → agreement → development phase. This is the most complex Phase 2 — multiple stakeholders, significant capital, long decision arcs.",
+      phase3: "Asset operation → ongoing service delivery → long-term relationship. Phase 3 for FBO is measured in years, not months.",
+      primaryTiers: ["Tier 2", "Tier 1"],
+      note: "Longest Phase 1 trust-build cycle of all four models. Trust established through content is the hard precondition for Phase 2 to succeed. Institutional and political audiences (Tier 2) are reached first."
+    },
+    productSolutions: {
+      label: "Product Solutions",
+      phase1: "Build Smart + Build Solutions — demand creation for what the products solve. Accessible entry point for Tier 1 and Tier 3. Content must make the problem visible and the product the obvious answer.",
+      phase2: "Faster sales cycle: product specification conversation → purchase decision. Lower friction than Consulting or EPC — prospect can move quickly if Phase 1 did its work.",
+      phase3: "Product support → upsell pathway to Consulting or EPC. Product purchasers who experience good execution are future Consulting and EPC prospects.",
+      primaryTiers: ["Tier 1", "Tier 3"],
+      note: "Product Solutions is the most accessible entry point — Tier 3 (wider professional community) can engage here without being primary decision-makers."
+    }
+  },
+
+  /* ─────────────────────────────────────────────────────────────────────
+     AGENTIC PLATFORM
+     Technical AI infrastructure layer being built in parallel.
+     Visually differentiated from the phase bands (dark card).
+  ──────────────────────────────────────────────────────────────────────── */
+  agenticPlatform: {
+    formed:  "2026-06-16",
+    members: "Peter Gales (lead), Mark (Incus — technical partner), Cecil (CEAL Green — organizational lead)",
+    context: "ODW (ERP application) discussed as context for the broader build. Agentic infrastructure will underpin both Phase 1 content operations and Phase 2 engagement.",
+    milestones: [
+      {
+        id:     "ag-1",
+        title:  "Working group formed",
+        status: "approved",
+        date:   "2026-06-16",
+        detail: "First session held. Peter, Mark (Incus), and Cecil (CEAL Green) confirmed as working group members. ODW (ERP application) raised as relevant context. Scope of agentic layer to be defined in next session.",
+        relatedItems: [
+          { id: "ag-2",    label: "Scope agentic layer for customer journey" }
+        ]
+      },
+      {
+        id:     "ag-2",
+        title:  "Scope agentic layer for customer journey",
+        status: "not-started",
+        date:   null,
+        detail: "Define what 'done' looks like for the Phase 1 agentic infrastructure: Research & Ideation Agent, Writing Agent, Brand & Quality Reviewer, Critique Agent, Research & Verification Agent. Agree technical architecture and tooling with Mark (Incus).",
+        relatedItems: [
+          { id: "m2-1",    label: "Design Phase 2 Experience" },
+          { id: "m1-13",   label: "Configure Research & Ideation Agent" },
+          { id: "m1-14",   label: "Configure Writing Agent" },
+          { id: "m1-15",   label: "Configure Brand & Quality Reviewer" },
+          { id: "m1-16",   label: "Configure Critique Agent" }
+        ]
+      },
+      {
+        id:     "ag-3",
+        title:  "Define ODW / ERP integration requirements",
+        status: "not-started",
+        date:   null,
+        detail: "Determine how the agentic layer interfaces with ODW (ERP). What data flows? What triggers? What outputs feed back into ERP? This has downstream implications for Phase 2 CRM selection.",
+        relatedItems: [
+          { id: "m2-3",    label: "Select and Configure CRM System" }
+        ]
+      },
+      {
+        id:     "ag-4",
+        title:  "Follow-up working group meeting",
+        status: "not-started",
+        date:   "Not scheduled",
+        detail: "Second working group session to review scope, agree architecture, and assign build responsibilities. Must be scheduled.",
+        relatedItems: [
+          { id: "ag-2",    label: "Scope agentic layer for customer journey" }
+        ]
+      },
+      {
+        id:     "ag-5",
+        title:  "Build Phase 1 agentic tools",
+        status: "not-started",
+        date:   null,
+        detail: "Build and configure the four AI agents in the Phase 1 content production workflow: Research & Ideation, Writing, Brand & Quality Reviewer, Critique. Integration with Content Manager's tooling.",
+        relatedItems: [
+          { id: "ag-2",    label: "Scope agentic layer for customer journey" },
+          { id: "m1-13",   label: "Configure Research & Ideation Agent" },
+          { id: "m1-14",   label: "Configure Writing Agent" },
+          { id: "m1-15",   label: "Configure Brand & Quality Reviewer" },
+          { id: "m1-16",   label: "Configure Critique Agent" }
+        ]
+      },
+      {
+        id:     "ag-6",
+        title:  "Build Phase 2 agentic engagement layer",
+        status: "not-started",
+        date:   null,
+        detail: "Build the AI-assisted engagement tools for Phase 2: initial inquiry response, qualification, meeting prep, follow-up cadencing. Scope to be confirmed once Phase 2 experience is designed.",
+        relatedItems: [
+          { id: "m2-1",    label: "Design Phase 2 Experience" },
+          { id: "m2-4",    label: "Design AI-Assisted Engagement Layer" },
+          { id: "ag-2",    label: "Scope agentic layer for customer journey" }
+        ]
+      }
+    ]
+  }
+
+}; // end projectData
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     TOP NAVIGATION
+════════════════════════════════════════════════════════════════════════ -->
+<nav class="top-nav" aria-label="Section navigation">
+  <div class="top-nav-inner">
+    <span class="nav-label">CEAL Green CJ</span>
+    <div class="nav-links">
+      <a href="#prerequisites" class="nav-link">Prerequisites</a>
+      <a href="#phase-1" class="nav-link">Phase 1 — Broadcast</a>
+      <a href="#phase-2" class="nav-link">Phase 2 — Direct</a>
+      <a href="#phase-3" class="nav-link">Phase 3 — Loyalty</a>
+      <a href="#agentic" class="nav-link">Agentic Platform</a>
+      <a href="#business-models" class="nav-link">Business Models</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MODAL (rendered once; JS populates it per-click)
+════════════════════════════════════════════════════════════════════════ -->
+<div class="modal-backdrop" id="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div>
+        <div id="modal-badge-slot"></div>
+        <div class="modal-title" id="modal-title"></div>
+      </div>
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     PAGE CONTENT
+════════════════════════════════════════════════════════════════════════ -->
+<main class="page">
+
+  <!-- Header -->
+  <header class="header" id="top">
+    <div class="version-pill" id="version-pill"></div>
+    <h1 class="header-title" id="header-title"></h1>
+    <div class="header-meta-row" id="header-meta-row"></div>
+    <div class="goal-statement" id="goal-statement"></div>
+  </header>
+
+  <!-- Status Banner -->
+  <section id="status-banner-section"></section>
+
+  <!-- Status Legend -->
+  <div class="legend" id="legend">
+    <span class="legend-label">Status</span>
+    <span class="legend-item"><span class="legend-dot" style="background:var(--status-approved)"></span>Approved / Complete</span>
+    <span class="legend-item"><span class="legend-dot" style="background:var(--status-progress)"></span>In Progress / Awaiting</span>
+    <span class="legend-item"><span class="legend-dot" style="background:var(--status-blocked)"></span>Blocked</span>
+    <span class="legend-item"><span class="legend-dot" style="background:var(--status-not-started)"></span>Not Started</span>
+    <span class="legend-item"><span class="legend-dot" style="background:var(--status-gap)"></span>Needs Hiring</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#2E4A8A"></span>Needs Configuration</span>
+  </div>
+
+  <!-- Prerequisites -->
+  <section id="prerequisites"></section>
+
+  <!-- Phase bands -->
+  <section id="phase-1"></section>
+  <section id="phase-2"></section>
+  <section id="phase-3"></section>
+
+  <!-- Agentic Platform -->
+  <section id="agentic"></section>
+
+  <!-- Business Model Differences -->
+  <section id="business-models"></section>
+
+  <!-- Footer -->
+  <footer class="page-footer" id="page-footer"></footer>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     RENDERING ENGINE
+     Reads from projectData and writes to the DOM.
+     Update projectData above — never edit this section for content changes.
+════════════════════════════════════════════════════════════════════════ -->
+<script>
+(function() {
+  /* ── Utility: badge markup from a status string ───────────────────────── */
+  function badgeHTML(status, notFinal) {
+    const map = {
+      "approved":           ["badge--approved",    "Approved"],
+      "in-progress":        ["badge--progress",    "In Progress"],
+      "blocked":            ["badge--blocked",     "Blocked"],
+      "not-started":        ["badge--not-started", "Not Started"],
+      "needs-hiring":       ["badge--gap",         "Needs Hiring"],
+      "needs-configuration":["badge--needs-config","Needs Configuration"]
+    };
+    const [cls, label] = map[status] || ["badge--not-started", status];
+    let html = `<span class="badge ${cls}">${label}</span>`;
+    if (notFinal) {
+      html += ` <span class="not-final-warning">Not Final</span>`;
+    }
+    return html;
+  }
+
+  /* ── Utility: escape text for HTML insertion ─────────────────────────── */
+  function esc(str) {
+    if (!str) return '';
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\n/g, '<br>');
+  }
+
+  /* ────────────────────────────────────────────────────────────────────────
+     HEADER
+  ──────────────────────────────────────────────────────────────────────── */
+  const m = projectData.meta;
+  document.getElementById('version-pill').textContent = m.versionTag;
+  document.getElementById('header-title').textContent = m.name;
+
+  document.getElementById('header-meta-row').innerHTML = `
+    <div class="meta-chip">
+      <span class="meta-chip-label">Director</span>
+      <span class="meta-chip-value">${esc(m.director)}</span>
+    </div>
+    <div class="meta-chip">
+      <span class="meta-chip-label">Role</span>
+      <span class="meta-chip-value">${esc(m.role)}</span>
+    </div>
+    <div class="meta-chip">
+      <span class="meta-chip-label">Primary Contact</span>
+      <span class="meta-chip-value">${esc(m.primaryContact)}</span>
+    </div>
+    <div class="meta-chip">
+      <span class="meta-chip-label">Last Updated</span>
+      <span class="meta-chip-value">${esc(m.lastUpdated)}</span>
+    </div>
+  `;
+  document.getElementById('goal-statement').textContent = m.goal;
+
+  /* ────────────────────────────────────────────────────────────────────────
+     STATUS BANNER
+  ──────────────────────────────────────────────────────────────────────── */
+  const sb = projectData.statusBanner;
+  document.getElementById('status-banner-section').innerHTML = `
+    <div class="status-banner">
+      <div class="banner-left">
+        <div class="banner-eyebrow">Current Status</div>
+        <div class="banner-current">${esc(sb.current)}</div>
+        <div class="banner-blocker">
+          <span class="banner-blocker-label">Blocker</span>
+          <span class="banner-blocker-text">${esc(sb.blocker)}</span>
+        </div>
+        <div class="banner-next-action">
+          <strong>Next action:</strong> ${esc(sb.nextAction)}
+        </div>
+      </div>
+      <div class="banner-right">
+        <div class="banner-updated">Last updated: ${esc(sb.updated)}</div>
+      </div>
+    </div>
+  `;
+
+  /* ────────────────────────────────────────────────────────────────────────
+     PREREQUISITES
+  ──────────────────────────────────────────────────────────────────────── */
+  let prereqHTML = `
+    <div class="prereq-section">
+      <div class="prereq-section-header">
+        <div class="prereq-section-title">Prerequisite Track</div>
+        <div class="prereq-section-subtitle">Four mandatory steps — in order — before customer journey mapping can begin</div>
+      </div>
+      <div class="prereq-track">
+  `;
+  projectData.prerequisites.forEach(function(p) {
+    prereqHTML += `
+      <div class="prereq-step ${p.gated ? 'prereq-step--gated' : ''}"
+           data-milestone-id="${p.id}"
+           onclick="openModal('${p.id}','prereq')"
+           title="Click to see detail">
+        <div class="prereq-step-inner">
+          <div class="prereq-step-num">${esc(p.step)}</div>
+          <div class="prereq-step-title">${esc(p.title)}</div>
+          ${badgeHTML(p.status, p.notFinal)}
+          ${p.version ? `<div class="prereq-step-version">${esc(p.version)}${p.date ? ' · ' + esc(p.date) : ''}</div>` : ''}
+          <div class="milestone-card-hint">i</div>
+        </div>
+      </div>
+    `;
+  });
+  prereqHTML += `</div></div>`;
+  document.getElementById('prerequisites').innerHTML = prereqHTML;
+
+  /* ────────────────────────────────────────────────────────────────────────
+     PHASE BANDS
+  ──────────────────────────────────────────────────────────────────────── */
+  projectData.phases.forEach(function(phase) {
+    const milestoneCount = phase.milestones.length;
+
+    /* Group milestones by their group label */
+    const groups = {};
+    phase.milestones.forEach(function(ms) {
+      const g = ms.group || 'Other';
+      if (!groups[g]) groups[g] = [];
+      groups[g].push(ms);
+    });
+
+    /* Build milestone grid HTML */
+    let msHTML = `
+      <div>
+        <div class="milestones-section-title">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0">
+            <rect x="1" y="1" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M4.5 8l2.5 2.5L11.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Milestones
+        </div>
+    `;
+
+    Object.keys(groups).forEach(function(groupName) {
+      msHTML += `<div class="milestone-group-label">${esc(groupName)}</div>`;
+      msHTML += `<div class="milestones-grid">`;
+      groups[groupName].forEach(function(ms) {
+        msHTML += `
+          <div class="milestone-card"
+               data-status="${ms.status}"
+               onclick="openModal('${ms.id}','milestone')"
+               title="Click to see detail">
+            <div class="milestone-card-title">${esc(ms.title)}</div>
+            <div class="milestone-card-meta">
+              ${badgeHTML(ms.status, ms.notFinal)}
+              ${ms.date ? `<span class="milestone-card-date">${esc(ms.date)}</span>` : ''}
+            </div>
+            ${ms.owner ? `<div class="milestone-card-owner">Owner: ${esc(ms.owner)}</div>` : ''}
+            <div class="milestone-card-hint">i</div>
+          </div>
+        `;
+      });
+      msHTML += `</div>`;
+    });
+    msHTML += `</div>`;
+
+    /* Build roles table HTML */
+    let rolesHTML = `
+      <div class="roles-section">
+        <div class="roles-table-header">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0">
+            <circle cx="6" cy="5" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M2 13c0-2.21 1.79-4 4-4s4 1.79 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M10.5 7.5L12 9l3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="roles-table-title">Roles</div>
+        </div>
+        <table class="roles-table">
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Who</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+    `;
+    phase.roles.forEach(function(r) {
+      rolesHTML += `
+        <tr>
+          <td class="role-name">${esc(r.role)}</td>
+          <td>${esc(r.who)}</td>
+          <td>${badgeHTML(r.status)}</td>
+        </tr>
+      `;
+    });
+    rolesHTML += `</tbody></table></div>`;
+
+    /* Assemble full phase band */
+    const phaseEl = document.getElementById(phase.id);
+    phaseEl.innerHTML = `
+      <div class="phase-band">
+        <div class="phase-header ${phase.headerClass}">
+          <div>
+            <div class="phase-eyebrow">Phase ${phase.number}</div>
+            <div class="phase-title">${esc(phase.name)}</div>
+            <div class="phase-subtitle">${esc(phase.subtitle)}</div>
+          </div>
+          <div class="phase-count-pill">${milestoneCount} milestones</div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-subsections">
+            <div class="phase-subsection">
+              <div class="subsection-title">
+                <div class="subsection-icon">CX</div>
+                Customer Experience
+              </div>
+              <div class="subsection-body">${esc(phase.customerExperience)}</div>
+            </div>
+            <div class="phase-subsection">
+              <div class="subsection-title">
+                <div class="subsection-icon">IS</div>
+                Internal Systems &amp; Processes
+              </div>
+              <div class="subsection-body">${esc(phase.internalSystems)}</div>
+            </div>
+          </div>
+          ${msHTML}
+          ${rolesHTML}
+        </div>
+      </div>
+    `;
+  });
+
+  /* ────────────────────────────────────────────────────────────────────────
+     AGENTIC PLATFORM
+  ──────────────────────────────────────────────────────────────────────── */
+  const ap = projectData.agenticPlatform;
+  let agMilestonesHTML = ap.milestones.map(function(ms) {
+    return `
+      <div class="agentic-milestone"
+           onclick="openModal('${ms.id}','agentic')"
+           title="More detail">
+        <div>${badgeHTML(ms.status)}</div>
+        <div class="agentic-milestone-title">${esc(ms.title)}</div>
+        <div class="agentic-milestone-date">${ms.date ? esc(ms.date) : ''}</div>
+      </div>
+    `;
+  }).join('');
+
+  document.getElementById('agentic').innerHTML = `
+    <div class="agentic-section">
+      <div class="agentic-header">
+        <div class="agentic-eyebrow">Technical Infrastructure Layer — Running in Parallel</div>
+        <div class="agentic-title">Agentic Platform</div>
+        <div class="agentic-subtitle">Working group building the AI infrastructure that powers both Phase 1 content operations and Phase 2 engagement</div>
+      </div>
+      <div class="agentic-body">
+        <div class="agentic-meta">
+          <div class="agentic-meta-item">
+            <div class="agentic-meta-label">Formed</div>
+            <div class="agentic-meta-value">${esc(ap.formed)}</div>
+          </div>
+          <div class="agentic-meta-item">
+            <div class="agentic-meta-label">Working Group Members</div>
+            <div class="agentic-meta-value">${esc(ap.members)}</div>
+          </div>
+          <div class="agentic-meta-item">
+            <div class="agentic-meta-label">Context</div>
+            <div class="agentic-meta-value">${esc(ap.context)}</div>
+          </div>
+        </div>
+        <div class="agentic-milestones">
+          ${agMilestonesHTML}
+        </div>
+      </div>
+    </div>
+  `;
+
+  /* ────────────────────────────────────────────────────────────────────────
+     BUSINESS MODEL DIFFERENCES
+  ──────────────────────────────────────────────────────────────────────── */
+  const bm = projectData.businessModels;
+  const bmKeys = Object.keys(bm);
+
+  let bmTabsHTML = bmKeys.map(function(key, i) {
+    return `<button class="bm-tab ${i===0?'active':''}" onclick="switchBMTab(this,'bm-panel-${key}')">${esc(bm[key].label)}</button>`;
+  }).join('');
+
+  let bmPanelsHTML = bmKeys.map(function(key, i) {
+    const model = bm[key];
+    return `
+      <div class="bm-panel ${i===0?'active':''}" id="bm-panel-${key}">
+        <div class="bm-panel-header">
+          <div class="bm-panel-title">${esc(model.label)}</div>
+          ${model.note ? `<div class="bm-panel-note">${esc(model.note)}</div>` : ''}
+        </div>
+        <div class="bm-panel-body">
+          <div class="bm-phase-col">
+            <div class="bm-phase-col-label">Phase 1 Content Job</div>
+            <div class="bm-phase-col-text">${esc(model.phase1)}</div>
+            <div class="bm-tiers">
+              ${model.primaryTiers.map(function(t){ return `<span class="bm-tier-chip">${t}</span>`; }).join('')}
+              <span style="font-family:Inter,sans-serif;font-size:10px;color:rgba(0,0,0,0.4);padding-top:2px">primary</span>
+            </div>
+          </div>
+          <div class="bm-phase-col">
+            <div class="bm-phase-col-label">Phase 2 Engagement Arc</div>
+            <div class="bm-phase-col-text">${esc(model.phase2)}</div>
+          </div>
+          <div class="bm-phase-col">
+            <div class="bm-phase-col-label">Phase 3 Relationship</div>
+            <div class="bm-phase-col-text">${esc(model.phase3)}</div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  document.getElementById('business-models').innerHTML = `
+    <div class="bm-section">
+      <div class="bm-section-header">
+        <div>
+          <div class="section-eyebrow">One Journey — Four Variations</div>
+          <h2 class="sg-h3" style="color:var(--cg-near-black);margin-top:4px">Business Model Differences</h2>
+        </div>
+        <div class="bm-toggle-hint">Select a model to see how the journey varies</div>
+      </div>
+      <div class="bm-tabs">${bmTabsHTML}</div>
+      <div class="bm-panels">${bmPanelsHTML}</div>
+    </div>
+  `;
+
+  /* ────────────────────────────────────────────────────────────────────────
+     FOOTER
+  ──────────────────────────────────────────────────────────────────────── */
+  document.getElementById('page-footer').innerHTML = `
+    <div class="footer-left">PAG / CEAL Green</div>
+    <div class="footer-right">
+      <div>Last updated: ${esc(projectData.meta.lastUpdated)}</div>
+      <div class="footer-update-note">This document is maintained as a live project record. Updated at session close or on request.</div>
+    </div>
+  `;
+
+  /* ────────────────────────────────────────────────────────────────────────
+     MODAL SYSTEM
+     Builds a flat lookup map of all milestones for O(1) access.
+  ──────────────────────────────────────────────────────────────────────── */
+  const milestoneIndex = {};
+
+  /* Index prerequisites */
+  projectData.prerequisites.forEach(function(p) {
+    milestoneIndex[p.id] = {
+      title:        p.title,
+      status:       p.status,
+      notFinal:     p.notFinal,
+      date:         p.date,
+      owner:        null,
+      gatedOn:      p.gatedOn || null,
+      unlocks:      null,
+      detail:       p.detail,
+      relatedItems: p.relatedItems || []
+    };
+  });
+
+  /* Index phase milestones */
+  projectData.phases.forEach(function(phase) {
+    phase.milestones.forEach(function(ms) {
+      milestoneIndex[ms.id] = ms;
+    });
+  });
+
+  /* Index agentic milestones */
+  projectData.agenticPlatform.milestones.forEach(function(ms) {
+    milestoneIndex[ms.id] = ms;
+  });
+
+  /* Back-navigation state — tracks which modal was open before navigating to another */
+  let prevModalId = null;
+
+  window.openModal = function(id, section, fromId) {
+    prevModalId = fromId || null;
+
+    const ms = milestoneIndex[id];
+    if (!ms) return;
+
+    /* Store current ID on the modal element for chip click handlers */
+    document.getElementById('modal').dataset.currentId = id;
+
+    document.getElementById('modal-badge-slot').innerHTML = badgeHTML(ms.status, ms.notFinal);
+    document.getElementById('modal-title').textContent = ms.title;
+
+    let bodyHTML = '';
+
+    /* ── Back link ───────────────────────────────────────────────────── */
+    if (prevModalId && milestoneIndex[prevModalId]) {
+      const prevTitle = milestoneIndex[prevModalId].title;
+      bodyHTML += `
+        <div style="margin-bottom:12px">
+          <a href="#"
+             onclick="event.preventDefault(); openModal('${prevModalId}', null);"
+             style="font-family:Inter,sans-serif;font-size:12px;color:var(--cg-aged-teak);text-decoration:none;display:inline-flex;align-items:center;gap:4px;"
+             onmouseover="this.style.textDecoration='underline'"
+             onmouseout="this.style.textDecoration='none'">&#8592; ${esc(prevTitle)}</a>
+        </div>
+      `;
+    }
+
+    /* Date row */
+    if (ms.date) {
+      bodyHTML += `
+        <div class="modal-section">
+          <div class="modal-section-label">Date</div>
+          <div class="modal-section-value">${esc(ms.date)}</div>
+        </div>
+        <hr class="modal-divider">
+      `;
+    }
+
+    /* Owner row */
+    if (ms.owner) {
+      bodyHTML += `
+        <div class="modal-section">
+          <div class="modal-section-label">Owner</div>
+          <div class="modal-section-value">${esc(ms.owner)}</div>
+        </div>
+        <hr class="modal-divider">
+      `;
+    }
+
+    /* Detail */
+    if (ms.detail) {
+      bodyHTML += `
+        <div class="modal-section">
+          <div class="modal-section-label">Detail</div>
+          <div class="modal-detail-text">${esc(ms.detail)}</div>
+        </div>
+      `;
+    }
+
+    /* Gated on */
+    if (ms.gatedOn) {
+      bodyHTML += `
+        <hr class="modal-divider">
+        <div class="modal-section">
+          <div class="modal-section-label">Gated On</div>
+          <div class="modal-gated-box">
+            <div class="modal-section-value">${esc(ms.gatedOn)}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    /* Unlocks */
+    if (ms.unlocks) {
+      bodyHTML += `
+        <div class="modal-section">
+          <div class="modal-section-label">Unlocks</div>
+          <div class="modal-unlocks-box">
+            <div class="modal-section-value">${esc(ms.unlocks)}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    /* ── Connected items ─────────────────────────────────────────────── */
+    const related = ms.relatedItems || [];
+    if (related.length > 0) {
+      const chipsHTML = related.map(function(item) {
+        return `<button
+          onclick="openModal('${item.id}', null, '${id}')"
+          style="
+            display:inline-flex;align-items:center;gap:5px;
+            font-family:Inter,sans-serif;font-size:12px;font-weight:500;
+            color:var(--cg-aged-teak);
+            background:transparent;
+            border:1px solid var(--cg-aged-teak);
+            border-radius:var(--radius-sm);
+            padding:4px 10px;
+            cursor:pointer;
+            transition:background 0.15s ease;
+          "
+          onmouseover="this.style.background='rgba(184,122,78,0.10)'"
+          onmouseout="this.style.background='transparent'"
+        >${esc(item.label)} <span style="opacity:0.7">&#8599;</span></button>`;
+      }).join('');
+
+      bodyHTML += `
+        <hr class="modal-divider" style="margin-top:16px">
+        <div style="margin-top:12px">
+          <div style="font-family:Inter,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(26,31,30,0.4);margin-bottom:8px">Connected Items</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">${chipsHTML}</div>
+        </div>
+      `;
+    }
+
+    /* NOT FINAL warning strip — prepended after all other body content is assembled */
+    if (ms.notFinal) {
+      const backLink = bodyHTML.startsWith('<div style="margin-bottom:12px">') ? bodyHTML.slice(0, bodyHTML.indexOf('</div>') + 6) : '';
+      const rest     = backLink ? bodyHTML.slice(backLink.length) : bodyHTML;
+      bodyHTML = backLink + `
+        <div class="modal-blocked-box" style="margin-bottom:0">
+          <div style="font-family:Inter,sans-serif;font-size:13px;font-weight:700;color:var(--status-blocked)">NOT FINAL — Awaiting Approval</div>
+          <div style="font-family:Inter,sans-serif;font-size:12px;color:var(--cg-near-black);margin-top:3px;line-height:1.5">This document has been shared but is not yet approved. Do not treat it as the basis for production or hiring decisions until Ryan Roper confirms approval.</div>
+        </div>
+        <hr class="modal-divider">
+      ` + rest;
+    }
+
+    document.getElementById('modal-body').innerHTML = bodyHTML;
+    document.getElementById('modal-backdrop').classList.add('open');
+    document.getElementById('modal').focus();
+  };
+
+  /* Close modal */
+  function closeModal() {
+    document.getElementById('modal-backdrop').classList.remove('open');
+  }
+
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  document.getElementById('modal-backdrop').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  /* ────────────────────────────────────────────────────────────────────────
+     BUSINESS MODEL TAB SWITCHER
+  ──────────────────────────────────────────────────────────────────────── */
+  window.switchBMTab = function(tabEl, panelId) {
+    /* Deactivate all tabs */
+    document.querySelectorAll('.bm-tab').forEach(function(t) { t.classList.remove('active'); });
+    /* Deactivate all panels */
+    document.querySelectorAll('.bm-panel').forEach(function(p) { p.classList.remove('active'); });
+    /* Activate selected */
+    tabEl.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+  };
+
+})();
+</script>
+
+</body>
+</html>
