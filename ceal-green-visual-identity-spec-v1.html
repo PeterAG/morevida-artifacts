@@ -1,0 +1,1975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CEAL Green — Visual Identity Specification v1.0</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+
+    /* ============================================================
+       CEAL GREEN — VISUAL IDENTITY SPECIFICATION v1.0
+       Self-contained reference document
+       Brand values sourced from CEAL Green Brand Guidelines v0.3
+       ============================================================ */
+
+    :root {
+      --mangrove:   #1E4D3A;
+      --oatmeal:    #F7F4EE;
+      --near-black: #1A1F1E;
+      --aged-teak:  #B87A4E;
+      --mid-canopy: #8DCFAA;
+      --pale-sand:  #E8D8C4;
+
+      --radius-sm:  4px;
+      --radius:     8px;
+      --radius-lg:  12px;
+      --radius-xl:  16px;
+
+      --font-display: 'Space Grotesk', system-ui, sans-serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+
+      --sp-1:  8px;
+      --sp-2:  16px;
+      --sp-3:  24px;
+      --sp-4:  32px;
+      --sp-5:  48px;
+      --sp-6:  64px;
+      --sp-7:  96px;
+
+      --nav-width: 220px;
+      --content-max: 800px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--oatmeal);
+      color: var(--near-black);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── Layout shell ── */
+
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── Fixed left nav ── */
+
+    .side-nav {
+      width: var(--nav-width);
+      flex-shrink: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      background: var(--mangrove);
+      overflow-y: auto;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .side-nav-inner {
+      padding: var(--sp-4) var(--sp-3);
+      flex: 1;
+    }
+
+    .side-nav-wm {
+      display: inline-flex;
+      align-items: baseline;
+      font-family: var(--font-display);
+      margin-bottom: var(--sp-5);
+      font-size: 17px;
+    }
+    .side-nav-wm .wm-c { font-weight: 700; letter-spacing: -0.01em; text-transform: uppercase; color: var(--oatmeal); }
+    .side-nav-wm .wm-g { font-weight: 500; letter-spacing: 0.08em; margin-left: 0.18em; color: var(--mid-canopy); }
+
+    .nav-section-label {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(247,244,238,0.35);
+      margin-bottom: var(--sp-1);
+      padding: 0 var(--sp-1);
+    }
+
+    .nav-items {
+      list-style: none;
+      margin-bottom: var(--sp-3);
+    }
+
+    .nav-items li a {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px var(--sp-1);
+      font-family: var(--font-body);
+      font-size: 12.5px;
+      font-weight: 500;
+      color: rgba(247,244,238,0.6);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      transition: background 0.15s, color 0.15s;
+      line-height: 1.3;
+    }
+    .nav-items li a:hover {
+      background: rgba(247,244,238,0.08);
+      color: var(--oatmeal);
+    }
+    .nav-items li a.active {
+      background: rgba(247,244,238,0.11);
+      color: var(--oatmeal);
+    }
+
+    .nav-num {
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--aged-teak);
+      min-width: 20px;
+      flex-shrink: 0;
+    }
+
+    .nav-sub-items {
+      list-style: none;
+      padding-left: 29px;
+      margin-bottom: 4px;
+    }
+    .nav-sub-items li a {
+      display: block;
+      padding: 4px 6px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(247,244,238,0.42);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      transition: color 0.15s;
+      line-height: 1.35;
+    }
+    .nav-sub-items li a:hover {
+      color: rgba(247,244,238,0.75);
+    }
+
+    .nav-pending-tag {
+      display: inline-block;
+      background: rgba(184,122,78,0.25);
+      border: 1px solid rgba(184,122,78,0.4);
+      color: var(--aged-teak);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 1px 5px;
+      border-radius: 3px;
+      margin-left: 4px;
+      vertical-align: middle;
+      line-height: 1.5;
+    }
+
+    .nav-divider {
+      height: 1px;
+      background: rgba(247,244,238,0.1);
+      margin: var(--sp-3) 0;
+    }
+
+    .side-nav-footer {
+      padding: var(--sp-2) var(--sp-3);
+      border-top: 1px solid rgba(247,244,238,0.1);
+    }
+    .side-nav-footer-text {
+      font-family: var(--font-body);
+      font-size: 10px;
+      color: rgba(247,244,238,0.28);
+      line-height: 1.5;
+    }
+
+    /* ── Main content ── */
+
+    .main {
+      margin-left: var(--nav-width);
+      flex: 1;
+      min-width: 0;
+    }
+
+    .doc-wrap {
+      max-width: calc(var(--content-max) + var(--sp-6) * 2);
+      padding: var(--sp-5) var(--sp-6) var(--sp-7);
+    }
+
+    /* ── Wordmark base CSS ── */
+    .cg-wm {
+      font-family: var(--font-display);
+      display: inline-flex;
+      align-items: baseline;
+    }
+    .wm-c {
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+    .wm-g {
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      margin-left: 0.18em;
+    }
+
+    /* Document header wordmark */
+    .doc-header-wm .wm-c { color: var(--mangrove); }
+    .doc-header-wm .wm-g { color: var(--aged-teak); }
+
+    /* Footer wordmark */
+    .footer-wm .wm-c { color: var(--mangrove); opacity: 0.4; }
+    .footer-wm .wm-g { color: var(--aged-teak); opacity: 0.4; }
+
+    /* ── Document header ── */
+    .doc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 2px solid var(--mangrove);
+      padding-bottom: var(--sp-3);
+      margin-bottom: var(--sp-5);
+    }
+
+    .doc-header-wm-wrap .doc-title {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: #888;
+      margin-top: 5px;
+      letter-spacing: 0.02em;
+    }
+
+    .doc-meta {
+      text-align: right;
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: #888;
+      line-height: 1.6;
+    }
+    .doc-meta strong {
+      display: block;
+      font-size: 14px;
+      color: var(--near-black);
+      font-weight: 600;
+    }
+
+    .status-final {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(30,77,58,0.08);
+      border: 1px solid rgba(30,77,58,0.22);
+      color: var(--mangrove);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 20px;
+      margin-top: 5px;
+    }
+    .status-final-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--mangrove);
+      flex-shrink: 0;
+    }
+
+    /* ── Purpose note ── */
+    .purpose-note {
+      background: white;
+      border-left: 3px solid var(--mangrove);
+      padding: var(--sp-2) var(--sp-3);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin-bottom: var(--sp-5);
+    }
+    .purpose-note p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #444;
+    }
+    .purpose-note p + p { margin-top: 10px; }
+
+    /* ── Section structure ── */
+    .section { margin-bottom: var(--sp-6); scroll-margin-top: var(--sp-5); }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: var(--sp-2);
+      margin-bottom: var(--sp-3);
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(30,77,58,0.18);
+    }
+
+    .section-num {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--aged-teak);
+      min-width: 26px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--mangrove);
+      letter-spacing: -0.01em;
+    }
+
+    /* ── Subsection ── */
+    .subsection { margin-bottom: var(--sp-4); scroll-margin-top: var(--sp-5); }
+
+    .subsection-title {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mangrove);
+      opacity: 0.65;
+      margin-bottom: var(--sp-2);
+    }
+
+    /* ── Info callout ── */
+    .info-callout {
+      background: rgba(141,207,170,0.15);
+      border: 1px solid rgba(141,207,170,0.45);
+      border-radius: var(--radius);
+      padding: var(--sp-2) var(--sp-3);
+      font-size: 14px;
+      color: var(--mangrove);
+      line-height: 1.65;
+      margin-bottom: var(--sp-3);
+    }
+
+    /* ── Pending badge & notice ── */
+    .pending-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(184,122,78,0.10);
+      border: 1px solid rgba(184,122,78,0.35);
+      color: var(--aged-teak);
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 20px;
+      vertical-align: middle;
+    }
+
+    .pending-notice {
+      background: rgba(184,122,78,0.07);
+      border: 1px solid rgba(184,122,78,0.22);
+      border-radius: var(--radius);
+      padding: var(--sp-3) var(--sp-3);
+    }
+    .pending-notice .pending-label {
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--aged-teak);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .pending-notice .pending-icon {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: var(--sp-2);
+    }
+    .pending-notice .pending-icon svg {
+      flex-shrink: 0;
+    }
+    .pending-notice p {
+      font-size: 13.5px;
+      color: #5a3d25;
+      line-height: 1.65;
+    }
+    .pending-notice p + p { margin-top: 8px; }
+
+    /* ── Rules list ── */
+    .rules-list {
+      list-style: none;
+      padding: 0;
+    }
+    .rules-list li {
+      display: flex;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #333;
+    }
+    .rules-list li:last-child { border-bottom: none; }
+    .rules-list li::before {
+      content: "—";
+      color: var(--aged-teak);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── Shared table styles ── */
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .spec-table th {
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mangrove);
+      padding: 9px 14px;
+      text-align: left;
+      background: rgba(30,77,58,0.06);
+      border-bottom: 1px solid rgba(30,77,58,0.14);
+    }
+    .spec-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(0,0,0,0.055);
+      line-height: 1.5;
+      vertical-align: middle;
+    }
+    .spec-table tr:last-child td { border-bottom: none; }
+
+    /* ── Colour dot ── */
+    .cdot {
+      display: inline-block;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      vertical-align: middle;
+      margin-right: 6px;
+      border: 1px solid rgba(0,0,0,0.10);
+      flex-shrink: 0;
+    }
+
+    /* ── WCAG badges ── */
+    .badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .badge-aaa   { background: var(--mangrove); color: var(--oatmeal); }
+    .badge-aa    { background: #3A7A5C; color: white; }
+    .badge-large { background: var(--mid-canopy); color: var(--near-black); }
+    .badge-fail  { background: #e5e5e5; color: #999; }
+    .badge-pend  { background: rgba(184,122,78,0.15); color: var(--aged-teak); border: 1px solid rgba(184,122,78,0.3); }
+    .badge-wip   { background: rgba(58,122,92,0.12); color: #2a6045; border: 1px solid rgba(58,122,92,0.25); }
+    .badge-appr  { background: var(--mangrove); color: var(--oatmeal); }
+
+    /* ── Two-column grid ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    /* ============================================================
+       SECTION 1: COLOUR SYSTEM
+       ============================================================ */
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin-bottom: var(--sp-3);
+    }
+
+    .swatch-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.07);
+    }
+
+    .swatch-block { height: 80px; }
+
+    .swatch-info {
+      background: white;
+      padding: 9px 11px 12px;
+    }
+
+    .swatch-name {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--near-black);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .swatch-hex {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      color: #777;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .swatch-role {
+      font-size: 10px;
+      color: #888;
+      line-height: 1.45;
+    }
+
+    /* Contrast table pair chips */
+    .pair-chip {
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    .ratio-val {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--near-black);
+    }
+
+    /* ============================================================
+       SECTION 2: TYPOGRAPHY
+       ============================================================ */
+
+    .type-specimen {
+      background: white;
+      border-radius: var(--radius);
+      padding: var(--sp-3) var(--sp-3);
+    }
+
+    .specimen-eyebrow {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--aged-teak);
+      margin-bottom: 10px;
+    }
+
+    .specimen-meta {
+      font-family: var(--font-body);
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
+    .type-scale-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: var(--sp-3);
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.055);
+    }
+    .type-scale-row:last-child { border-bottom: none; }
+
+    .scale-meta {
+      font-family: var(--font-body);
+      font-size: 11px;
+      color: #999;
+      line-height: 1.5;
+    }
+    .scale-meta strong {
+      display: block;
+      font-weight: 600;
+      font-size: 12px;
+      color: #555;
+      margin-bottom: 2px;
+    }
+
+    /* ============================================================
+       SECTION 3: WORDMARK
+       ============================================================ */
+
+    .wm-panel-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .wm-panel {
+      height: 120px;
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .wm-panel-label {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.45;
+    }
+
+    /* Panel backgrounds */
+    .p-mangrove   { background: var(--mangrove); }
+    .p-near-black { background: var(--near-black); }
+    .p-oatmeal    { background: var(--oatmeal); border: 1px solid rgba(0,0,0,0.07); }
+    .p-aged-teak  { background: var(--aged-teak); }
+    .p-mid-canopy { background: var(--mid-canopy); }
+    .p-pale-sand  { background: var(--pale-sand); border: 1px solid rgba(0,0,0,0.06); }
+
+    /* Panel label colours */
+    .p-mangrove   .wm-panel-label,
+    .p-near-black .wm-panel-label,
+    .p-aged-teak  .wm-panel-label { color: var(--oatmeal); }
+    .p-oatmeal    .wm-panel-label,
+    .p-pale-sand  .wm-panel-label { color: var(--near-black); }
+    .p-mid-canopy .wm-panel-label { color: var(--mangrove); }
+
+    /* Wordmark colour per background */
+    .p-mangrove   .wm-c, .p-near-black .wm-c { color: var(--oatmeal); }
+    .p-mangrove   .wm-g, .p-near-black .wm-g { color: var(--mid-canopy); }
+    .p-oatmeal    .wm-c { color: var(--near-black); }
+    .p-oatmeal    .wm-g { color: var(--mangrove); }
+    .p-aged-teak  .wm-c { color: var(--oatmeal); }
+    .p-aged-teak  .wm-g { color: var(--near-black); }
+    .p-mid-canopy .wm-c { color: var(--mangrove); }
+    .p-mid-canopy .wm-g { color: var(--near-black); }
+    .p-pale-sand  .wm-c { color: var(--near-black); }
+    .p-pale-sand  .wm-g { color: var(--mangrove); }
+
+    /* ── Avatar system ── */
+    .avatar-row {
+      display: flex;
+      align-items: flex-end;
+      gap: var(--sp-3);
+      flex-wrap: wrap;
+      margin-bottom: var(--sp-3);
+    }
+
+    .avatar-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .avatar {
+      background: var(--mangrove);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius);
+      flex-shrink: 0;
+    }
+
+    .avatar-caption {
+      font-family: var(--font-body);
+      font-size: 10px;
+      color: #999;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    /* ============================================================
+       SECTION 4: SHAPE & SPACING
+       ============================================================ */
+
+    .radius-demo-row {
+      display: flex;
+      gap: var(--sp-4);
+      flex-wrap: wrap;
+      align-items: flex-end;
+      margin-bottom: var(--sp-3);
+    }
+
+    .radius-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .radius-block {
+      width: 60px;
+      height: 60px;
+      background: rgba(30,77,58,0.12);
+      border: 2px solid var(--mangrove);
+    }
+
+    .radius-caption {
+      font-family: var(--font-body);
+      font-size: 10px;
+      color: #888;
+      text-align: center;
+      line-height: 1.45;
+    }
+
+    .spacing-demo-row {
+      display: flex;
+      gap: var(--sp-3);
+      flex-wrap: wrap;
+      align-items: flex-end;
+      margin-bottom: var(--sp-3);
+    }
+
+    .spacing-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .spacing-block {
+      background: rgba(30,77,58,0.12);
+      border: 1px dashed rgba(30,77,58,0.35);
+    }
+
+    .spacing-caption {
+      font-family: var(--font-body);
+      font-size: 10px;
+      color: #888;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    /* ============================================================
+       SECTION 5: COMPONENTS
+       ============================================================ */
+
+    .component-demo {
+      background: white;
+      border-radius: var(--radius);
+      padding: var(--sp-3) var(--sp-3);
+      margin-bottom: 12px;
+    }
+
+    .component-eyebrow {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--aged-teak);
+      margin-bottom: var(--sp-2);
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    /* Buttons */
+    .btn-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+    .btn {
+      font-family: var(--font-display);
+      font-size: 13.5px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      border: none;
+      border-radius: var(--radius);
+      padding: 10px 20px;
+      cursor: default;
+      line-height: 1;
+    }
+    .btn-primary   { background: var(--mangrove); color: var(--oatmeal); }
+    .btn-secondary { background: transparent; color: var(--mangrove); border: 1.5px solid var(--mangrove); }
+    .btn-ghost     { background: transparent; color: var(--near-black); border: 1.5px solid rgba(0,0,0,0.15); }
+    .btn-accent    { background: var(--aged-teak); color: var(--oatmeal); }
+
+    /* Cards */
+    .card-demo-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 10px;
+    }
+
+    .demo-card { border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(0,0,0,0.07); background: var(--oatmeal); }
+    .demo-card-hd { padding: 14px 16px; font-family: var(--font-display); font-size: 12px; font-weight: 700; }
+    .demo-card-bd { padding: 14px 16px; }
+    .demo-card-bd p { font-size: 12px; color: #555; line-height: 1.6; margin-bottom: 12px; }
+    .demo-card-bd p:last-child { margin-bottom: 0; }
+
+    .card-btn {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 500;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 7px 14px;
+      cursor: default;
+    }
+
+    /* Nav demo */
+    .nav-demo {
+      background: var(--mangrove);
+      border-radius: var(--radius);
+      padding: 13px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--sp-3);
+    }
+
+    .nav-links { display: flex; gap: 22px; }
+
+    .nav-link {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(247,244,238,0.65);
+      letter-spacing: 0.01em;
+    }
+    .nav-link.active { color: var(--oatmeal); }
+
+    /* ============================================================
+       SECTION 6: STATUS TABLE & FOOTER
+       ============================================================ */
+
+    .doc-footer {
+      border-top: 1px solid rgba(30,77,58,0.18);
+      margin-top: var(--sp-6);
+      padding-top: var(--sp-3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-meta {
+      font-family: var(--font-body);
+      font-size: 11px;
+      color: #aaa;
+      text-align: right;
+      line-height: 1.6;
+    }
+
+    code {
+      font-family: 'Courier New', monospace;
+      font-size: 11.5px;
+      background: rgba(0,0,0,0.055);
+      padding: 2px 6px;
+      border-radius: 3px;
+      color: var(--mangrove);
+    }
+
+    /* ============================================================
+       RESPONSIVE — collapse nav below 900px
+       ============================================================ */
+
+    @media (max-width: 900px) {
+      .side-nav { display: none; }
+      .main { margin-left: 0; }
+      .doc-wrap { padding: var(--sp-4) var(--sp-3) var(--sp-6); }
+      .palette-grid { grid-template-columns: repeat(3, 1fr); }
+      .type-scale-row { grid-template-columns: 1fr; gap: var(--sp-1); }
+      .card-demo-grid { grid-template-columns: 1fr; }
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ── Fixed Left Navigation ── -->
+  <nav class="side-nav" aria-label="Document navigation">
+    <div class="side-nav-inner">
+
+      <div class="side-nav-wm">
+        <span class="wm-c">CEAL</span><span class="wm-g">Green</span>
+      </div>
+
+      <p class="nav-section-label">Visual Identity</p>
+      <ul class="nav-items">
+        <li>
+          <a href="#section-01">
+            <span class="nav-num">01</span>Colour System
+          </a>
+          <ul class="nav-sub-items">
+            <li><a href="#s1-palette">Palette</a></li>
+            <li><a href="#s1-relationships">Relationships</a></li>
+            <li><a href="#s1-contrast">Contrast (WCAG)</a></li>
+            <li><a href="#s1-rules">Usage Rules</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#section-02">
+            <span class="nav-num">02</span>Typography
+          </a>
+          <ul class="nav-sub-items">
+            <li><a href="#s2-families">Type Families</a></li>
+            <li><a href="#s2-scale">Type Scale</a></li>
+            <li><a href="#s2-rules">Usage Rules</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#section-03">
+            <span class="nav-num">03</span>Wordmark System
+          </a>
+          <ul class="nav-sub-items">
+            <li><a href="#s3-base">Base Treatment</a></li>
+            <li><a href="#s3-spec">Technical Spec</a></li>
+            <li><a href="#s3-scale">Scale Behaviour</a></li>
+            <li><a href="#s3-avatar">Avatar System</a></li>
+            <li><a href="#s3-differentiation">Differentiation<span class="nav-pending-tag">Pending</span></a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#section-04">
+            <span class="nav-num">04</span>Shape &amp; Spacing
+          </a>
+          <ul class="nav-sub-items">
+            <li><a href="#s4-radius">Border Radius</a></li>
+            <li><a href="#s4-spacing">Spacing Scale</a></li>
+            <li><a href="#s4-grid">Layout Grid</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#section-05">
+            <span class="nav-num">05</span>Component Defaults
+          </a>
+          <ul class="nav-sub-items">
+            <li><a href="#s5-buttons">Buttons</a></li>
+            <li><a href="#s5-cards">Cards</a></li>
+            <li><a href="#s5-nav">Navigation</a></li>
+            <li><a href="#s5-tables">Data &amp; Tables</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#section-06">
+            <span class="nav-num">06</span>Application Notes
+          </a>
+          <ul class="nav-sub-items">
+            <li><a href="#s6-digital">Digital</a></li>
+            <li><a href="#s6-print">Print</a></li>
+            <li><a href="#s6-agent">Agent / Developer</a></li>
+            <li><a href="#s6-status">Document Status</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="nav-divider"></div>
+
+    </div>
+    <div class="side-nav-footer">
+      <div class="side-nav-footer-text">
+        Visual Identity Spec v1.0<br>
+        May 2026 · Confidential
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Main Content ── -->
+  <main class="main">
+    <div class="doc-wrap">
+
+      <!-- ── Document Header ── -->
+      <header class="doc-header">
+        <div class="doc-header-wm-wrap">
+          <div class="cg-wm doc-header-wm" style="font-size:32px;">
+            <span class="wm-c">CEAL</span><span class="wm-g">Green</span>
+          </div>
+          <div class="doc-title">Visual Identity Specification</div>
+        </div>
+        <div class="doc-meta">
+          <strong>Version 1.0</strong>
+          May 2026
+          <div class="status-final">
+            <span class="status-final-dot"></span>
+            Final — wordmark differentiation pending
+          </div>
+        </div>
+      </header>
+
+      <!-- ── Purpose Note ── -->
+      <div class="purpose-note">
+        <p>This document is the authoritative technical reference for the CEAL Green visual identity. It defines the colour system, typography, wordmark, spacing, shape rules, and component defaults that govern all brand applications — digital, print, and internal production.</p>
+        <p>Intended for designers, developers, and agents producing CEAL Green materials. For brand purpose, personality, voice, and content strategy, refer to the <em>CEAL Green Brand Guidelines</em>. This specification governs visual execution; the Brand Guidelines govern brand intent.</p>
+      </div>
+
+
+      <!-- ================================================================
+           01 — COLOUR SYSTEM
+           ================================================================ -->
+      <section class="section" id="section-01">
+        <div class="section-header">
+          <span class="section-num">01</span>
+          <h2 class="section-title">Colour System</h2>
+        </div>
+
+        <!-- 1.1 Palette -->
+        <div class="subsection" id="s1-palette">
+          <p class="subsection-title">1.1 — Palette</p>
+          <div class="palette-grid">
+            <div class="swatch-card">
+              <div class="swatch-block" style="background:#1E4D3A;"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">Mangrove</span>
+                <span class="swatch-hex">#1E4D3A</span>
+                <span class="swatch-role" style="color:var(--mangrove); font-weight:600;">Primary</span>
+                <span class="swatch-role"> — brand colour, dominant surfaces, wordmark anchor</span>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-block" style="background:#F7F4EE; border-bottom:1px solid #e8e4dd;"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">Oatmeal</span>
+                <span class="swatch-hex">#F7F4EE</span>
+                <span class="swatch-role" style="color:var(--mangrove); font-weight:600;">Primary</span>
+                <span class="swatch-role"> — light surface, reversed text backgrounds</span>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-block" style="background:#1A1F1E;"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">Near Black</span>
+                <span class="swatch-hex">#1A1F1E</span>
+                <span class="swatch-role">Body text on light surfaces; dark surface alternative</span>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-block" style="background:#B87A4E;"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">Aged Teak</span>
+                <span class="swatch-hex">#B87A4E</span>
+                <span class="swatch-role" style="color:var(--aged-teak); font-weight:600;">Accent</span>
+                <span class="swatch-role"> — warm contrast, wordmark "Green" on light</span>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-block" style="background:#8DCFAA;"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">Mid Canopy</span>
+                <span class="swatch-hex">#8DCFAA</span>
+                <span class="swatch-role">Secondary green — wordmark "Green" on dark, accents on dark surfaces</span>
+              </div>
+            </div>
+            <div class="swatch-card">
+              <div class="swatch-block" style="background:#E8D8C4; border-bottom:1px solid #d8c8b4;"></div>
+              <div class="swatch-info">
+                <span class="swatch-name">Pale Sand</span>
+                <span class="swatch-hex">#E8D8C4</span>
+                <span class="swatch-role">Warm secondary background, surface tint</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1.2 Colour Relationships -->
+        <div class="subsection" id="s1-relationships">
+          <p class="subsection-title">1.2 — Colour Relationships</p>
+          <table class="spec-table">
+            <thead>
+              <tr>
+                <th>Background</th>
+                <th>Text / Foreground</th>
+                <th>Accent / Secondary element</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="cdot" style="background:#1E4D3A;"></span>Mangrove</td>
+                <td>Oatmeal #F7F4EE</td>
+                <td>Mid Canopy #8DCFAA</td>
+                <td>Primary dark surface. Mid Canopy for wordmark "Green" and accent type.</td>
+              </tr>
+              <tr>
+                <td><span class="cdot" style="background:#F7F4EE;"></span>Oatmeal</td>
+                <td>Near Black #1A1F1E</td>
+                <td>Mangrove #1E4D3A</td>
+                <td>Primary light surface. Aged Teak for non-text accents and labels only.</td>
+              </tr>
+              <tr>
+                <td><span class="cdot" style="background:#1A1F1E;"></span>Near Black</td>
+                <td>Oatmeal #F7F4EE</td>
+                <td>Mid Canopy #8DCFAA</td>
+                <td>Same reversed palette as Mangrove. Use for dark body backgrounds.</td>
+              </tr>
+              <tr>
+                <td><span class="cdot" style="background:#B87A4E;"></span>Aged Teak</td>
+                <td>Oatmeal #F7F4EE (large text) · Near Black for max contrast</td>
+                <td>—</td>
+                <td>Primarily a foreground accent. As background: Near Black preferred; Oatmeal at heading sizes.</td>
+              </tr>
+              <tr>
+                <td><span class="cdot" style="background:#8DCFAA;"></span>Mid Canopy</td>
+                <td>Mangrove #1E4D3A</td>
+                <td>Near Black #1A1F1E</td>
+                <td>Mangrove gives best contrast (4.9:1 AA). Not a primary surface colour.</td>
+              </tr>
+              <tr>
+                <td><span class="cdot" style="background:#E8D8C4;"></span>Pale Sand</td>
+                <td>Near Black #1A1F1E</td>
+                <td>Mangrove #1E4D3A</td>
+                <td>Warm alternative to Oatmeal. Same text logic applies.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 1.3 Contrast Governance -->
+        <div class="subsection" id="s1-contrast">
+          <p class="subsection-title">1.3 — Contrast Governance (WCAG 2.1)</p>
+          <table class="spec-table">
+            <thead>
+              <tr>
+                <th>Pair</th>
+                <th>Ratio</th>
+                <th>AA (4.5:1)</th>
+                <th>AA Large (3:1)</th>
+                <th>AAA (7:1)</th>
+                <th>Use</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pair-chip" style="background:#1A1F1E; color:#F7F4EE;">Near Black on Oatmeal</span></td>
+                <td><span class="ratio-val">16.3:1</span></td>
+                <td><span class="badge badge-aaa">AAA</span></td>
+                <td><span class="badge badge-aaa">AAA</span></td>
+                <td><span class="badge badge-aaa">AAA</span></td>
+                <td>Primary body text — all sizes</td>
+              </tr>
+              <tr>
+                <td><span class="pair-chip" style="background:#1E4D3A; color:#F7F4EE;">Oatmeal on Mangrove</span></td>
+                <td><span class="ratio-val">7.9:1</span></td>
+                <td><span class="badge badge-aaa">AAA</span></td>
+                <td><span class="badge badge-aaa">AAA</span></td>
+                <td><span class="badge badge-aaa">AAA</span></td>
+                <td>Reversed text, navigation, headers</td>
+              </tr>
+              <tr>
+                <td><span class="pair-chip" style="background:#F7F4EE; color:#1E4D3A;">Mangrove on Oatmeal</span></td>
+                <td><span class="ratio-val">7.9:1</span></td>
+                <td><span class="badge badge-aaa">AAA</span></td>
+                <td><span class="badge badge-aaa">AAA</span></td>
+                <td><span class="badge badge-aaa">AAA</span></td>
+                <td>Headings, links, emphasis on light surfaces</td>
+              </tr>
+              <tr>
+                <td><span class="pair-chip" style="background:#1E4D3A; color:#8DCFAA;">Mid Canopy on Mangrove</span></td>
+                <td><span class="ratio-val">4.9:1</span></td>
+                <td><span class="badge badge-aa">AA</span></td>
+                <td><span class="badge badge-aa">AA</span></td>
+                <td><span class="badge badge-fail">Fail</span></td>
+                <td>Wordmark "Green" element; headings and large type. Not for small body text.</td>
+              </tr>
+              <tr>
+                <td><span class="pair-chip" style="background:#E8D8C4; color:#1A1F1E;">Near Black on Pale Sand</span></td>
+                <td><span class="ratio-val">13.0:1</span></td>
+                <td><span class="badge badge-aaa">AAA</span></td>
+                <td><span class="badge badge-aaa">AAA</span></td>
+                <td><span class="badge badge-aaa">AAA</span></td>
+                <td>Body text on warm secondary surfaces</td>
+              </tr>
+              <tr>
+                <td><span class="pair-chip" style="background:#E8D8C4; color:#1E4D3A;">Mangrove on Pale Sand</span></td>
+                <td><span class="ratio-val">6.3:1</span></td>
+                <td><span class="badge badge-aaa">AAA</span></td>
+                <td><span class="badge badge-aaa">AAA</span></td>
+                <td><span class="badge badge-fail">Fail</span></td>
+                <td>Headings on warm secondary surfaces</td>
+              </tr>
+              <tr>
+                <td><span class="pair-chip" style="background:#F7F4EE; color:#B87A4E;">Aged Teak on Oatmeal</span></td>
+                <td><span class="ratio-val">3.0:1</span></td>
+                <td><span class="badge badge-fail">Fail</span></td>
+                <td><span class="badge badge-large">Large only</span></td>
+                <td><span class="badge badge-fail">Fail</span></td>
+                <td>Section labels, accent elements, large type (18px+). Not for body text.</td>
+              </tr>
+              <tr>
+                <td><span class="pair-chip" style="background:#8DCFAA; color:#1E4D3A;">Mangrove on Mid Canopy</span></td>
+                <td><span class="ratio-val">4.9:1</span></td>
+                <td><span class="badge badge-aa">AA</span></td>
+                <td><span class="badge badge-aa">AA</span></td>
+                <td><span class="badge badge-fail">Fail</span></td>
+                <td>Text on Mid Canopy surfaces</td>
+              </tr>
+              <tr>
+                <td><span class="pair-chip" style="background:#F7F4EE; color:#8DCFAA;">Mid Canopy on Oatmeal</span></td>
+                <td><span class="ratio-val">1.6:1</span></td>
+                <td><span class="badge badge-fail">Fail</span></td>
+                <td><span class="badge badge-fail">Fail</span></td>
+                <td><span class="badge badge-fail">Fail</span></td>
+                <td>Do not use Mid Canopy as text on light surfaces.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 1.4 Usage Rules -->
+        <div class="subsection" id="s1-rules">
+          <p class="subsection-title">1.4 — Usage Rules</p>
+          <ul class="rules-list">
+            <li>Mangrove and Oatmeal are the dominant surface pair. In any layout, one or both must be present.</li>
+            <li>Aged Teak is an accent colour. It is not a background for text-heavy surfaces — contrast at body size fails WCAG AA.</li>
+            <li>Mid Canopy appears on dark backgrounds only (Mangrove, Near Black). Never use Mid Canopy as text on light surfaces — 1.6:1 contrast fails at all sizes.</li>
+            <li>Pale Sand is a warmth option for light surfaces. Use in place of Oatmeal where a warmer tone is intentional. Do not combine Pale Sand and Oatmeal as surface colours within the same layout.</li>
+            <li>Do not introduce colours outside this palette without explicit approval and a corresponding entry in this specification.</li>
+          </ul>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           02 — TYPOGRAPHY
+           ================================================================ -->
+      <section class="section" id="section-02">
+        <div class="section-header">
+          <span class="section-num">02</span>
+          <h2 class="section-title">Typography</h2>
+        </div>
+
+        <!-- 2.1 Type Families -->
+        <div class="subsection" id="s2-families">
+          <p class="subsection-title">2.1 — Type Families</p>
+          <div class="two-col" style="margin-bottom:var(--sp-3);">
+            <div class="type-specimen">
+              <div class="specimen-eyebrow">Display — Space Grotesk</div>
+              <div style="font-family:'Space Grotesk',sans-serif; font-size:34px; font-weight:700; color:var(--mangrove); letter-spacing:-0.02em; line-height:1.1; margin-bottom:10px;">Space Grotesk</div>
+              <div style="font-family:'Space Grotesk',sans-serif; font-size:14px; color:#666; line-height:1.55;">
+                ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+                abcdefghijklmnopqrstuvwxyz<br>
+                0123456789 &amp; — @ # %
+              </div>
+              <div class="specimen-meta">Weights: 300 · 400 · 500 · 700<br>Source: Google Fonts — <code>Space+Grotesk:wght@300;400;500;700</code><br>Fallback: system-ui, sans-serif</div>
+            </div>
+            <div class="type-specimen">
+              <div class="specimen-eyebrow">Body — Inter</div>
+              <div style="font-family:'Inter',sans-serif; font-size:34px; font-weight:400; color:var(--near-black); line-height:1.1; margin-bottom:10px;">Inter</div>
+              <div style="font-family:'Inter',sans-serif; font-size:14px; color:#666; line-height:1.55;">
+                ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+                abcdefghijklmnopqrstuvwxyz<br>
+                0123456789 &amp; — @ # %
+              </div>
+              <div class="specimen-meta">Weights: 400 · 500 · 600<br>Source: Google Fonts — <code>Inter:wght@400;500;600</code><br>Fallback: system-ui, sans-serif</div>
+            </div>
+          </div>
+          <ul class="rules-list">
+            <li><strong>Space Grotesk</strong> — wordmark, display headings, section titles, navigation labels, UI element labels, data table headers, prominent callouts.</li>
+            <li><strong>Inter</strong> — body text, captions, metadata, supporting labels, long-form content, form fields.</li>
+            <li>Do not introduce a third typeface family without explicit approval. System font fallbacks are technical contingencies, not design choices.</li>
+          </ul>
+        </div>
+
+        <!-- 2.2 Type Scale -->
+        <div class="subsection" id="s2-scale">
+          <p class="subsection-title">2.2 — Type Scale</p>
+          <div style="background:white; border-radius:var(--radius); padding:var(--sp-3) var(--sp-4);">
+            <div class="type-scale-row">
+              <div class="scale-meta"><strong>Display / H1</strong>48px · SG 700<br>−0.02em tracking<br>1.1 line-height</div>
+              <div style="font-family:'Space Grotesk',sans-serif; font-size:48px; font-weight:700; color:var(--mangrove); letter-spacing:-0.02em; line-height:1.1;">Display Heading</div>
+            </div>
+            <div class="type-scale-row">
+              <div class="scale-meta"><strong>H2</strong>32px · SG 700<br>−0.01em tracking<br>1.2 line-height</div>
+              <div style="font-family:'Space Grotesk',sans-serif; font-size:32px; font-weight:700; color:var(--mangrove); letter-spacing:-0.01em; line-height:1.2;">Section Title</div>
+            </div>
+            <div class="type-scale-row">
+              <div class="scale-meta"><strong>H3</strong>22px · SG 700<br>−0.01em tracking<br>1.3 line-height</div>
+              <div style="font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; color:var(--near-black); letter-spacing:-0.01em; line-height:1.3;">Subsection Heading</div>
+            </div>
+            <div class="type-scale-row">
+              <div class="scale-meta"><strong>H4</strong>17px · SG 600<br>0em tracking<br>1.4 line-height</div>
+              <div style="font-family:'Space Grotesk',sans-serif; font-size:17px; font-weight:600; color:var(--near-black); line-height:1.4;">Component Label or Card Title</div>
+            </div>
+            <div class="type-scale-row">
+              <div class="scale-meta"><strong>Body</strong>15px · Inter 400<br>1.6 line-height</div>
+              <div style="font-family:'Inter',sans-serif; font-size:15px; font-weight:400; color:var(--near-black); line-height:1.6; max-width:460px;">The CEAL Green brand is built on clarity, warmth, and intentional craft. Every typographic choice reinforces legibility and approachability without sacrificing confidence.</div>
+            </div>
+            <div class="type-scale-row">
+              <div class="scale-meta"><strong>Body small</strong>13px · Inter 400<br>1.6 line-height</div>
+              <div style="font-family:'Inter',sans-serif; font-size:13px; font-weight:400; color:#555; line-height:1.6; max-width:460px;">Supporting copy, panel text, secondary descriptions. Use at 80–90% of near-black opacity to create visual hierarchy against primary body text.</div>
+            </div>
+            <div class="type-scale-row">
+              <div class="scale-meta"><strong>Caption</strong>12px · Inter 400<br>1.5 line-height</div>
+              <div style="font-family:'Inter',sans-serif; font-size:12px; font-weight:400; color:#777; line-height:1.5;">Figure captions, metadata, timestamps, data footnotes. #777 on Oatmeal or rgba(0,0,0,0.45).</div>
+            </div>
+            <div class="type-scale-row">
+              <div class="scale-meta"><strong>Label / Tag</strong>10–11px · Inter 700<br>0.07–0.10em tracking<br>Uppercase</div>
+              <div style="font-family:'Inter',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--aged-teak);">Section Label · Category Tag · Status Indicator</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2.3 Usage Rules -->
+        <div class="subsection" id="s2-rules">
+          <p class="subsection-title">2.3 — Usage Rules</p>
+          <ul class="rules-list">
+            <li>Heading hierarchy is strict: H1 → H2 → H3. Do not skip levels within a single layout.</li>
+            <li>Body text line-height is 1.6. Do not tighten below 1.5 for any text content above 12px.</li>
+            <li>Uppercase labels require letter-spacing 0.06–0.10em. Never use uppercase on body-weight text without increased tracking — it creates visual noise.</li>
+            <li>Aged Teak is the preferred colour for uppercase label text on light backgrounds. Its insufficient body-text contrast is acceptable at label sizes (10–12px uppercase is categorised as "large text" in WCAG at bold weight).</li>
+            <li>Light weight (300) is reserved for display settings and typographic contrast. Do not use 300 weight for body copy or any text below 24px.</li>
+            <li>Do not use Mid Canopy for any text element on Oatmeal or Pale Sand backgrounds — contrast fails at all sizes.</li>
+          </ul>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           03 — WORDMARK SYSTEM
+           ================================================================ -->
+      <section class="section" id="section-03">
+        <div class="section-header">
+          <span class="section-num">03</span>
+          <h2 class="section-title">Wordmark System</h2>
+        </div>
+
+        <div class="info-callout">
+          The wordmark is a two-element typographic unit: <strong>CEAL</strong> (Space Grotesk 700, uppercase) and <strong>Green</strong> (Space Grotesk 500, title case). Rendered as inline-flex with a defined internal space. Colour is determined by the background it sits on — see 3.1. Typographic differentiation (tracking/weight contrast) is pending team confirmation — see 3.5.
+        </div>
+
+        <!-- 3.1 Base Treatment -->
+        <div class="subsection" id="s3-base">
+          <p class="subsection-title">3.1 — Base Treatment — Colour Variants Across Full Palette</p>
+          <div class="wm-panel-grid">
+            <div class="wm-panel p-mangrove">
+              <div class="wm-panel-label">Mangrove</div>
+              <div class="cg-wm" style="font-size:30px;"><span class="wm-c">CEAL</span><span class="wm-g">Green</span></div>
+            </div>
+            <div class="wm-panel p-oatmeal">
+              <div class="wm-panel-label">Oatmeal</div>
+              <div class="cg-wm" style="font-size:30px;"><span class="wm-c">CEAL</span><span class="wm-g">Green</span></div>
+            </div>
+            <div class="wm-panel p-near-black">
+              <div class="wm-panel-label">Near Black</div>
+              <div class="cg-wm" style="font-size:30px;"><span class="wm-c">CEAL</span><span class="wm-g">Green</span></div>
+            </div>
+          </div>
+          <div class="wm-panel-grid" style="margin-bottom:var(--sp-3);">
+            <div class="wm-panel p-aged-teak">
+              <div class="wm-panel-label">Aged Teak</div>
+              <div class="cg-wm" style="font-size:30px;"><span class="wm-c">CEAL</span><span class="wm-g">Green</span></div>
+            </div>
+            <div class="wm-panel p-mid-canopy">
+              <div class="wm-panel-label">Mid Canopy</div>
+              <div class="cg-wm" style="font-size:30px;"><span class="wm-c">CEAL</span><span class="wm-g">Green</span></div>
+            </div>
+            <div class="wm-panel p-pale-sand">
+              <div class="wm-panel-label">Pale Sand</div>
+              <div class="cg-wm" style="font-size:30px;"><span class="wm-c">CEAL</span><span class="wm-g">Green</span></div>
+            </div>
+          </div>
+
+          <table class="spec-table">
+            <thead>
+              <tr>
+                <th>Background</th>
+                <th>CEAL</th>
+                <th>Green</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="cdot" style="background:#1E4D3A;"></span>Mangrove #1E4D3A</td>
+                <td>Oatmeal #F7F4EE</td>
+                <td>Mid Canopy #8DCFAA</td>
+              </tr>
+              <tr>
+                <td><span class="cdot" style="background:#F7F4EE;"></span>Oatmeal #F7F4EE</td>
+                <td>Near Black #1A1F1E</td>
+                <td>Mangrove #1E4D3A</td>
+              </tr>
+              <tr>
+                <td><span class="cdot" style="background:#1A1F1E;"></span>Near Black #1A1F1E</td>
+                <td>Oatmeal #F7F4EE</td>
+                <td>Mid Canopy #8DCFAA</td>
+              </tr>
+              <tr>
+                <td><span class="cdot" style="background:#B87A4E;"></span>Aged Teak #B87A4E</td>
+                <td>Oatmeal #F7F4EE</td>
+                <td>Near Black #1A1F1E</td>
+              </tr>
+              <tr>
+                <td><span class="cdot" style="background:#8DCFAA;"></span>Mid Canopy #8DCFAA</td>
+                <td>Mangrove #1E4D3A</td>
+                <td>Near Black #1A1F1E</td>
+              </tr>
+              <tr>
+                <td><span class="cdot" style="background:#E8D8C4;"></span>Pale Sand #E8D8C4</td>
+                <td>Near Black #1A1F1E</td>
+                <td>Mangrove #1E4D3A</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 3.2 Technical Specification -->
+        <div class="subsection" id="s3-spec">
+          <p class="subsection-title">3.2 — Technical Specification (Base Treatment)</p>
+          <table class="spec-table">
+            <thead>
+              <tr><th>Property</th><th>CEAL element</th><th>Green element</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Typeface</td>
+                <td colspan="2">Space Grotesk — Google Fonts</td>
+              </tr>
+              <tr>
+                <td>Weight</td>
+                <td>700 (Bold)</td>
+                <td>500 (Medium)</td>
+              </tr>
+              <tr>
+                <td>Case</td>
+                <td><code>text-transform: uppercase</code></td>
+                <td>Title case (set directly in markup)</td>
+              </tr>
+              <tr>
+                <td>Letter spacing</td>
+                <td><code>letter-spacing: -0.01em</code></td>
+                <td><code>letter-spacing: 0.08em</code></td>
+              </tr>
+              <tr>
+                <td>Internal word space</td>
+                <td colspan="2"><code>margin-left: 0.18em</code> on the Green element</td>
+              </tr>
+              <tr>
+                <td>Layout</td>
+                <td colspan="2"><code>display: inline-flex; align-items: baseline</code> on the wordmark container</td>
+              </tr>
+              <tr>
+                <td>Rendering note</td>
+                <td colspan="2">Never set CEAL and Green as a single string with a global letter-spacing value. The tracking contrast between the two elements is fundamental and requires separate CSS targets.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 3.3 Scale Behaviour -->
+        <div class="subsection" id="s3-scale">
+          <p class="subsection-title">3.3 — Scale Behaviour</p>
+          <table class="spec-table">
+            <thead>
+              <tr><th>Context</th><th>Font size</th><th>Use case</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Hero / Cover</td>
+                <td>48–72px</td>
+                <td>Title slides, hero banners, large-format print headers</td>
+              </tr>
+              <tr>
+                <td>Document header</td>
+                <td>28–40px</td>
+                <td>Document cover pages, presentation slide headers</td>
+              </tr>
+              <tr>
+                <td>Navigation</td>
+                <td>18–24px</td>
+                <td>Website navigation bar, app headers</td>
+              </tr>
+              <tr>
+                <td>Compact</td>
+                <td>14–18px</td>
+                <td>Email signatures, footers, small panels, secondary branding positions</td>
+              </tr>
+              <tr>
+                <td>Minimum</td>
+                <td>14px</td>
+                <td>Absolute minimum for the full wordmark. Below 14px, use the monogram avatar.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 3.4 Avatar System -->
+        <div class="subsection" id="s3-avatar">
+          <p class="subsection-title">3.4 — Avatar System</p>
+          <p style="font-size:13.5px; color:#444; margin-bottom:var(--sp-3); line-height:1.65; max-width:660px;">The monogram avatar is the compact representation of the wordmark — used where the full wordmark is impractical: favicons, profile images, app icons, small panel branding. The monogram replicates the weight contrast of the wordmark: "C" at 700 (CEAL weight), "G" at 500 (Green weight).</p>
+
+          <div class="avatar-row">
+            <!-- 80px -->
+            <div class="avatar-item">
+              <div class="avatar" style="width:80px; height:80px; border-radius:10px;">
+                <div style="font-family:'Space Grotesk',sans-serif; font-size:26px; letter-spacing:-0.01em; line-height:1; color:var(--oatmeal); font-weight:700;">C<span style="font-weight:500; color:var(--mid-canopy);">G</span></div>
+              </div>
+              <div class="avatar-caption">80px<br>Document / Hero</div>
+            </div>
+            <!-- 64px -->
+            <div class="avatar-item">
+              <div class="avatar" style="width:64px; height:64px; border-radius:8px;">
+                <div style="font-family:'Space Grotesk',sans-serif; font-size:20px; letter-spacing:-0.01em; line-height:1; color:var(--oatmeal); font-weight:700;">C<span style="font-weight:500; color:var(--mid-canopy);">G</span></div>
+              </div>
+              <div class="avatar-caption">64px<br>Standard</div>
+            </div>
+            <!-- 48px -->
+            <div class="avatar-item">
+              <div class="avatar" style="width:48px; height:48px; border-radius:6px;">
+                <div style="font-family:'Space Grotesk',sans-serif; font-size:15px; letter-spacing:-0.01em; line-height:1; color:var(--oatmeal); font-weight:700;">C<span style="font-weight:500; color:var(--mid-canopy);">G</span></div>
+              </div>
+              <div class="avatar-caption">48px<br>Nav / Profile</div>
+            </div>
+            <!-- 32px -->
+            <div class="avatar-item">
+              <div class="avatar" style="width:32px; height:32px; border-radius:4px;">
+                <div style="font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:-0.01em; line-height:1; color:var(--oatmeal); font-weight:700;">C<span style="font-weight:500; color:var(--mid-canopy);">G</span></div>
+              </div>
+              <div class="avatar-caption">32px<br>Compact</div>
+            </div>
+            <!-- Divider -->
+            <div style="width:1px; height:80px; background:rgba(0,0,0,0.1); align-self:flex-end; margin-bottom:20px;"></div>
+            <!-- Circle social variant -->
+            <div class="avatar-item">
+              <div class="avatar" style="width:64px; height:64px; border-radius:50%;">
+                <div style="font-family:'Space Grotesk',sans-serif; font-size:20px; letter-spacing:-0.01em; line-height:1; color:var(--oatmeal); font-weight:700;">C<span style="font-weight:500; color:var(--mid-canopy);">G</span></div>
+              </div>
+              <div class="avatar-caption">Circle<br>Social / Avatar</div>
+            </div>
+            <!-- Light variant -->
+            <div class="avatar-item">
+              <div class="avatar" style="width:64px; height:64px; border-radius:8px; background:var(--oatmeal); border:1px solid rgba(0,0,0,0.09);">
+                <div style="font-family:'Space Grotesk',sans-serif; font-size:20px; letter-spacing:-0.01em; line-height:1; color:var(--near-black); font-weight:700;">C<span style="font-weight:500; color:var(--aged-teak);">G</span></div>
+              </div>
+              <div class="avatar-caption">Light variant<br>Oatmeal bg</div>
+            </div>
+          </div>
+
+          <ul class="rules-list">
+            <li><strong>Default:</strong> Mangrove background, Oatmeal "C", Mid Canopy "G". Use in all standard contexts.</li>
+            <li><strong>Light variant:</strong> Oatmeal background, Near Black "C", Aged Teak "G". Use on dark surfaces where the default reads as a dark box.</li>
+            <li>"C" uses Space Grotesk 700 to match CEAL weight. "G" uses Space Grotesk 500 to match Green weight. This contrast is the system — do not equalise the weights.</li>
+            <li>Minimum rendered size: 32px. Below 32px, reduce to a single "C" in Oatmeal on Mangrove, or a flat Mangrove colour block.</li>
+            <li>Corner radius: 8px default. Use 50% for circular social contexts (profile images, social icons).</li>
+          </ul>
+        </div>
+
+        <!-- 3.5 Differentiation — PENDING -->
+        <div class="subsection" id="s3-differentiation">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:var(--sp-2);">
+            <p class="subsection-title" style="margin-bottom:0;">3.5 — Wordmark Differentiation</p>
+            <span class="pending-badge">Pending</span>
+          </div>
+          <div class="pending-notice">
+            <div class="pending-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="10" cy="10" r="9" stroke="#B87A4E" stroke-width="1.5"/>
+                <path d="M10 6v4.5" stroke="#B87A4E" stroke-width="1.75" stroke-linecap="round"/>
+                <circle cx="10" cy="13.5" r="0.875" fill="#B87A4E"/>
+              </svg>
+              <span class="pending-label" style="margin-bottom:0;">Decision in Progress</span>
+            </div>
+            <p>A typographic differentiation layer is under review — a contrast device applied to the wordmark to increase distinctiveness beyond the weight difference already present in the base treatment. Three options have been presented to the team for a decision.</p>
+            <p>Once confirmed, this section will document: the approved differentiation rule, its full CSS specification, the rationale, and any constraints on its application. The base treatment in Sections 3.1–3.4 applies until this section is closed.</p>
+            <p>Reference: <em>CEAL Green — Wordmark Direction v1</em> (in the current working files).</p>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           04 — SHAPE & SPACING
+           ================================================================ -->
+      <section class="section" id="section-04">
+        <div class="section-header">
+          <span class="section-num">04</span>
+          <h2 class="section-title">Shape &amp; Spacing</h2>
+        </div>
+
+        <!-- 4.1 Border Radius -->
+        <div class="subsection" id="s4-radius">
+          <p class="subsection-title">4.1 — Border Radius</p>
+          <div class="radius-demo-row">
+            <div class="radius-item">
+              <div class="radius-block" style="border-radius:0px;"></div>
+              <div class="radius-caption">0px<br><strong>Sharp</strong><br>Print, full-bleed<br>surfaces, dividers</div>
+            </div>
+            <div class="radius-item">
+              <div class="radius-block" style="border-radius:4px;"></div>
+              <div class="radius-caption">4px<br><strong>Small</strong><br>Badges, chips,<br>inline elements</div>
+            </div>
+            <div class="radius-item">
+              <div class="radius-block" style="border-radius:8px; border-width:3px;"></div>
+              <div class="radius-caption">8px<br><strong>Default ✦</strong><br>Cards, buttons,<br>panels, inputs</div>
+            </div>
+            <div class="radius-item">
+              <div class="radius-block" style="border-radius:12px;"></div>
+              <div class="radius-caption">12px<br><strong>Large</strong><br>Modals, feature<br>panels, hero cards</div>
+            </div>
+            <div class="radius-item">
+              <div class="radius-block" style="border-radius:16px;"></div>
+              <div class="radius-caption">16px<br><strong>Extra large</strong><br>App surfaces,<br>full-section cards</div>
+            </div>
+            <div class="radius-item">
+              <div class="radius-block" style="border-radius:50%;"></div>
+              <div class="radius-caption">50%<br><strong>Circle</strong><br>Avatars, icon<br>containers</div>
+            </div>
+          </div>
+          <ul class="rules-list">
+            <li>Default radius is <strong>8px</strong>. Apply consistently across components unless a specific exception is defined above.</li>
+            <li>Do not mix radius values across elements of the same component type within a single layout.</li>
+            <li>Sharp corners (0px) are appropriate for print materials and full-bleed surfaces where clean physical edges matter. Not for digital UI components.</li>
+          </ul>
+        </div>
+
+        <!-- 4.2 Spacing Scale -->
+        <div class="subsection" id="s4-spacing">
+          <p class="subsection-title">4.2 — Spacing Scale</p>
+          <div class="spacing-demo-row">
+            <div class="spacing-item">
+              <div class="spacing-block" style="width:8px; height:8px;"></div>
+              <div class="spacing-caption">8px<br>sp-1</div>
+            </div>
+            <div class="spacing-item">
+              <div class="spacing-block" style="width:16px; height:16px;"></div>
+              <div class="spacing-caption">16px<br>sp-2</div>
+            </div>
+            <div class="spacing-item">
+              <div class="spacing-block" style="width:24px; height:24px;"></div>
+              <div class="spacing-caption">24px<br>sp-3</div>
+            </div>
+            <div class="spacing-item">
+              <div class="spacing-block" style="width:32px; height:32px;"></div>
+              <div class="spacing-caption">32px<br>sp-4</div>
+            </div>
+            <div class="spacing-item">
+              <div class="spacing-block" style="width:48px; height:48px;"></div>
+              <div class="spacing-caption">48px<br>sp-5</div>
+            </div>
+            <div class="spacing-item">
+              <div class="spacing-block" style="width:64px; height:64px;"></div>
+              <div class="spacing-caption">64px<br>sp-6</div>
+            </div>
+            <div class="spacing-item">
+              <div class="spacing-block" style="width:96px; height:96px;"></div>
+              <div class="spacing-caption">96px<br>sp-7</div>
+            </div>
+          </div>
+          <ul class="rules-list">
+            <li>All spacing values are multiples of 8. Do not use values outside this scale without documented justification.</li>
+            <li>Standard section vertical margin: 64px (sp-6).</li>
+            <li>Standard component content padding: 32px horizontal (sp-4), 24px vertical (sp-3).</li>
+            <li>Gap between closely related elements within a component: 8px (sp-1) or 16px (sp-2).</li>
+          </ul>
+        </div>
+
+        <!-- 4.3 Layout Grid -->
+        <div class="subsection" id="s4-grid">
+          <p class="subsection-title">4.3 — Layout Grid</p>
+          <ul class="rules-list">
+            <li><strong>Document max-width:</strong> 960px. Content centres within this boundary at wider viewports.</li>
+            <li><strong>Digital column grid:</strong> 12 columns, 24px gutters, 32px outer margin (desktop); 20px outer margin (mobile).</li>
+            <li><strong>Presentation grid:</strong> 8 columns, consistent with Keynote/PowerPoint slide layouts.</li>
+            <li><strong>Surface hierarchy:</strong> Full-width background surfaces → max-width contained columns → nested component padding.</li>
+          </ul>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           05 — COMPONENT DEFAULTS
+           ================================================================ -->
+      <section class="section" id="section-05">
+        <div class="section-header">
+          <span class="section-num">05</span>
+          <h2 class="section-title">Component Defaults</h2>
+        </div>
+
+        <!-- 5.1 Buttons -->
+        <div class="subsection" id="s5-buttons">
+          <p class="subsection-title">5.1 — Buttons</p>
+          <div class="component-demo">
+            <div class="component-eyebrow">Button Variants</div>
+            <div class="btn-row">
+              <button class="btn btn-primary">Primary Action</button>
+              <button class="btn btn-secondary">Secondary</button>
+              <button class="btn btn-ghost">Ghost</button>
+              <button class="btn btn-accent">Accent</button>
+            </div>
+          </div>
+          <table class="spec-table" style="margin-bottom:12px;">
+            <thead>
+              <tr><th>Variant</th><th>Background</th><th>Text</th><th>Border</th><th>Use</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Primary</td>
+                <td>Mangrove #1E4D3A</td>
+                <td>Oatmeal #F7F4EE</td>
+                <td>None</td>
+                <td>Main CTA — one per view</td>
+              </tr>
+              <tr>
+                <td>Secondary</td>
+                <td>Transparent</td>
+                <td>Mangrove #1E4D3A</td>
+                <td>1.5px solid Mangrove</td>
+                <td>Secondary action alongside Primary</td>
+              </tr>
+              <tr>
+                <td>Ghost</td>
+                <td>Transparent</td>
+                <td>Near Black #1A1F1E</td>
+                <td>1.5px solid rgba(0,0,0,0.15)</td>
+                <td>Tertiary or neutral actions</td>
+              </tr>
+              <tr>
+                <td>Accent</td>
+                <td>Aged Teak #B87A4E</td>
+                <td>Oatmeal #F7F4EE</td>
+                <td>None</td>
+                <td>Warmth-forward CTA — use sparingly. One per layout maximum.</td>
+              </tr>
+            </tbody>
+          </table>
+          <ul class="rules-list">
+            <li>Font: Space Grotesk 500, 13–14px, letter-spacing 0.01em.</li>
+            <li>Padding: 10px × 20px (standard), 8px × 16px (compact).</li>
+            <li>Border radius: 8px default.</li>
+            <li>Do not use Mid Canopy as a button background — contrast fails at all text sizes.</li>
+            <li>Hover states: Primary darkens 10%; Secondary fills to Mangrove 10% background; Ghost fills to Near Black 5%.</li>
+          </ul>
+        </div>
+
+        <!-- 5.2 Cards -->
+        <div class="subsection" id="s5-cards">
+          <p class="subsection-title">5.2 — Cards</p>
+          <div class="component-demo">
+            <div class="component-eyebrow">Card Variants</div>
+            <div class="card-demo-grid">
+              <!-- Standard card -->
+              <div class="demo-card">
+                <div class="demo-card-hd" style="background:var(--mangrove); color:var(--oatmeal);">Standard Card</div>
+                <div class="demo-card-bd">
+                  <p>Card body in Inter 400 at 13px. Mangrove header strip with Oatmeal text. Default card background is Oatmeal.</p>
+                  <button class="card-btn btn-primary" style="background:var(--mangrove); color:var(--oatmeal);">Learn more</button>
+                </div>
+              </div>
+              <!-- Light card -->
+              <div class="demo-card" style="background:white;">
+                <div class="demo-card-hd" style="background:var(--oatmeal); color:var(--mangrove); border-bottom:1px solid rgba(0,0,0,0.07);">Light Variant</div>
+                <div class="demo-card-bd">
+                  <p>White background with Oatmeal header. Mangrove headings. Near Black body. Subtle border gives definition.</p>
+                  <button class="card-btn" style="background:transparent; color:var(--mangrove); border:1.5px solid var(--mangrove); border-radius:var(--radius-sm); font-family:'Space Grotesk',sans-serif; font-size:12px; font-weight:500; padding:7px 14px; cursor:default;">View</button>
+                </div>
+              </div>
+              <!-- Dark card -->
+              <div class="demo-card" style="background:var(--mangrove); border-color:transparent;">
+                <div class="demo-card-hd" style="background:rgba(0,0,0,0.18); color:var(--mid-canopy);">Dark Variant</div>
+                <div class="demo-card-bd">
+                  <p style="color:rgba(247,244,238,0.72);">Mangrove surface, Oatmeal text. Mid Canopy for headers and emphasis. Use for featured content.</p>
+                  <button class="card-btn" style="background:var(--mid-canopy); color:var(--mangrove); font-family:'Space Grotesk',sans-serif; font-size:12px; font-weight:500; padding:7px 14px; cursor:default; border-radius:var(--radius-sm);">Explore</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ul class="rules-list">
+            <li>Default card: Oatmeal background, 8px radius, 1px border rgba(0,0,0,0.07). Body padding: 16px.</li>
+            <li>Card header options: Mangrove with Oatmeal text; Oatmeal with Mangrove text; transparent header with a ruled divider.</li>
+            <li>Do not combine Pale Sand and Oatmeal card backgrounds in the same grid.</li>
+          </ul>
+        </div>
+
+        <!-- 5.3 Navigation -->
+        <div class="subsection" id="s5-nav">
+          <p class="subsection-title">5.3 — Navigation</p>
+          <div class="component-demo">
+            <div class="component-eyebrow">Navigation Bar</div>
+            <div class="nav-demo">
+              <div class="cg-wm p-mangrove" style="font-size:20px;">
+                <span class="wm-c">CEAL</span><span class="wm-g">Green</span>
+              </div>
+              <nav class="nav-links">
+                <span class="nav-link active">About</span>
+                <span class="nav-link">Programs</span>
+                <span class="nav-link">Impact</span>
+                <span class="nav-link">Contact</span>
+              </nav>
+              <button class="btn btn-accent" style="font-size:13px; padding:8px 16px;">Join us</button>
+            </div>
+          </div>
+          <ul class="rules-list">
+            <li>Primary navigation background: Mangrove.</li>
+            <li>Wordmark in nav: 18–22px, Oatmeal "CEAL" / Mid Canopy "Green" (reversed treatment).</li>
+            <li>Nav links: Space Grotesk 500, 13px, Oatmeal 65% opacity (inactive), 100% opacity (active).</li>
+            <li>Hover state: Mid Canopy. Active state: full Oatmeal. No underlines or background pills by default.</li>
+            <li>CTA in nav: Aged Teak Accent button — one maximum.</li>
+          </ul>
+        </div>
+
+        <!-- 5.4 Data & Tables -->
+        <div class="subsection" id="s5-tables">
+          <p class="subsection-title">5.4 — Data &amp; Tables</p>
+          <ul class="rules-list">
+            <li>Table header row background: <code>rgba(30,77,58,0.06)</code> (Mangrove tint on Oatmeal).</li>
+            <li>Table header text: Space Grotesk 700, 10–11px, uppercase, 0.08em tracking, Mangrove colour.</li>
+            <li>Table header bottom border: 1px solid <code>rgba(30,77,58,0.14)</code>.</li>
+            <li>Table row border: 1px solid <code>rgba(0,0,0,0.055)</code>.</li>
+            <li>Data values: Inter 400 or 500, 13–14px, Near Black.</li>
+            <li>Row padding: 10px × 14px.</li>
+            <li>Do not use colour alone to convey data meaning — always pair colour with a text label or icon.</li>
+          </ul>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           06 — APPLICATION NOTES
+           ================================================================ -->
+      <section class="section" id="section-06">
+        <div class="section-header">
+          <span class="section-num">06</span>
+          <h2 class="section-title">Application Notes</h2>
+        </div>
+
+        <!-- 6.1 Digital -->
+        <div class="subsection" id="s6-digital">
+          <p class="subsection-title">6.1 — Digital Contexts</p>
+          <ul class="rules-list">
+            <li><strong>Website:</strong> Oatmeal body background. Mangrove navigation. Near Black body text. Space Grotesk headings. Inter body copy. Aged Teak for CTAs and accent labels.</li>
+            <li><strong>Email:</strong> White or Oatmeal background. Full wordmark in header at minimum 18px. Near Black body text. Avoid Mid Canopy as a text colour in email — rendering varies across clients.</li>
+            <li><strong>Social / Profile:</strong> Circle avatar (50% radius, Mangrove background, CG monogram) for profile images. Full wordmark at 20px minimum for any branded social graphic. Oatmeal or Mangrove as primary surface.</li>
+            <li><strong>Presentations:</strong> Mangrove title slides with Oatmeal and Mid Canopy hierarchy. Oatmeal content slides with Near Black body. Aged Teak for data emphasis and callouts.</li>
+          </ul>
+        </div>
+
+        <!-- 6.2 Print -->
+        <div class="subsection" id="s6-print">
+          <p class="subsection-title">6.2 — Print Contexts</p>
+          <ul class="rules-list">
+            <li><strong>Letterhead / Documents:</strong> Oatmeal or white background (production-dependent). Wordmark top-left, 22px minimum. Mangrove header rule.</li>
+            <li><strong>Colour mode:</strong> CMYK conversions to be confirmed at print production stage. All values in this specification are screen RGB. Do not use these values unverified in print files.</li>
+            <li><strong>Radius in print:</strong> Sharp corners (0px) are acceptable wherever physical production constraints make rounded corners impractical.</li>
+          </ul>
+        </div>
+
+        <!-- 6.3 Agent / Developer -->
+        <div class="subsection" id="s6-agent">
+          <p class="subsection-title">6.3 — Agent &amp; Developer Use</p>
+          <ul class="rules-list">
+            <li>All CSS custom properties are defined at <code>:root</code>. Use the variable names — do not hardcode hex values in component CSS.</li>
+            <li>Google Fonts import: <code>family=Space+Grotesk:wght@300;400;500;700&amp;family=Inter:wght@400;500;600</code></li>
+            <li>Wordmark structure: <code>&lt;div class="cg-wm"&gt;&lt;span class="wm-c"&gt;CEAL&lt;/span&gt;&lt;span class="wm-g"&gt;Green&lt;/span&gt;&lt;/div&gt;</code>. Never as a single string.</li>
+            <li>Wordmark colour is always set by a context class (<code>.p-mangrove</code>, <code>.p-oatmeal</code>, etc.) — never hard-coded on the <code>.wm-c</code> or <code>.wm-g</code> base selectors.</li>
+            <li>When building new components: follow the 8px spacing scale, use <code>--radius: 8px</code> as default, and apply the type hierarchy from Section 2.</li>
+          </ul>
+        </div>
+
+        <!-- 6.4 Document Status -->
+        <div class="subsection" id="s6-status">
+          <p class="subsection-title">6.4 — Document Status</p>
+          <table class="spec-table">
+            <thead>
+              <tr><th>Section</th><th>Status</th><th>Note</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>01 — Colour System</td>
+                <td><span class="badge badge-appr">Approved</span></td>
+                <td>All six colours confirmed. Usage rules final.</td>
+              </tr>
+              <tr>
+                <td>02 — Typography</td>
+                <td><span class="badge badge-appr">Approved</span></td>
+                <td>Space Grotesk + Inter. Scale and rules confirmed.</td>
+              </tr>
+              <tr>
+                <td>03 — Wordmark Base Treatment</td>
+                <td><span class="badge badge-appr">Approved</span></td>
+                <td>Base treatment and colour variants confirmed.</td>
+              </tr>
+              <tr>
+                <td>03 — Wordmark Differentiation</td>
+                <td><span class="badge badge-pend">Pending</span></td>
+                <td>Three options in review with team. Section 3.5 closes on decision.</td>
+              </tr>
+              <tr>
+                <td>04 — Shape &amp; Spacing</td>
+                <td><span class="badge badge-appr">Approved</span></td>
+                <td>8px base, default radius 8px, scale and grid confirmed.</td>
+              </tr>
+              <tr>
+                <td>05 — Component Defaults</td>
+                <td><span class="badge badge-wip">Working Draft</span></td>
+                <td>Defaults established. Subject to refinement as application work progresses.</td>
+              </tr>
+              <tr>
+                <td>06 — Application Notes</td>
+                <td><span class="badge badge-wip">Working Draft</span></td>
+                <td>Expand as new application contexts are formally designed.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      <!-- ── Footer ── -->
+      <footer class="doc-footer">
+        <div class="cg-wm footer-wm" style="font-size:18px;">
+          <span class="wm-c">CEAL</span><span class="wm-g">Green</span>
+        </div>
+        <div class="footer-meta">
+          Visual Identity Specification · Version 1.0 · May 2026<br>
+          CEAL Green Brand System · Confidential
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+</div>
+
+<script>
+  /* ── Active nav state on scroll ── */
+  (function () {
+    var sections = document.querySelectorAll('.section');
+    var navLinks = document.querySelectorAll('.nav-items > li > a');
+
+    function getActiveSection() {
+      var scrollY = window.scrollY + 120;
+      var active = null;
+      sections.forEach(function (sec) {
+        if (sec.offsetTop <= scrollY) active = sec;
+      });
+      return active;
+    }
+
+    function updateNav() {
+      var active = getActiveSection();
+      navLinks.forEach(function (link) {
+        link.classList.remove('active');
+      });
+      if (active) {
+        var href = '#' + active.id;
+        var match = document.querySelector('.nav-items > li > a[href="' + href + '"]');
+        if (match) match.classList.add('active');
+      }
+    }
+
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+  })();
+</script>
+
+</body>
+</html>
