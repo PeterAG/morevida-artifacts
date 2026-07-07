@@ -1293,7 +1293,8 @@
 
 
 <!-- ═══════════════════════════════════════════════════════════════════════
-     DATA LAYER
+     MAINTENANCE REFERENCE — ceal-green-customer-journey-project-overview.html
+     Last updated: 2026-07-07
      ─────────────────────────────────────────────────────────────────────
      ALL content lives in projectData below. The rendering code that follows
      reads from this object exclusively. To update the artifact:
@@ -1301,6 +1302,54 @@
        2. Edit only that key's value
        3. Save — the page re-renders on reload
      Never touch the rendering code unless fixing a layout bug.
+     RULE: any rendering code change must update this reference in the same commit.
+
+     DATA STRUCTURE — top-level keys and what they drive
+     ─────────────────────────────────────────────────────
+     meta              Project identity (name, versionTag, director, role,
+                       primaryContact, goal). Renders in page header and goal bar.
+                       lastUpdated → "Last updated: …" shown in status banner.
+
+     statusBanner      Current project status block near the top of the page.
+                       current    → bold headline in the banner
+                       blocker    → red BLOCKER pill + text (always shown — set to
+                                    "None — …" when no active blocker)
+                       nextAction → "Next action:" line in amber
+                       updated    → date shown bottom-right of banner
+
+     prerequisites     Array of step objects. Renders the Prerequisite Track strip.
+                       Count is dynamic — adding/removing objects updates the strip
+                       and the subtitle automatically (no rendering code change needed).
+                       Each step: id, step ("Step N"), title, version, date, status,
+                       notFinal (bool — triggers NOT FINAL badge), gated (bool —
+                       grey/dimmed treatment), detail (modal text), url (vault path
+                       shown as plain text; https:// shown as clickable link),
+                       relatedItems ([{ id, label }] — Connected Items chips in modal).
+                       status values: "approved" | "in-progress" | "not-started" | "blocked"
+
+     phases            Array of phase objects (Phase 1, 2, 3). Each phase renders a
+                       full band: header, customerExperience text, internalSystems text,
+                       milestones grid, roles table.
+                       Each milestone: id, group (used as grid section header), title,
+                       status, notFinal, date, owner, gatedOn, unlocks, detail, url,
+                       relatedItems. Same field behaviour as prerequisites.
+
+     agenticPlatform   Standalone section. milestones array same structure as phases.
+
+     businessModels    Renders the Business Models section. models array, each with
+                       name, tag, description, journeyNote.
+
+     FUNCTION MAP — where rendering lives (rendering code only if fixing a layout bug)
+     ──────────────────────────────────────────────────────────────────────────────────
+     ~line 2250   meta + goal bar
+     ~line 2277   statusBanner
+     ~line 2300   prerequisites strip (forEach over projectData.prerequisites)
+     ~line 2330   phases bands (forEach over projectData.phases)
+     ~line 2447   agenticPlatform section
+     ~line 2492   businessModels section
+     ~line 2560   milestoneIndex build (indexes all prerequisites + milestones for modal)
+     ~line 2591   openModal() — modal body construction
+     ~line 2667   document link rendering (vault path = plain text; https:// = link)
 ══════════════════════════════════════════════════════════════════════════ -->
 <script>
 const projectData = {
