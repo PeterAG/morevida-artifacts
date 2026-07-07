@@ -56,7 +56,7 @@
       --radius-sm:  4px;
       --radius-md:  8px;   /* Default per CEAL Green brand */
       --radius-lg:  12px;
-      --radius-xl:  16px;
+      --radius-xl:  24px;  /* Updated to GL-003 §0 structural container minimum */
     }
 
     /* ═══════════════════════════════════════════════════════════════════════
@@ -389,8 +389,8 @@
     }
 
     .legend-dot {
-      width: 7px;
-      height: 7px;
+      width: 10px;
+      height: 10px;  /* FIX squint test: 7px dots disappeared on blur; 10px minimum for reliable shape recognition */
       border-radius: 50%;
       flex-shrink: 0;
     }
@@ -465,7 +465,7 @@
     .prereq-track {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0;
+      gap: var(--sp-2);   /* FIX §1A-1 Proximity: gap=0 collapsed all steps into one block */
       position: relative;
     }
 
@@ -483,7 +483,7 @@
 
     .prereq-step {
       position: relative;
-      padding: 0 var(--sp-1);
+      padding: 0;   /* remove horizontal padding now that grid gap provides separation */
       cursor: pointer;
     }
 
@@ -509,7 +509,7 @@
       font-weight: 700;
       letter-spacing: 0.10em;
       text-transform: uppercase;
-      color: rgba(0,0,0,0.35);
+      color: rgba(0,0,0,0.55);  /* FIX §1A-4 decisive-difference: 0.35 was near-invisible; step numbers are the primary sequence signal */
       margin-bottom: 4px;
     }
 
@@ -525,7 +525,7 @@
     .prereq-step-version {
       font-family: 'Inter', sans-serif;
       font-size: 11px;
-      color: rgba(0,0,0,0.45);
+      color: rgba(0,0,0,0.55);  /* FIX §1A-4 decisive-difference: 0.45 was below readable threshold */
       margin-top: 4px;
     }
 
@@ -552,9 +552,14 @@
       justify-content: space-between;
     }
 
-    .phase-header--1 { background: var(--cg-mangrove); }
-    .phase-header--2 { background: #1A3D4F; }  /* Deep teal — Phase 2 Direct Engagement */
-    .phase-header--3 { background: #3D3020; }  /* Deep warm brown — Phase 3 Loyalty */
+    /* FIX §12a/§12e Full-fill anti-pattern: unique hue per phase encoded position in sequence
+       via fill color — a named violation. Phase identity is carried by Phase number + title.
+       All three headers now use the same structural dark ground (mangrove-dark).
+       Phase 2 and Phase 3 get a left accent bar in their own tone so they remain
+       visually distinct without encoding position through a full flood of a unique hue. */
+    .phase-header--1 { background: var(--cg-mangrove-dark); }
+    .phase-header--2 { background: var(--cg-mangrove-dark); border-left: 5px solid #2A7A9A; }
+    .phase-header--3 { background: var(--cg-mangrove-dark); border-left: 5px solid var(--cg-aged-teak); }
 
     .phase-eyebrow {
       font-family: 'Inter', sans-serif;
@@ -669,7 +674,7 @@
       font-weight: 700;
       letter-spacing: 0.10em;
       text-transform: uppercase;
-      color: rgba(0,0,0,0.4);
+      color: rgba(0,0,0,0.6);  /* FIX squint test: 0.4 disappeared on blur; group labels are primary structural dividers within a phase */
       margin-bottom: var(--sp-1);
       margin-top: var(--sp-2);
     }
@@ -747,7 +752,7 @@
     .milestone-card-owner {
       font-family: 'Inter', sans-serif;
       font-size: 11px;
-      color: rgba(0,0,0,0.4);
+      color: rgba(0,0,0,0.55);  /* FIX §1A-4 decisive-difference: owner is meaningful information, not decoration — 0.4 failed contrast */
     }
 
     .milestone-card-hint {
@@ -1282,6 +1287,10 @@
   </style>
 </head>
 <body>
+<div style="background:#2A1F1A;padding:9px 24px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:13px;letter-spacing:0.03em;">
+  <a href="file:///Users/peteranthony/Peter%20OS%202/Deliverables/peter-os-projects-dashboard.html" style="color:#E8C0A3;text-decoration:none;">&#8592; My Projects</a>
+</div>
+
 
 <!-- ═══════════════════════════════════════════════════════════════════════
      DATA LAYER
@@ -1307,7 +1316,7 @@ const projectData = {
     role:           "Customer Journey Manager / Director",
     primaryContact: "Ryan Roper (CEO)",
     goal:           "A complete, approved customer journey for CEAL Green — from awareness through loyalty — documented, designed, and actionable across all four business models.",
-    lastUpdated:    "2026-06-18"
+    lastUpdated:    "2026-07-07"
   },
 
   /* ─────────────────────────────────────────────────────────────────────
@@ -1316,10 +1325,10 @@ const projectData = {
      Update current, blocker, and nextAction as the project moves.
   ──────────────────────────────────────────────────────────────────────── */
   statusBanner: {
-    current:    "Phase 1 – Broadcast Engagement: content strategy in development",
-    blocker:    "Leadership presence decision (Path A/B/C) unresolved — Ryan Roper. Blocks all customer journey mapping.",
-    nextAction: "Ryan Roper to provide feedback on Content Strategy v0.5 and make leadership presence decision.",
-    updated:    "2026-06-18"
+    current:    "Phase 1 – Broadcast Engagement: content production workflow in review",
+    blocker:    "None — Path C (hybrid leadership presence) approved by Ryan Roper. Content Production Workflow v0.5 pending final approval.",
+    nextAction: "Ryan Roper to review and approve Content Production Workflow v0.5.",
+    updated:    "2026-07-07"
   },
 
   /* ─────────────────────────────────────────────────────────────────────
@@ -1337,6 +1346,7 @@ const projectData = {
       date:    "2026-05-01",
       status:  "approved",
       detail:  "Final approved by Ryan Roper. Core proposition, 6 narrative sections, DRIVEN values, Build Now close. The authoritative brand foundation document — everything downstream derives from this.",
+      url:     "file:///Users/peteranthony/Peter%20OS%202/PKM/Clients/ceal-green-guiding-narrative.md",
       relatedItems: []
     },
     {
@@ -1346,36 +1356,54 @@ const projectData = {
       version: "v0.2",
       date:    "2026-05-07",
       status:  "approved",
-      detail:  "Approved by Ryan Roper. Voice characteristics, tone modulation, approved language register, absolute editorial constraints. Governs all content production.",
-      relatedItems: []
+      detail:  "Approved by Ryan Roper. Voice characteristics, tone modulation, approved language register, absolute editorial constraints. Governs all content production.\n\nSee also: Visual Identity Spec v1.0 (milestone m1-3) — full colour palette, typography, wordmark, shape and spacing system.",
+      url:     "file:///Users/peteranthony/Peter%20OS%202/PKM/Clients/ceal-green-brand-guidelines.md",
+      relatedItems: [
+        { id: "m1-3", label: "Visual Identity Spec v1.0" }
+      ]
     },
     {
       id:      "prereq-3",
       step:    "Step 3",
       title:   "Content Strategy",
-      version: "v0.5",
-      date:    "Sent 2026-05-28",
-      status:  "in-progress",
-      notFinal: true,   /* triggers the NOT FINAL warning — flag as false once approved */
-      detail:  "Sent to Ryan Roper for feedback. Covers Phase 1 (Broadcast Engagement) only. Includes: audience architecture (5 tiers, Tier 1 = Decision Makers primary), platform strategy (LinkedIn primary), content pillars (Build Smart / Build Strong / Build Caribbean / Build Solutions / Build Together / Build Now), format mix and cadence, publication ecosystem. BLOCKED on leadership presence decision (Section 13: Path A / Path B / Path C).",
-      gatedOn: "Must be approved before customer journey mapping can proceed. Leadership presence decision is a hard blocker.",
+      version: "v0.6",
+      date:    "2026-06-26",
+      status:  "approved",
+      notFinal: false,
+      detail:  "Approved by Ryan Roper. Path C (hybrid leadership presence) confirmed. Covers Phase 1 (Broadcast Engagement) only. Includes: audience architecture (5 tiers, Tier 1 = Decision Makers primary), platform strategy (LinkedIn primary), content pillars (Build Smart / Build Strong / Build Caribbean / Build Solutions / Build Together / Build Now), format mix and cadence, publication ecosystem.",
+      url:     "file:///Users/peteranthony/Peter%20OS%202/PKM/Clients/ceal-green-content-strategy.md",
       relatedItems: [
-        { id: "m1-9",  label: "Leadership Presence Decision" },
-        { id: "prereq-4", label: "Customer Journey Mapping" }
+        { id: "prereq-4", label: "Content Production Workflow" },
+        { id: "prereq-5", label: "Customer Journey Mapping" }
       ]
     },
     {
       id:      "prereq-4",
       step:    "Step 4",
+      title:   "Content Production Workflow",
+      version: "v0.5",
+      date:    "2026-05-28",
+      status:  "in-progress",
+      notFinal: true,
+      detail:  "Pending Ryan Roper approval. Defines two production workflows: (1) Foundational Content — long-form originals (articles, op-eds, thought leadership); (2) Derivative Content — social adaptations of foundational pieces. Defines all roles in the content operation and specifies AI agent configurations. The Content Manager is the primary operational role — this cannot be a fractional position.",
+      url:     "file:///Users/peteranthony/Peter%20OS%202/PKM/Clients/ceal-green-content-production-workflow.md",
+      relatedItems: [
+        { id: "prereq-3", label: "Content Strategy v0.6" },
+        { id: "prereq-5", label: "Customer Journey Mapping" }
+      ]
+    },
+    {
+      id:      "prereq-5",
+      step:    "Step 5",
       title:   "Customer Journey Mapping",
       version: null,
       date:    null,
       status:  "not-started",
-      gated:   true,   /* visually flags this step as gated */
-      detail:  "Gated on Content Strategy approval and leadership presence decision. Will cover all four business models: Consulting, EPC (Engineering, Procurement, Construction), FBO (Finance, Build, Own), and Product Solutions. The journey is one — the four models create variations within the same arc.",
+      gated:   true,
+      detail:  "Gated on Content Strategy and Content Production Workflow approval. Will cover all four business models: Consulting, EPC (Engineering, Procurement, Construction), FBO (Finance, Build, Own), and Product Solutions. The journey is one — the four models create variations within the same arc.",
       relatedItems: [
-        { id: "m1-9",  label: "Leadership Presence Decision" },
-        { id: "prereq-3", label: "Content Strategy v0.5" }
+        { id: "prereq-3", label: "Content Strategy v0.6" },
+        { id: "prereq-4", label: "Content Production Workflow" }
       ]
     }
   ],
@@ -1413,6 +1441,7 @@ const projectData = {
           gatedOn: null,
           unlocks: "All content production. Brand & Content Guidelines build directly on this.",
           detail:  "6-section narrative spine, 'Build Now' core, DRIVEN values (Discipline · Respect · Integrity · Value · Excellence · Neutrality). This is the authoritative brand foundation — every downstream document derives from it.",
+          url:     "file:///Users/peteranthony/Peter%20OS%202/PKM/Clients/ceal-green-guiding-narrative.md",
           relatedItems: []
         },
         {
@@ -1425,6 +1454,7 @@ const projectData = {
           gatedOn: "Guiding Narrative approval",
           unlocks: "Content production, visual identity work, writing guidelines",
           detail:  "Voice characteristics, tone modulation by context (thought leadership, announcements, community, client-facing), approved language register, and absolute editorial constraints. These constraints are non-negotiable in all content.",
+          url:     "file:///Users/peteranthony/Peter%20OS%202/PKM/Clients/ceal-green-brand-guidelines.md",
           relatedItems: []
         },
         {
@@ -1437,6 +1467,7 @@ const projectData = {
           gatedOn: null,
           unlocks: "All visual production — social graphics, website, collateral",
           detail:  "Full visual identity specification including colour palette (Mangrove, Oatmeal, Near Black, Aged Teak, Mid Canopy, Pale Sand), Space Grotesk + Inter typography system, wordmark (base structure approved; wordmark differentiation pending), shape and spacing scale. Status: Approved except wordmark differentiation (pending).",
+          url:     "file:///Users/peteranthony/Peter%20OS%202/PKM/Clients/ceal-green-visual-identity-specification-v1.0.pdf",
           relatedItems: []
         },
         {
@@ -1449,24 +1480,25 @@ const projectData = {
           gatedOn: null,
           unlocks: "Website copy revisions, developer action sheet execution",
           detail:  "Cass completed a full audit of cealgreen.com. Outputs: detailed findings report, copy recommendations, developer action sheet, and logo evaluation. This audit forms the basis for the website refresh needed before Phase 1 content launch.",
+          url:     "file:///Users/peteranthony/Peter%20OS%202/Deliverables/2026-06-10-ceal-green-website-audit/ceal-green-website-audit-v2.html",
           relatedItems: []
         },
         /* ── IN PROGRESS ─────────────────────────────────────── */
         {
           id:       "m1-5",
-          group:    "In Progress",
-          title:    "Content Strategy v0.5",
-          status:   "in-progress",
-          notFinal: true,   /* NOT FINAL — awaiting approval */
-          date:     "Sent 2026-05-28",
+          group:    "Completed",
+          title:    "Content Strategy v0.6",
+          status:   "approved",
+          notFinal: false,
+          date:     "Approved 2026-06-26",
           owner:    "Peter Gales (author) / Ryan Roper (approver)",
-          gatedOn:  "Leadership presence decision (Path A/B/C — Section 13) is a hard blocker. Decision sits with Ryan Roper.",
-          unlocks:  "Customer journey mapping, Content Manager hire, AI agent configuration",
-          detail:   "Sent to Ryan Roper for feedback. Awaiting response. NOT FINAL — cannot be treated as approved or used as basis for production decisions.\n\nCovers: audience architecture (5 tiers — Tier 1: Decision Makers is primary), platform architecture (LinkedIn primary), 6 content goals (Authority, Credibility, Trustworthiness, Awareness, Pipeline, Community), content pillars (Build Smart / Build Strong / Build Caribbean / Build Solutions / Build Together / Build Now), format mix and cadence, publication ecosystem.\n\nKey blocker — Section 13 (Leadership Presence): Path A = company brand only; Path B = founder-led (CEO is primary brand face); Path C = hybrid (company brand with CEO amplification). This decision materially affects reach, earned media velocity, and trust-building with senior audiences.",
+          gatedOn:  null,
+          unlocks:  "Content Production Workflow approval, Content Manager hire, AI agent configuration",
+          detail:   "Approved by Ryan Roper. Path C (hybrid) confirmed for leadership presence.\n\nCovers: audience architecture (5 tiers — Tier 1: Decision Makers is primary), platform architecture (LinkedIn primary), 6 content goals (Authority, Credibility, Trustworthiness, Awareness, Pipeline, Community), content pillars (Build Smart / Build Strong / Build Caribbean / Build Solutions / Build Together / Build Now), format mix and cadence, publication ecosystem.",
+          url:      "file:///Users/peteranthony/Peter%20OS%202/PKM/Clients/ceal-green-content-strategy.md",
           relatedItems: [
             { id: "m1-9",    label: "Leadership Presence Decision" },
-            { id: "m1-10",   label: "Content Strategy Approval" },
-            { id: "prereq-4", label: "Customer Journey Mapping" }
+            { id: "prereq-5", label: "Customer Journey Mapping" }
           ]
         },
         {
@@ -1480,6 +1512,7 @@ const projectData = {
           gatedOn:  "Ryan Roper feedback and approval",
           unlocks:  "Content Manager onboarding, AI agent configuration, production launch",
           detail:   "Sent to Ryan Roper for feedback. NOT FINAL.\n\nDefines two production workflows: (1) Foundational Content — long-form originals (articles, op-eds, thought leadership); (2) Derivative Content — social adaptations of foundational pieces. Defines all roles in the content operation and specifies AI agent configurations. The Content Manager is the primary operational role — this cannot be a fractional position.",
+          url:      "file:///Users/peteranthony/Peter%20OS%202/PKM/Clients/ceal-green-content-production-workflow.md",
           relatedItems: [
             { id: "m1-11",   label: "Content Workflow Approval" },
             { id: "m1-12",   label: "Hire Content Manager" }
@@ -1495,6 +1528,7 @@ const projectData = {
           gatedOn: "Ryan Roper review",
           unlocks: "Publication relationship-building, event participation decisions",
           detail:  "Restructured events map, sponsorship framework, and Key Institutional Relationship Targets section added in v1.8 following Ryan's feedback on 2026-06-12. Sent to Ryan; awaiting his review.",
+          url:     "file:///Users/peteranthony/Peter%20OS%202/PKM/Clients/ceal-green-publication-event-candidates.md",
           relatedItems: []
         },
         {
@@ -1507,21 +1541,22 @@ const projectData = {
           gatedOn: "Ryan Roper approval",
           unlocks: "SOP build, HTML evaluation form build",
           detail:  "Standalone document. v1.4 is a draft — awaiting Ryan Roper's approval. After approval: SOP for sponsorship evaluation and an HTML intake form will be built.",
+          url:     "file:///Users/peteranthony/Peter%20OS%202/PKM/Clients/ceal-green-sponsorship-framework.md",
           relatedItems: []
         },
         /* ── BLOCKED / NEXT STEPS ────────────────────────────── */
         {
           id:      "m1-9",
-          group:   "Blocked / Next Steps",
+          group:   "Completed",
           title:   "Leadership Presence Decision",
-          status:  "blocked",
-          date:    null,
+          status:  "approved",
+          date:    "Decided 2026-07-07",
           owner:   "Ryan Roper (decision-maker)",
           gatedOn: null,
           unlocks: "Content Strategy finalization, customer journey mapping, Writing Agent CEO-voice configuration, Phase 1 launch",
-          detail:  "Three paths under consideration:\n\nPath A — Company brand only: existing CEO social presence stays as-is; CEAL Green brand carries independently.\n\nPath B — Founder-led: CEO is the primary brand face; personal authority amplifies company reach significantly. Requires CEO time and willingness to be visible.\n\nPath C — Hybrid (most likely): company brand primary, CEO amplifies key content. Balances reach with CEO time investment.\n\nThis decision materially affects: earned media potential, trust-building speed with senior institutional audiences, Writing Agent configuration (CEO voice calibration required for Path B/C), and content volume capacity.",
+          detail:  "Decision: Path C — Hybrid. Company brand is primary; CEO amplifies key content. Balances reach with CEO time investment. Writing Agent will require CEO voice calibration.\n\nPaths considered:\nPath A — Company brand only: existing CEO social presence stays as-is.\nPath B — Founder-led: CEO is the primary brand face.\nPath C — Hybrid (chosen): company brand primary, CEO amplifies key content.",
           relatedItems: [
-            { id: "prereq-4", label: "Customer Journey Mapping" },
+            { id: "prereq-5", label: "Customer Journey Mapping" },
             { id: "m1-5",    label: "Content Strategy v0.5" },
             { id: "m1-14",   label: "Configure Writing Agent" }
           ]
@@ -2281,7 +2316,7 @@ const projectData = {
     <div class="prereq-section">
       <div class="prereq-section-header">
         <div class="prereq-section-title">Prerequisite Track</div>
-        <div class="prereq-section-subtitle">Four mandatory steps — in order — before customer journey mapping can begin</div>
+        <div class="prereq-section-subtitle">Five mandatory steps — in order — before customer journey mapping can begin</div>
       </div>
       <div class="prereq-track">
   `;
@@ -2548,6 +2583,7 @@ const projectData = {
       gatedOn:      p.gatedOn || null,
       unlocks:      null,
       detail:       p.detail,
+      url:          p.url || null,
       relatedItems: p.relatedItems || []
     };
   });
@@ -2623,6 +2659,25 @@ const projectData = {
         <div class="modal-section">
           <div class="modal-section-label">Detail</div>
           <div class="modal-detail-text">${esc(ms.detail)}</div>
+        </div>
+      `;
+    }
+
+    /* Document link */
+    if (ms.url) {
+      const fileName = decodeURIComponent(ms.url.split('/').pop());
+      bodyHTML += `
+        <hr class="modal-divider">
+        <div class="modal-section">
+          <div class="modal-section-label">Document</div>
+          <div class="modal-section-value">
+            <a href="${ms.url}"
+               style="font-family:Inter,sans-serif;font-size:13px;color:var(--cg-aged-teak);text-decoration:none;display:inline-flex;align-items:center;gap:5px;"
+               onmouseover="this.style.textDecoration='underline'"
+               onmouseout="this.style.textDecoration='none'">
+              ${esc(fileName)} <span style="font-size:11px;opacity:0.7">&#8599;</span>
+            </a>
+          </div>
         </div>
       `;
     }
