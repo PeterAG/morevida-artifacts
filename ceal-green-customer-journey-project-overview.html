@@ -1382,10 +1382,10 @@ const projectData = {
       step:    "Step 4",
       title:   "Content Production Workflow",
       version: "v0.5",
-      date:    "2026-05-28",
-      status:  "in-progress",
-      notFinal: true,
-      detail:  "Pending Ryan Roper approval. Defines two production workflows: (1) Foundational Content — long-form originals (articles, op-eds, thought leadership); (2) Derivative Content — social adaptations of foundational pieces. Defines all roles in the content operation and specifies AI agent configurations. The Content Manager is the primary operational role — this cannot be a fractional position.",
+      date:    "2026-06-30",
+      status:  "approved",
+      notFinal: false,
+      detail:  "Approved by Ryan Roper (2026-06-30 — minor comments only, green light given). Defines two production workflows: (1) Foundational Content — long-form originals (articles, op-eds, thought leadership); (2) Derivative Content — social adaptations of foundational pieces. Defines all roles in the content operation and specifies AI agent configurations. The Content Manager is the primary operational role — this cannot be a fractional position.",
       url:     "file:///Users/peteranthony/Peter%20OS%202/PKM/Clients/ceal-green-content-production-workflow.md",
       relatedItems: [
         { id: "prereq-3", label: "Content Strategy v0.6" },
@@ -1467,7 +1467,7 @@ const projectData = {
           gatedOn: null,
           unlocks: "All visual production — social graphics, website, collateral",
           detail:  "Full visual identity specification including colour palette (Mangrove, Oatmeal, Near Black, Aged Teak, Mid Canopy, Pale Sand), Space Grotesk + Inter typography system, wordmark (base structure approved; wordmark differentiation pending), shape and spacing scale. Status: Approved except wordmark differentiation (pending).",
-          url:     "file:///Users/peteranthony/Peter%20OS%202/PKM/Clients/ceal-green-visual-identity-specification-v1.0.pdf",
+          url:     "https://peterag.github.io/morevida-artifacts/ceal-green-visual-identity-spec-v1.html",
           relatedItems: []
         },
         {
@@ -1503,15 +1503,15 @@ const projectData = {
         },
         {
           id:       "m1-6",
-          group:    "In Progress",
+          group:    "Completed",
           title:    "Content Production Workflow v0.5",
-          status:   "in-progress",
-          notFinal: true,   /* NOT FINAL — awaiting approval */
-          date:     "Sent 2026-05-28",
+          status:   "approved",
+          notFinal: false,
+          date:     "Approved 2026-06-30",
           owner:    "Peter Gales (author) / Ryan Roper (approver)",
-          gatedOn:  "Ryan Roper feedback and approval",
+          gatedOn:  null,
           unlocks:  "Content Manager onboarding, AI agent configuration, production launch",
-          detail:   "Sent to Ryan Roper for feedback. NOT FINAL.\n\nDefines two production workflows: (1) Foundational Content — long-form originals (articles, op-eds, thought leadership); (2) Derivative Content — social adaptations of foundational pieces. Defines all roles in the content operation and specifies AI agent configurations. The Content Manager is the primary operational role — this cannot be a fractional position.",
+          detail:   "Approved by Ryan Roper 2026-06-30 — minor comments only, green light given.\n\nDefines two production workflows: (1) Foundational Content — long-form originals (articles, op-eds, thought leadership); (2) Derivative Content — social adaptations of foundational pieces. Defines all roles in the content operation and specifies AI agent configurations. The Content Manager is the primary operational role — this cannot be a fractional position.",
           url:      "file:///Users/peteranthony/Peter%20OS%202/PKM/Clients/ceal-green-content-production-workflow.md",
           relatedItems: [
             { id: "m1-11",   label: "Content Workflow Approval" },
@@ -1557,37 +1557,37 @@ const projectData = {
           detail:  "Decision: Path C — Hybrid. Company brand is primary; CEO amplifies key content. Balances reach with CEO time investment. Writing Agent will require CEO voice calibration.\n\nPaths considered:\nPath A — Company brand only: existing CEO social presence stays as-is.\nPath B — Founder-led: CEO is the primary brand face.\nPath C — Hybrid (chosen): company brand primary, CEO amplifies key content.",
           relatedItems: [
             { id: "prereq-5", label: "Customer Journey Mapping" },
-            { id: "m1-5",    label: "Content Strategy v0.5" },
+            { id: "m1-5",    label: "Content Strategy v0.6" },
             { id: "m1-14",   label: "Configure Writing Agent" }
           ]
         },
         {
           id:      "m1-10",
-          group:   "Blocked / Next Steps",
+          group:   "Completed",
           title:   "Content Strategy Approval",
-          status:  "blocked",
-          date:    null,
+          status:  "approved",
+          date:    "Approved 2026-06-26",
           owner:   "Ryan Roper",
-          gatedOn: "Leadership presence decision (Path A/B/C) must be resolved first",
+          gatedOn: null,
           unlocks: "Customer journey mapping (full unblock), Content Manager hire, all AI agent configuration",
-          detail:  "Content Strategy v0.5 is with Ryan Roper. Cannot be finalized and approved until the leadership presence decision is made — Section 13 is incomplete without it. Once approved, the critical path opens: hire Content Manager, configure AI agents, begin customer journey mapping.",
+          detail:  "Content Strategy v0.6 approved by Ryan Roper. Path C (hybrid) confirmed. Critical path now open: hire Content Manager, configure AI agents, begin customer journey mapping.",
           relatedItems: [
             { id: "m1-9",    label: "Leadership Presence Decision" },
-            { id: "m1-5",    label: "Content Strategy v0.5" },
+            { id: "m1-5",    label: "Content Strategy v0.6" },
             { id: "m1-12",   label: "Hire Content Manager" },
-            { id: "prereq-4", label: "Customer Journey Mapping" }
+            { id: "prereq-5", label: "Customer Journey Mapping" }
           ]
         },
         {
           id:      "m1-11",
-          group:   "Blocked / Next Steps",
+          group:   "Completed",
           title:   "Content Workflow Approval",
-          status:  "blocked",
-          date:    null,
+          status:  "approved",
+          date:    "Approved 2026-06-30",
           owner:   "Ryan Roper",
-          gatedOn: "Ryan Roper review and approval",
+          gatedOn: null,
           unlocks: "Content Manager onboarding, AI agent configuration, production launch",
-          detail:  "Content Production Workflow v0.5 is with Ryan Roper alongside the Content Strategy. Both must be approved before the operational infrastructure can be built.",
+          detail:  "Content Production Workflow v0.5 approved by Ryan Roper 2026-06-30 — minor comments only, green light given. Operational infrastructure can now be built.",
           relatedItems: [
             { id: "m1-12",   label: "Hire Content Manager" },
             { id: "m1-13",   label: "Configure Research & Ideation Agent" },
@@ -2665,17 +2665,20 @@ const projectData = {
 
     /* Document link */
     if (ms.url) {
-      const fileName = decodeURIComponent(ms.url.split('/').pop());
+      const vaultBase = 'file:///Users/peteranthony/Peter%20OS%202/';
+      const displayPath = ms.url.startsWith(vaultBase)
+        ? decodeURIComponent(ms.url.slice(vaultBase.length))
+        : decodeURIComponent(ms.url.split('/').pop());
       bodyHTML += `
         <hr class="modal-divider">
         <div class="modal-section">
           <div class="modal-section-label">Document</div>
           <div class="modal-section-value">
             <a href="${ms.url}"
-               style="font-family:Inter,sans-serif;font-size:13px;color:var(--cg-aged-teak);text-decoration:none;display:inline-flex;align-items:center;gap:5px;"
+               style="font-family:'SF Mono','Fira Code',monospace;font-size:12px;color:var(--cg-aged-teak);text-decoration:none;display:inline-flex;align-items:center;gap:5px;word-break:break-all;"
                onmouseover="this.style.textDecoration='underline'"
                onmouseout="this.style.textDecoration='none'">
-              ${esc(fileName)} <span style="font-size:11px;opacity:0.7">&#8599;</span>
+              ${esc(displayPath)} <span style="font-size:11px;opacity:0.7">&#8599;</span>
             </a>
           </div>
         </div>
