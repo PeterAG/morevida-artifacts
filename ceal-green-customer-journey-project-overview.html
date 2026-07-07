@@ -2666,7 +2666,8 @@ const projectData = {
     /* Document link */
     if (ms.url) {
       const vaultBase = 'file:///Users/peteranthony/Peter%20OS%202/';
-      const displayPath = ms.url.startsWith(vaultBase)
+      const isLocal = ms.url.startsWith(vaultBase);
+      const displayPath = isLocal
         ? decodeURIComponent(ms.url.slice(vaultBase.length))
         : decodeURIComponent(ms.url.split('/').pop());
       bodyHTML += `
@@ -2674,12 +2675,15 @@ const projectData = {
         <div class="modal-section">
           <div class="modal-section-label">Document</div>
           <div class="modal-section-value">
-            <a href="${ms.url}"
-               style="font-family:'SF Mono','Fira Code',monospace;font-size:12px;color:var(--cg-aged-teak);text-decoration:none;display:inline-flex;align-items:center;gap:5px;word-break:break-all;"
-               onmouseover="this.style.textDecoration='underline'"
-               onmouseout="this.style.textDecoration='none'">
-              ${esc(displayPath)} <span style="font-size:11px;opacity:0.7">&#8599;</span>
-            </a>
+            ${isLocal
+              ? `<span style="font-family:'SF Mono','Fira Code',monospace;font-size:12px;color:#666;word-break:break-all;">${esc(displayPath)}</span>`
+              : `<a href="${ms.url}" target="_blank"
+                    style="font-family:'SF Mono','Fira Code',monospace;font-size:12px;color:var(--cg-aged-teak);text-decoration:none;display:inline-flex;align-items:center;gap:5px;word-break:break-all;"
+                    onmouseover="this.style.textDecoration='underline'"
+                    onmouseout="this.style.textDecoration='none'">
+                  ${esc(displayPath)} <span style="font-size:11px;opacity:0.7">&#8599;</span>
+                 </a>`
+            }
           </div>
         </div>
       `;
